@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pd:pipeline xmlns:pd="xsd://www.illumina.com/ica/cp/pipelinedefinition" code="" version="1.0">
+    <pd:dataInputs>
+        <pd:dataInput code="read1" format="FASTQ" type="FILE" required="true" multiValue="false">
+            <pd:label>FASTQ Read 1</pd:label>
+            <pd:description>FASTQ Read 1</pd:description>
+        </pd:dataInput>
+        <pd:dataInput code="read2" format="FASTQ" type="FILE" required="true" multiValue="false">
+            <pd:label>FASTQ Read 2</pd:label>
+            <pd:description>FASTQ Read 2</pd:description>
+        </pd:dataInput>
+        <pd:dataInput code="ref_tar" format="TAR" type="FILE" required="true" multiValue="false">
+            <pd:label>Reference</pd:label>
+            <pd:description>Reference TAR</pd:description>
+        </pd:dataInput>
+    </pd:dataInputs>
+    <pd:steps>
+        <pd:step execution="MANDATORY" code="General">
+            <pd:label>General</pd:label>
+            <pd:description></pd:description>
+            <pd:tool code="generalparameters">
+                <pd:label>General Parameters</pd:label>
+                <pd:description></pd:description>
+                <pd:parameter code="sample_id" minValues="1" maxValues="1" classification="USER">
+                    <pd:label>Sample ID</pd:label>
+                    <pd:description></pd:description>
+                    <pd:stringType/>
+                    <pd:value></pd:value>
+                </pd:parameter>
+            </pd:tool>
+        </pd:step>
+    </pd:steps>
+</pd:pipeline>
