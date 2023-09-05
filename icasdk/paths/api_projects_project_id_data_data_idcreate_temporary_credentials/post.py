@@ -77,7 +77,6 @@ request_body_create_temporary_credentials = api_client.RequestBody(
         'application/json': api_client.MediaType(
             schema=SchemaForRequestBodyApplicationJson),
     },
-    required=True,
 )
 _auth = [
     'JwtAuth',
@@ -135,8 +134,8 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _create_temporary_credentials_for_data_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -151,9 +150,9 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _create_temporary_credentials_for_data_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -163,8 +162,8 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _create_temporary_credentials_for_data_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -178,8 +177,8 @@ class BaseApi(api_client.Api):
 
     def _create_temporary_credentials_for_data_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/vnd.illumina.v3+json',
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -215,17 +214,15 @@ class BaseApi(api_client.Api):
             for accept_content_type in accept_content_types:
                 _headers.add('Accept', accept_content_type)
 
-        if body is schemas.unset:
-            raise exceptions.ApiValueError(
-                'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
-        serialized_data = request_body_create_temporary_credentials.serialize(body, content_type)
-        _headers.add('Content-Type', content_type)
-        if 'fields' in serialized_data:
-            _fields = serialized_data['fields']
-        elif 'body' in serialized_data:
-            _body = serialized_data['body']
+        if body is not schemas.unset:
+            serialized_data = request_body_create_temporary_credentials.serialize(body, content_type)
+            _headers.add('Content-Type', content_type)
+            if 'fields' in serialized_data:
+                _fields = serialized_data['fields']
+            elif 'body' in serialized_data:
+                _body = serialized_data['body']
         response = self.api_client.call_api(
             resource_path=used_path,
             method='post'.upper(),
@@ -262,8 +259,8 @@ class CreateTemporaryCredentialsForData(BaseApi):
     @typing.overload
     def create_temporary_credentials_for_data(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -278,9 +275,9 @@ class CreateTemporaryCredentialsForData(BaseApi):
     @typing.overload
     def create_temporary_credentials_for_data(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -290,8 +287,8 @@ class CreateTemporaryCredentialsForData(BaseApi):
     @typing.overload
     def create_temporary_credentials_for_data(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -305,8 +302,8 @@ class CreateTemporaryCredentialsForData(BaseApi):
 
     def create_temporary_credentials_for_data(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/vnd.illumina.v3+json',
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -330,8 +327,8 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -346,9 +343,9 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -358,8 +355,8 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -373,8 +370,8 @@ class ApiForpost(BaseApi):
 
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/vnd.illumina.v3+json',
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, schemas.Unset] = schemas.unset,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,

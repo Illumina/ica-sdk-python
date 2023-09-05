@@ -13,6 +13,7 @@ Key | Input Type | Accessed Type | Description | Notes
 **format** | [**DataFormat**](DataFormat.md) | [**DataFormat**](DataFormat.md) |  | 
 **name** | str,  | str,  | The name of the file/folder as it was processed by the analysis. | 
 **[children](#children)** | list, tuple,  | tuple,  |  | [optional] 
+**mountPath** | str,  | str,  | The requested location where the input file was located on the machine that was running the pipeline. | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 # children

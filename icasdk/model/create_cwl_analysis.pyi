@@ -35,7 +35,6 @@ class CreateCwlAnalysis(
 
     class MetaOapg:
         required = {
-            "activationCodeDetailId",
             "userReference",
             "analysisInput",
             "pipelineId",
@@ -54,11 +53,11 @@ class CreateCwlAnalysis(
             @staticmethod
             def tags() -> typing.Type['AnalysisTag']:
                 return AnalysisTag
-            activationCodeDetailId = schemas.UUIDSchema
         
             @staticmethod
             def analysisInput() -> typing.Type['CwlAnalysisInput']:
                 return CwlAnalysisInput
+            activationCodeDetailId = schemas.UUIDSchema
             
             
             class analysisStorageId(
@@ -135,14 +134,13 @@ class CreateCwlAnalysis(
                 "userReference": userReference,
                 "pipelineId": pipelineId,
                 "tags": tags,
-                "activationCodeDetailId": activationCodeDetailId,
                 "analysisInput": analysisInput,
+                "activationCodeDetailId": activationCodeDetailId,
                 "analysisStorageId": analysisStorageId,
                 "outputParentFolderId": outputParentFolderId,
                 "analysisOutput": analysisOutput,
             }
     
-    activationCodeDetailId: MetaOapg.properties.activationCodeDetailId
     userReference: MetaOapg.properties.userReference
     analysisInput: 'CwlAnalysisInput'
     pipelineId: MetaOapg.properties.pipelineId
@@ -158,10 +156,10 @@ class CreateCwlAnalysis(
     def __getitem__(self, name: typing_extensions.Literal["tags"]) -> 'AnalysisTag': ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["activationCodeDetailId"]) -> MetaOapg.properties.activationCodeDetailId: ...
+    def __getitem__(self, name: typing_extensions.Literal["analysisInput"]) -> 'CwlAnalysisInput': ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["analysisInput"]) -> 'CwlAnalysisInput': ...
+    def __getitem__(self, name: typing_extensions.Literal["activationCodeDetailId"]) -> MetaOapg.properties.activationCodeDetailId: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["analysisStorageId"]) -> MetaOapg.properties.analysisStorageId: ...
@@ -175,7 +173,7 @@ class CreateCwlAnalysis(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["userReference", "pipelineId", "tags", "activationCodeDetailId", "analysisInput", "analysisStorageId", "outputParentFolderId", "analysisOutput", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["userReference", "pipelineId", "tags", "analysisInput", "activationCodeDetailId", "analysisStorageId", "outputParentFolderId", "analysisOutput", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -190,10 +188,10 @@ class CreateCwlAnalysis(
     def get_item_oapg(self, name: typing_extensions.Literal["tags"]) -> 'AnalysisTag': ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["activationCodeDetailId"]) -> MetaOapg.properties.activationCodeDetailId: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["analysisInput"]) -> 'CwlAnalysisInput': ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["analysisInput"]) -> 'CwlAnalysisInput': ...
+    def get_item_oapg(self, name: typing_extensions.Literal["activationCodeDetailId"]) -> typing.Union[MetaOapg.properties.activationCodeDetailId, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["analysisStorageId"]) -> typing.Union[MetaOapg.properties.analysisStorageId, schemas.Unset]: ...
@@ -207,18 +205,18 @@ class CreateCwlAnalysis(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["userReference", "pipelineId", "tags", "activationCodeDetailId", "analysisInput", "analysisStorageId", "outputParentFolderId", "analysisOutput", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["userReference", "pipelineId", "tags", "analysisInput", "activationCodeDetailId", "analysisStorageId", "outputParentFolderId", "analysisOutput", ], str]):
         return super().get_item_oapg(name)
     
 
     def __new__(
         cls,
         *args: typing.Union[dict, frozendict.frozendict, ],
-        activationCodeDetailId: typing.Union[MetaOapg.properties.activationCodeDetailId, str, uuid.UUID, ],
         userReference: typing.Union[MetaOapg.properties.userReference, str, ],
         analysisInput: 'CwlAnalysisInput',
         pipelineId: typing.Union[MetaOapg.properties.pipelineId, str, ],
         tags: 'AnalysisTag',
+        activationCodeDetailId: typing.Union[MetaOapg.properties.activationCodeDetailId, str, uuid.UUID, schemas.Unset] = schemas.unset,
         analysisStorageId: typing.Union[MetaOapg.properties.analysisStorageId, None, str, uuid.UUID, schemas.Unset] = schemas.unset,
         outputParentFolderId: typing.Union[MetaOapg.properties.outputParentFolderId, None, str, schemas.Unset] = schemas.unset,
         analysisOutput: typing.Union[MetaOapg.properties.analysisOutput, list, tuple, None, schemas.Unset] = schemas.unset,
@@ -228,11 +226,11 @@ class CreateCwlAnalysis(
         return super().__new__(
             cls,
             *args,
-            activationCodeDetailId=activationCodeDetailId,
             userReference=userReference,
             analysisInput=analysisInput,
             pipelineId=pipelineId,
             tags=tags,
+            activationCodeDetailId=activationCodeDetailId,
             analysisStorageId=analysisStorageId,
             outputParentFolderId=outputParentFolderId,
             analysisOutput=analysisOutput,

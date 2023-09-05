@@ -2172,7 +2172,7 @@ with icasdk.ApiClient(configuration) as api_client:
                 region=Region(),
                 is_default=True,
             ),
-            analysis_priority="Low",
+            analysis_priority="LOW",
             metadata_model=MetadataModel(
                 id="id_example",
                 time_created="1970-01-01T00:00:00.00Z",
@@ -2303,7 +2303,7 @@ with icasdk.ApiClient(configuration) as api_client:
                 region=Region(),
                 is_default=True,
             ),
-            analysis_priority="Low",
+            analysis_priority="LOW",
             metadata_model=MetadataModel(
                 id="id_example",
                 time_created="1970-01-01T00:00:00.00Z",

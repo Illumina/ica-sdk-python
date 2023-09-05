@@ -20,7 +20,7 @@ Key | Input Type | Accessed Type | Description | Notes
 **metadataModelId** | None, str, uuid.UUID,  | NoneClass, str,  |  | [optional] value must be a uuid
 **storageConfigurationId** | None, str, uuid.UUID,  | NoneClass, str,  | An optional storage configuration id to have self managed storage. | [optional] value must be a uuid
 **storageConfigurationSubfolder** | None, str,  | NoneClass, str,  | An optional subfolder that determines the object prefix of your self managed storage.  If not used, you will not be able to use this storage configuration for any future projects. | [optional] 
-**analysisPriority** | None, str,  | NoneClass, str,  | Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value. | [optional] must be one of ["Low", "Medium", "High", ] if omitted the server will use the default value of "Medium"
+**analysisPriority** | None, str,  | NoneClass, str,  | Indicates the priority given to a project and its analyses within a single tenant, where MEDIUM is the default value. | [optional] must be one of ["LOW", "MEDIUM", "HIGH", ] if omitted the server will use the default value of "MEDIUM"
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)

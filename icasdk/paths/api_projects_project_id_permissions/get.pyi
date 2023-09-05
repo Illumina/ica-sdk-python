@@ -25,6 +25,7 @@ import frozendict  # noqa: F401
 
 from icasdk import schemas  # noqa: F401
 
+from icasdk.model.project_permission_list_v4 import ProjectPermissionListV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission_list import ProjectPermissionList
 
@@ -54,6 +55,7 @@ request_path_project_id = api_client.PathParameter(
     schema=ProjectIdSchema,
     required=True,
 )
+SchemaFor200ResponseBodyApplicationVndIlluminaV4json = ProjectPermissionListV4
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = ProjectPermissionList
 
 
@@ -61,6 +63,7 @@ SchemaFor200ResponseBodyApplicationVndIlluminaV3json = ProjectPermissionList
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
+        SchemaFor200ResponseBodyApplicationVndIlluminaV4json,
         SchemaFor200ResponseBodyApplicationVndIlluminaV3json,
     ]
     headers: schemas.Unset = schemas.unset
@@ -69,6 +72,8 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
+        'application/vnd.illumina.v4+json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationVndIlluminaV4json),
         'application/vnd.illumina.v3+json': api_client.MediaType(
             schema=SchemaFor200ResponseBodyApplicationVndIlluminaV3json),
     },
@@ -94,6 +99,7 @@ _response_for_default = api_client.OpenApiResponse(
 )
 _all_accept_content_types = (
     'application/problem+json',
+    'application/vnd.illumina.v4+json',
     'application/vnd.illumina.v3+json',
 )
 

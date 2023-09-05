@@ -26,7 +26,7 @@ Key | Input Type | Accessed Type | Description | Notes
 **dataSharingEnabled** | None, bool,  | NoneClass, BoolClass,  | Indicates whether the Data and Samples created in this Project can be linked to other Projects. | [optional] 
 **storageBundle** | [**StorageBundle**](StorageBundle.md) | [**StorageBundle**](StorageBundle.md) |  | [optional] 
 **selfManagedStorageConfiguration** | [**StorageConfiguration**](StorageConfiguration.md) | [**StorageConfiguration**](StorageConfiguration.md) |  | [optional] 
-**analysisPriority** | None, str,  | NoneClass, str,  | Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change. | [optional] must be one of ["Low", "Medium", "High", ] 
+**analysisPriority** | None, str,  | NoneClass, str,  | Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change. | [optional] must be one of ["LOW", "MEDIUM", "HIGH", ] 
 **metadataModel** | [**MetadataModel**](MetadataModel.md) | [**MetadataModel**](MetadataModel.md) |  | [optional] 
 **application** | [**Application**](Application.md) | [**Application**](Application.md) |  | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]

@@ -38,38 +38,6 @@ class MultipartFormDataInput(
         class properties:
             
             
-            class formData(
-                schemas.DictSchema
-            ):
-            
-            
-                class MetaOapg:
-                    
-                    @staticmethod
-                    def additional_properties() -> typing.Type['InputPart']:
-                        return InputPart
-                
-                def __getitem__(self, name: typing.Union[str, ]) -> 'InputPart':
-                    # dict_instance[name] accessor
-                    return super().__getitem__(name)
-                
-                def get_item_oapg(self, name: typing.Union[str, ]) -> 'InputPart':
-                    return super().get_item_oapg(name)
-            
-                def __new__(
-                    cls,
-                    *args: typing.Union[dict, frozendict.frozendict, ],
-                    _configuration: typing.Optional[schemas.Configuration] = None,
-                    **kwargs: 'InputPart',
-                ) -> 'formData':
-                    return super().__new__(
-                        cls,
-                        *args,
-                        _configuration=_configuration,
-                        **kwargs,
-                    )
-            
-            
             class formDataMap(
                 schemas.DictSchema
             ):
@@ -124,6 +92,38 @@ class MultipartFormDataInput(
                     )
             
             
+            class formData(
+                schemas.DictSchema
+            ):
+            
+            
+                class MetaOapg:
+                    
+                    @staticmethod
+                    def additional_properties() -> typing.Type['InputPart']:
+                        return InputPart
+                
+                def __getitem__(self, name: typing.Union[str, ]) -> 'InputPart':
+                    # dict_instance[name] accessor
+                    return super().__getitem__(name)
+                
+                def get_item_oapg(self, name: typing.Union[str, ]) -> 'InputPart':
+                    return super().get_item_oapg(name)
+            
+                def __new__(
+                    cls,
+                    *args: typing.Union[dict, frozendict.frozendict, ],
+                    _configuration: typing.Optional[schemas.Configuration] = None,
+                    **kwargs: 'InputPart',
+                ) -> 'formData':
+                    return super().__new__(
+                        cls,
+                        *args,
+                        _configuration=_configuration,
+                        **kwargs,
+                    )
+            
+            
             class parts(
                 schemas.ListSchema
             ):
@@ -150,17 +150,17 @@ class MultipartFormDataInput(
                     return super().__getitem__(i)
             preamble = schemas.StrSchema
             __annotations__ = {
-                "formData": formData,
                 "formDataMap": formDataMap,
+                "formData": formData,
                 "parts": parts,
                 "preamble": preamble,
             }
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["formData"]) -> MetaOapg.properties.formData: ...
+    def __getitem__(self, name: typing_extensions.Literal["formDataMap"]) -> MetaOapg.properties.formDataMap: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["formDataMap"]) -> MetaOapg.properties.formDataMap: ...
+    def __getitem__(self, name: typing_extensions.Literal["formData"]) -> MetaOapg.properties.formData: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["parts"]) -> MetaOapg.properties.parts: ...
@@ -171,16 +171,16 @@ class MultipartFormDataInput(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["formData", "formDataMap", "parts", "preamble", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["formDataMap", "formData", "parts", "preamble", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["formData"]) -> typing.Union[MetaOapg.properties.formData, schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["formDataMap"]) -> typing.Union[MetaOapg.properties.formDataMap, schemas.Unset]: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["formDataMap"]) -> typing.Union[MetaOapg.properties.formDataMap, schemas.Unset]: ...
+    def get_item_oapg(self, name: typing_extensions.Literal["formData"]) -> typing.Union[MetaOapg.properties.formData, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["parts"]) -> typing.Union[MetaOapg.properties.parts, schemas.Unset]: ...
@@ -191,15 +191,15 @@ class MultipartFormDataInput(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["formData", "formDataMap", "parts", "preamble", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["formDataMap", "formData", "parts", "preamble", ], str]):
         return super().get_item_oapg(name)
     
 
     def __new__(
         cls,
         *args: typing.Union[dict, frozendict.frozendict, ],
-        formData: typing.Union[MetaOapg.properties.formData, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
         formDataMap: typing.Union[MetaOapg.properties.formDataMap, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
+        formData: typing.Union[MetaOapg.properties.formData, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
         parts: typing.Union[MetaOapg.properties.parts, list, tuple, schemas.Unset] = schemas.unset,
         preamble: typing.Union[MetaOapg.properties.preamble, str, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
@@ -208,8 +208,8 @@ class MultipartFormDataInput(
         return super().__new__(
             cls,
             *args,
-            formData=formData,
             formDataMap=formDataMap,
+            formData=formData,
             parts=parts,
             preamble=preamble,
             _configuration=_configuration,

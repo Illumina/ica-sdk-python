@@ -28,6 +28,7 @@ from icasdk.apis.tags.project_custom_notification_subscriptions_api import Proje
 from icasdk.apis.tags.project_data_api import ProjectDataApi
 from icasdk.apis.tags.project_data_linking_batch_api import ProjectDataLinkingBatchApi
 from icasdk.apis.tags.project_data_transfer_api import ProjectDataTransferApi
+from icasdk.apis.tags.project_data_update_batch_api import ProjectDataUpdateBatchApi
 from icasdk.apis.tags.project_notification_subscriptions_api import ProjectNotificationSubscriptionsApi
 from icasdk.apis.tags.project_permission_api import ProjectPermissionApi
 from icasdk.apis.tags.project_pipeline_api import ProjectPipelineApi
@@ -36,9 +37,11 @@ from icasdk.apis.tags.project_sample_batch_api import ProjectSampleBatchApi
 from icasdk.apis.tags.reference_set_api import ReferenceSetApi
 from icasdk.apis.tags.region_api import RegionApi
 from icasdk.apis.tags.sample_api import SampleApi
+from icasdk.apis.tags.sequencing_run_api import SequencingRunApi
 from icasdk.apis.tags.storage_bundle_api import StorageBundleApi
 from icasdk.apis.tags.storage_configuration_api import StorageConfigurationApi
 from icasdk.apis.tags.storage_credentials_api import StorageCredentialsApi
+from icasdk.apis.tags.system_api import SystemApi
 from icasdk.apis.tags.token_api import TokenApi
 from icasdk.apis.tags.user_api import UserApi
 from icasdk.apis.tags.workgroup_api import WorkgroupApi
@@ -73,6 +76,7 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.PROJECT_DATA: ProjectDataApi,
         TagValues.PROJECT_DATA_LINKING_BATCH: ProjectDataLinkingBatchApi,
         TagValues.PROJECT_DATA_TRANSFER: ProjectDataTransferApi,
+        TagValues.PROJECT_DATA_UPDATE_BATCH: ProjectDataUpdateBatchApi,
         TagValues.PROJECT_NOTIFICATION_SUBSCRIPTIONS: ProjectNotificationSubscriptionsApi,
         TagValues.PROJECT_PERMISSION: ProjectPermissionApi,
         TagValues.PROJECT_PIPELINE: ProjectPipelineApi,
@@ -81,9 +85,11 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.REFERENCE_SET: ReferenceSetApi,
         TagValues.REGION: RegionApi,
         TagValues.SAMPLE: SampleApi,
+        TagValues.SEQUENCING_RUN: SequencingRunApi,
         TagValues.STORAGE_BUNDLE: StorageBundleApi,
         TagValues.STORAGE_CONFIGURATION: StorageConfigurationApi,
         TagValues.STORAGE_CREDENTIALS: StorageCredentialsApi,
+        TagValues.SYSTEM: SystemApi,
         TagValues.TOKEN: TokenApi,
         TagValues.USER: UserApi,
         TagValues.WORKGROUP: WorkgroupApi,
@@ -119,6 +125,7 @@ tag_to_api = TagToApi(
         TagValues.PROJECT_DATA: ProjectDataApi,
         TagValues.PROJECT_DATA_LINKING_BATCH: ProjectDataLinkingBatchApi,
         TagValues.PROJECT_DATA_TRANSFER: ProjectDataTransferApi,
+        TagValues.PROJECT_DATA_UPDATE_BATCH: ProjectDataUpdateBatchApi,
         TagValues.PROJECT_NOTIFICATION_SUBSCRIPTIONS: ProjectNotificationSubscriptionsApi,
         TagValues.PROJECT_PERMISSION: ProjectPermissionApi,
         TagValues.PROJECT_PIPELINE: ProjectPipelineApi,
@@ -127,9 +134,11 @@ tag_to_api = TagToApi(
         TagValues.REFERENCE_SET: ReferenceSetApi,
         TagValues.REGION: RegionApi,
         TagValues.SAMPLE: SampleApi,
+        TagValues.SEQUENCING_RUN: SequencingRunApi,
         TagValues.STORAGE_BUNDLE: StorageBundleApi,
         TagValues.STORAGE_CONFIGURATION: StorageConfigurationApi,
         TagValues.STORAGE_CREDENTIALS: StorageCredentialsApi,
+        TagValues.SYSTEM: SystemApi,
         TagValues.TOKEN: TokenApi,
         TagValues.USER: UserApi,
         TagValues.WORKGROUP: WorkgroupApi,

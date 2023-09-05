@@ -65,11 +65,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-test/.vs/VSWorkspaceState.json
-test/.vs/test/v17/workspaceFileList.bin
-test/.vs/test/v17/.wsuo
-test/.vs/test/FileContentIndex/read.lock
-test/.vs/test/FileContentIndex/c26a4ef8-52f5-4d99-9c90-b88d216688e1.vsidx
-test/.vs/test/FileContentIndex/435f8305-4f9b-4638-b89d-50fcb0654a7d.vsidx
-test/.vs/slnx.sqlite
-test/.vs/ProjectSettings.json

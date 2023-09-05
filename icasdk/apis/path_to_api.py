@@ -4,8 +4,10 @@ from icasdk.paths import PathValues
 from icasdk.apis.paths.api_analysis_storages import ApiAnalysisStorages
 from icasdk.apis.paths.api_bundles import ApiBundles
 from icasdk.apis.paths.api_bundles_bundle_id import ApiBundlesBundleId
+from icasdk.apis.paths.api_bundles_bundle_id_terms_of_useaccept import ApiBundlesBundleIdTermsOfUseaccept
 from icasdk.apis.paths.api_bundles_bundle_idrelease import ApiBundlesBundleIdrelease
 from icasdk.apis.paths.api_bundles_bundle_id_terms_of_use import ApiBundlesBundleIdTermsOfUse
+from icasdk.apis.paths.api_bundles_bundle_id_terms_of_use_user_acceptance_current_user import ApiBundlesBundleIdTermsOfUseUserAcceptanceCurrentUser
 from icasdk.apis.paths.api_bundles_bundle_id_terms_of_usenew import ApiBundlesBundleIdTermsOfUsenew
 from icasdk.apis.paths.api_bundles_bundle_iddeprecate import ApiBundlesBundleIddeprecate
 from icasdk.apis.paths.api_bundles_bundle_id_data import ApiBundlesBundleIdData
@@ -52,6 +54,8 @@ from icasdk.apis.paths.api_pipelines_pipeline_id_input_parameters import ApiPipe
 from icasdk.apis.paths.api_pipelines_pipeline_id_configuration_parameters import ApiPipelinesPipelineIdConfigurationParameters
 from icasdk.apis.paths.api_pipelines_pipeline_id_reference_sets import ApiPipelinesPipelineIdReferenceSets
 from icasdk.apis.paths.api_pipelines_pipeline_id_documentation_html import ApiPipelinesPipelineIdDocumentationHTML
+from icasdk.apis.paths.api_pipelines_pipeline_id_files import ApiPipelinesPipelineIdFiles
+from icasdk.apis.paths.api_pipelines_pipeline_id_files_file_id_content import ApiPipelinesPipelineIdFilesFileIdContent
 from icasdk.apis.paths.api_pipeline_languages_nextflow_versions import ApiPipelineLanguagesNextflowVersions
 from icasdk.apis.paths.api_projects_project_id_analyses import ApiProjectsProjectIdAnalyses
 from icasdk.apis.paths.api_projects_project_id_analyses_analysis_id import ApiProjectsProjectIdAnalysesAnalysisId
@@ -109,6 +113,10 @@ from icasdk.apis.paths.api_projects_project_id_data_linking_batch_batch_id_items
 from icasdk.apis.paths.api_projects_project_id_data_transfers import ApiProjectsProjectIdDataTransfers
 from icasdk.apis.paths.api_projects_project_id_data_transfers_data_transfer_id import ApiProjectsProjectIdDataTransfersDataTransferId
 from icasdk.apis.paths.api_projects_project_id_data_transfers_data_transfer_idabort import ApiProjectsProjectIdDataTransfersDataTransferIdabort
+from icasdk.apis.paths.api_projects_project_id_data_update_batch import ApiProjectsProjectIdDataUpdateBatch
+from icasdk.apis.paths.api_projects_project_id_data_update_batch_batch_id import ApiProjectsProjectIdDataUpdateBatchBatchId
+from icasdk.apis.paths.api_projects_project_id_data_update_batch_batch_id_items import ApiProjectsProjectIdDataUpdateBatchBatchIdItems
+from icasdk.apis.paths.api_projects_project_id_data_update_batch_batch_id_items_item_id import ApiProjectsProjectIdDataUpdateBatchBatchIdItemsItemId
 from icasdk.apis.paths.api_projects_project_id_notification_subscriptions import ApiProjectsProjectIdNotificationSubscriptions
 from icasdk.apis.paths.api_projects_project_id_notification_subscriptions_subscription_id import ApiProjectsProjectIdNotificationSubscriptionsSubscriptionId
 from icasdk.apis.paths.api_projects_project_id_permissions import ApiProjectsProjectIdPermissions
@@ -120,6 +128,9 @@ from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_id_configurati
 from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_id_reference_sets import ApiProjectsProjectIdPipelinesPipelineIdReferenceSets
 from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_idrelease import ApiProjectsProjectIdPipelinesPipelineIdrelease
 from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_id_documentation_html import ApiProjectsProjectIdPipelinesPipelineIdDocumentationHTML
+from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_id_files import ApiProjectsProjectIdPipelinesPipelineIdFiles
+from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_id_files_file_id_content import ApiProjectsProjectIdPipelinesPipelineIdFilesFileIdContent
+from icasdk.apis.paths.api_projects_project_id_pipelines_pipeline_id_files_file_id import ApiProjectsProjectIdPipelinesPipelineIdFilesFileId
 from icasdk.apis.paths.api_projects_project_id_pipelinescreate_nextflow_pipeline import ApiProjectsProjectIdPipelinescreateNextflowPipeline
 from icasdk.apis.paths.api_projects_project_id_pipelinescreate_cwl_pipeline import ApiProjectsProjectIdPipelinescreateCwlPipeline
 from icasdk.apis.paths.api_projects_project_id_samples import ApiProjectsProjectIdSamples
@@ -128,6 +139,7 @@ from icasdk.apis.paths.api_projects_project_id_samples_sample_id_history import 
 from icasdk.apis.paths.api_projects_project_id_samples_sample_idcomplete import ApiProjectsProjectIdSamplesSampleIdcomplete
 from icasdk.apis.paths.api_projects_project_id_samples_sample_idunlink import ApiProjectsProjectIdSamplesSampleIdunlink
 from icasdk.apis.paths.api_projects_project_id_samples_sample_id_projects import ApiProjectsProjectIdSamplesSampleIdProjects
+from icasdk.apis.paths.api_projects_project_id_samples_sample_id_analyses import ApiProjectsProjectIdSamplesSampleIdAnalyses
 from icasdk.apis.paths.api_projects_project_id_samples_sample_id_data import ApiProjectsProjectIdSamplesSampleIdData
 from icasdk.apis.paths.api_projects_project_id_samples_sample_id_data_data_id import ApiProjectsProjectIdSamplesSampleIdDataDataId
 from icasdk.apis.paths.api_projects_project_id_samples_sample_id_data_data_idunlink import ApiProjectsProjectIdSamplesSampleIdDataDataIdunlink
@@ -148,6 +160,7 @@ from icasdk.apis.paths.api_reference_sets_reference_set_id_species import ApiRef
 from icasdk.apis.paths.api_regions import ApiRegions
 from icasdk.apis.paths.api_regions_region_id import ApiRegionsRegionId
 from icasdk.apis.paths.api_samples import ApiSamples
+from icasdk.apis.paths.api_sequencing_runs_sequencing_run_id import ApiSequencingRunsSequencingRunId
 from icasdk.apis.paths.api_storage_bundles import ApiStorageBundles
 from icasdk.apis.paths.api_storage_configurations import ApiStorageConfigurations
 from icasdk.apis.paths.api_storage_configurations_storage_configuration_id import ApiStorageConfigurationsStorageConfigurationId
@@ -157,6 +170,7 @@ from icasdk.apis.paths.api_storage_credentials import ApiStorageCredentials
 from icasdk.apis.paths.api_storage_credentials_storage_credential_id import ApiStorageCredentialsStorageCredentialId
 from icasdk.apis.paths.api_storage_credentials_storage_credential_idshare import ApiStorageCredentialsStorageCredentialIdshare
 from icasdk.apis.paths.api_storage_credentials_storage_credential_idupdate_secrets import ApiStorageCredentialsStorageCredentialIdupdateSecrets
+from icasdk.apis.paths.api_system_info import ApiSystemInfo
 from icasdk.apis.paths.api_tokens import ApiTokens
 from icasdk.apis.paths.api_tokensrefresh import ApiTokensrefresh
 from icasdk.apis.paths.api_users import ApiUsers
@@ -175,8 +189,10 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_ANALYSIS_STORAGES: ApiAnalysisStorages,
         PathValues.API_BUNDLES: ApiBundles,
         PathValues.API_BUNDLES_BUNDLE_ID: ApiBundlesBundleId,
+        PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USEACCEPT: ApiBundlesBundleIdTermsOfUseaccept,
         PathValues.API_BUNDLES_BUNDLE_IDRELEASE: ApiBundlesBundleIdrelease,
         PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USE: ApiBundlesBundleIdTermsOfUse,
+        PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USE_USER_ACCEPTANCE_CURRENT_USER: ApiBundlesBundleIdTermsOfUseUserAcceptanceCurrentUser,
         PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USENEW: ApiBundlesBundleIdTermsOfUsenew,
         PathValues.API_BUNDLES_BUNDLE_IDDEPRECATE: ApiBundlesBundleIddeprecate,
         PathValues.API_BUNDLES_BUNDLE_ID_DATA: ApiBundlesBundleIdData,
@@ -223,6 +239,8 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PIPELINES_PIPELINE_ID_CONFIGURATION_PARAMETERS: ApiPipelinesPipelineIdConfigurationParameters,
         PathValues.API_PIPELINES_PIPELINE_ID_REFERENCE_SETS: ApiPipelinesPipelineIdReferenceSets,
         PathValues.API_PIPELINES_PIPELINE_ID_DOCUMENTATION_HTML: ApiPipelinesPipelineIdDocumentationHTML,
+        PathValues.API_PIPELINES_PIPELINE_ID_FILES: ApiPipelinesPipelineIdFiles,
+        PathValues.API_PIPELINES_PIPELINE_ID_FILES_FILE_ID_CONTENT: ApiPipelinesPipelineIdFilesFileIdContent,
         PathValues.API_PIPELINE_LANGUAGES_NEXTFLOW_VERSIONS: ApiPipelineLanguagesNextflowVersions,
         PathValues.API_PROJECTS_PROJECT_ID_ANALYSES: ApiProjectsProjectIdAnalyses,
         PathValues.API_PROJECTS_PROJECT_ID_ANALYSES_ANALYSIS_ID: ApiProjectsProjectIdAnalysesAnalysisId,
@@ -280,6 +298,10 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PROJECTS_PROJECT_ID_DATA_TRANSFERS: ApiProjectsProjectIdDataTransfers,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_TRANSFERS_DATA_TRANSFER_ID: ApiProjectsProjectIdDataTransfersDataTransferId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_TRANSFERS_DATA_TRANSFER_IDABORT: ApiProjectsProjectIdDataTransfersDataTransferIdabort,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH: ApiProjectsProjectIdDataUpdateBatch,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH_BATCH_ID: ApiProjectsProjectIdDataUpdateBatchBatchId,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdDataUpdateBatchBatchIdItems,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH_BATCH_ID_ITEMS_ITEM_ID: ApiProjectsProjectIdDataUpdateBatchBatchIdItemsItemId,
         PathValues.API_PROJECTS_PROJECT_ID_NOTIFICATION_SUBSCRIPTIONS: ApiProjectsProjectIdNotificationSubscriptions,
         PathValues.API_PROJECTS_PROJECT_ID_NOTIFICATION_SUBSCRIPTIONS_SUBSCRIPTION_ID: ApiProjectsProjectIdNotificationSubscriptionsSubscriptionId,
         PathValues.API_PROJECTS_PROJECT_ID_PERMISSIONS: ApiProjectsProjectIdPermissions,
@@ -291,6 +313,9 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_REFERENCE_SETS: ApiProjectsProjectIdPipelinesPipelineIdReferenceSets,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_IDRELEASE: ApiProjectsProjectIdPipelinesPipelineIdrelease,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_DOCUMENTATION_HTML: ApiProjectsProjectIdPipelinesPipelineIdDocumentationHTML,
+        PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_FILES: ApiProjectsProjectIdPipelinesPipelineIdFiles,
+        PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_FILES_FILE_ID_CONTENT: ApiProjectsProjectIdPipelinesPipelineIdFilesFileIdContent,
+        PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_FILES_FILE_ID: ApiProjectsProjectIdPipelinesPipelineIdFilesFileId,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINESCREATE_NEXTFLOW_PIPELINE: ApiProjectsProjectIdPipelinescreateNextflowPipeline,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINESCREATE_CWL_PIPELINE: ApiProjectsProjectIdPipelinescreateCwlPipeline,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES: ApiProjectsProjectIdSamples,
@@ -299,6 +324,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_IDCOMPLETE: ApiProjectsProjectIdSamplesSampleIdcomplete,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_IDUNLINK: ApiProjectsProjectIdSamplesSampleIdunlink,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_PROJECTS: ApiProjectsProjectIdSamplesSampleIdProjects,
+        PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_ANALYSES: ApiProjectsProjectIdSamplesSampleIdAnalyses,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_DATA: ApiProjectsProjectIdSamplesSampleIdData,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_DATA_DATA_ID: ApiProjectsProjectIdSamplesSampleIdDataDataId,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_DATA_DATA_IDUNLINK: ApiProjectsProjectIdSamplesSampleIdDataDataIdunlink,
@@ -319,6 +345,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_REGIONS: ApiRegions,
         PathValues.API_REGIONS_REGION_ID: ApiRegionsRegionId,
         PathValues.API_SAMPLES: ApiSamples,
+        PathValues.API_SEQUENCING_RUNS_SEQUENCING_RUN_ID: ApiSequencingRunsSequencingRunId,
         PathValues.API_STORAGE_BUNDLES: ApiStorageBundles,
         PathValues.API_STORAGE_CONFIGURATIONS: ApiStorageConfigurations,
         PathValues.API_STORAGE_CONFIGURATIONS_STORAGE_CONFIGURATION_ID: ApiStorageConfigurationsStorageConfigurationId,
@@ -328,6 +355,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_STORAGE_CREDENTIALS_STORAGE_CREDENTIAL_ID: ApiStorageCredentialsStorageCredentialId,
         PathValues.API_STORAGE_CREDENTIALS_STORAGE_CREDENTIAL_IDSHARE: ApiStorageCredentialsStorageCredentialIdshare,
         PathValues.API_STORAGE_CREDENTIALS_STORAGE_CREDENTIAL_IDUPDATE_SECRETS: ApiStorageCredentialsStorageCredentialIdupdateSecrets,
+        PathValues.API_SYSTEM_INFO: ApiSystemInfo,
         PathValues.API_TOKENS: ApiTokens,
         PathValues.API_TOKENSREFRESH: ApiTokensrefresh,
         PathValues.API_USERS: ApiUsers,
@@ -347,8 +375,10 @@ path_to_api = PathToApi(
         PathValues.API_ANALYSIS_STORAGES: ApiAnalysisStorages,
         PathValues.API_BUNDLES: ApiBundles,
         PathValues.API_BUNDLES_BUNDLE_ID: ApiBundlesBundleId,
+        PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USEACCEPT: ApiBundlesBundleIdTermsOfUseaccept,
         PathValues.API_BUNDLES_BUNDLE_IDRELEASE: ApiBundlesBundleIdrelease,
         PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USE: ApiBundlesBundleIdTermsOfUse,
+        PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USE_USER_ACCEPTANCE_CURRENT_USER: ApiBundlesBundleIdTermsOfUseUserAcceptanceCurrentUser,
         PathValues.API_BUNDLES_BUNDLE_ID_TERMS_OF_USENEW: ApiBundlesBundleIdTermsOfUsenew,
         PathValues.API_BUNDLES_BUNDLE_IDDEPRECATE: ApiBundlesBundleIddeprecate,
         PathValues.API_BUNDLES_BUNDLE_ID_DATA: ApiBundlesBundleIdData,
@@ -395,6 +425,8 @@ path_to_api = PathToApi(
         PathValues.API_PIPELINES_PIPELINE_ID_CONFIGURATION_PARAMETERS: ApiPipelinesPipelineIdConfigurationParameters,
         PathValues.API_PIPELINES_PIPELINE_ID_REFERENCE_SETS: ApiPipelinesPipelineIdReferenceSets,
         PathValues.API_PIPELINES_PIPELINE_ID_DOCUMENTATION_HTML: ApiPipelinesPipelineIdDocumentationHTML,
+        PathValues.API_PIPELINES_PIPELINE_ID_FILES: ApiPipelinesPipelineIdFiles,
+        PathValues.API_PIPELINES_PIPELINE_ID_FILES_FILE_ID_CONTENT: ApiPipelinesPipelineIdFilesFileIdContent,
         PathValues.API_PIPELINE_LANGUAGES_NEXTFLOW_VERSIONS: ApiPipelineLanguagesNextflowVersions,
         PathValues.API_PROJECTS_PROJECT_ID_ANALYSES: ApiProjectsProjectIdAnalyses,
         PathValues.API_PROJECTS_PROJECT_ID_ANALYSES_ANALYSIS_ID: ApiProjectsProjectIdAnalysesAnalysisId,
@@ -452,6 +484,10 @@ path_to_api = PathToApi(
         PathValues.API_PROJECTS_PROJECT_ID_DATA_TRANSFERS: ApiProjectsProjectIdDataTransfers,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_TRANSFERS_DATA_TRANSFER_ID: ApiProjectsProjectIdDataTransfersDataTransferId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_TRANSFERS_DATA_TRANSFER_IDABORT: ApiProjectsProjectIdDataTransfersDataTransferIdabort,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH: ApiProjectsProjectIdDataUpdateBatch,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH_BATCH_ID: ApiProjectsProjectIdDataUpdateBatchBatchId,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdDataUpdateBatchBatchIdItems,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_UPDATE_BATCH_BATCH_ID_ITEMS_ITEM_ID: ApiProjectsProjectIdDataUpdateBatchBatchIdItemsItemId,
         PathValues.API_PROJECTS_PROJECT_ID_NOTIFICATION_SUBSCRIPTIONS: ApiProjectsProjectIdNotificationSubscriptions,
         PathValues.API_PROJECTS_PROJECT_ID_NOTIFICATION_SUBSCRIPTIONS_SUBSCRIPTION_ID: ApiProjectsProjectIdNotificationSubscriptionsSubscriptionId,
         PathValues.API_PROJECTS_PROJECT_ID_PERMISSIONS: ApiProjectsProjectIdPermissions,
@@ -463,6 +499,9 @@ path_to_api = PathToApi(
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_REFERENCE_SETS: ApiProjectsProjectIdPipelinesPipelineIdReferenceSets,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_IDRELEASE: ApiProjectsProjectIdPipelinesPipelineIdrelease,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_DOCUMENTATION_HTML: ApiProjectsProjectIdPipelinesPipelineIdDocumentationHTML,
+        PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_FILES: ApiProjectsProjectIdPipelinesPipelineIdFiles,
+        PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_FILES_FILE_ID_CONTENT: ApiProjectsProjectIdPipelinesPipelineIdFilesFileIdContent,
+        PathValues.API_PROJECTS_PROJECT_ID_PIPELINES_PIPELINE_ID_FILES_FILE_ID: ApiProjectsProjectIdPipelinesPipelineIdFilesFileId,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINESCREATE_NEXTFLOW_PIPELINE: ApiProjectsProjectIdPipelinescreateNextflowPipeline,
         PathValues.API_PROJECTS_PROJECT_ID_PIPELINESCREATE_CWL_PIPELINE: ApiProjectsProjectIdPipelinescreateCwlPipeline,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES: ApiProjectsProjectIdSamples,
@@ -471,6 +510,7 @@ path_to_api = PathToApi(
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_IDCOMPLETE: ApiProjectsProjectIdSamplesSampleIdcomplete,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_IDUNLINK: ApiProjectsProjectIdSamplesSampleIdunlink,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_PROJECTS: ApiProjectsProjectIdSamplesSampleIdProjects,
+        PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_ANALYSES: ApiProjectsProjectIdSamplesSampleIdAnalyses,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_DATA: ApiProjectsProjectIdSamplesSampleIdData,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_DATA_DATA_ID: ApiProjectsProjectIdSamplesSampleIdDataDataId,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLES_SAMPLE_ID_DATA_DATA_IDUNLINK: ApiProjectsProjectIdSamplesSampleIdDataDataIdunlink,
@@ -491,6 +531,7 @@ path_to_api = PathToApi(
         PathValues.API_REGIONS: ApiRegions,
         PathValues.API_REGIONS_REGION_ID: ApiRegionsRegionId,
         PathValues.API_SAMPLES: ApiSamples,
+        PathValues.API_SEQUENCING_RUNS_SEQUENCING_RUN_ID: ApiSequencingRunsSequencingRunId,
         PathValues.API_STORAGE_BUNDLES: ApiStorageBundles,
         PathValues.API_STORAGE_CONFIGURATIONS: ApiStorageConfigurations,
         PathValues.API_STORAGE_CONFIGURATIONS_STORAGE_CONFIGURATION_ID: ApiStorageConfigurationsStorageConfigurationId,
@@ -500,6 +541,7 @@ path_to_api = PathToApi(
         PathValues.API_STORAGE_CREDENTIALS_STORAGE_CREDENTIAL_ID: ApiStorageCredentialsStorageCredentialId,
         PathValues.API_STORAGE_CREDENTIALS_STORAGE_CREDENTIAL_IDSHARE: ApiStorageCredentialsStorageCredentialIdshare,
         PathValues.API_STORAGE_CREDENTIALS_STORAGE_CREDENTIAL_IDUPDATE_SECRETS: ApiStorageCredentialsStorageCredentialIdupdateSecrets,
+        PathValues.API_SYSTEM_INFO: ApiSystemInfo,
         PathValues.API_TOKENS: ApiTokens,
         PathValues.API_TOKENSREFRESH: ApiTokensrefresh,
         PathValues.API_USERS: ApiUsers,

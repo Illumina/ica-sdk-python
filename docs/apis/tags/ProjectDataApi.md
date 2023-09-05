@@ -1153,11 +1153,11 @@ Type | Description  | Notes
 
 # **create_temporary_credentials_for_data**
 <a name="create_temporary_credentials_for_data"></a>
-> TempCredentials create_temporary_credentials_for_data(project_iddata_idcreate_temporary_credentials)
+> TempCredentials create_temporary_credentials_for_data(project_iddata_id)
 
 Retrieve temporary credentials for this data.
 
-Can be used to upload or download a file directly from the region where it is located, no connector is needed.
+Can be used to upload or download a file directly from the region where it is located, no connector is needed. The returned credentials expire after 36 hours.
 
 ### Example
 
@@ -1201,6 +1201,20 @@ with icasdk.ApiClient(configuration) as api_client:
         'projectId': "projectId_example",
         'dataId': "dataId_example",
     }
+    try:
+        # Retrieve temporary credentials for this data.
+        api_response = api_instance.create_temporary_credentials_for_data(
+            path_params=path_params,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_temporary_credentials_for_data: %s\n" % e)
+
+    # example passing only optional values
+    path_params = {
+        'projectId': "projectId_example",
+        'dataId': "dataId_example",
+    }
     body = CreateTemporaryCredentials(
         credentials_format="RCLONE",
     )
@@ -1218,7 +1232,7 @@ with icasdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
+body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
 path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/vnd.illumina.v3+json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
