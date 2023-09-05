@@ -23,6 +23,8 @@ Basic authentication is only supported by the POST /tokens endpoint for generati
 If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required.
 </p>
 
+## Testing
+Tests created by Illumina are in the tests/test_integration/ folder, they are run using pytest, but modification will be required to update domain specific parameters. This is an active area of change in the repository and will be updated over time. 
 
 ## Code Generation
 
