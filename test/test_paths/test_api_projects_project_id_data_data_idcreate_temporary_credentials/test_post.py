@@ -37,9 +37,5 @@ class TestApiProjectsProjectIdDataDataIdcreateTemporaryCredentials(ApiTestMixin,
 
 
 
-
-
-
-
 if __name__ == '__main__':
     unittest.main()

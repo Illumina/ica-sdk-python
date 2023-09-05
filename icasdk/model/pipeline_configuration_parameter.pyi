@@ -37,6 +37,7 @@ class PipelineConfigurationParameter(
         required = {
             "code",
             "multiValue",
+            "type",
             "required",
         }
         
@@ -49,14 +50,22 @@ class PipelineConfigurationParameter(
                 pass
             required = schemas.BoolSchema
             multiValue = schemas.BoolSchema
+            type = schemas.StrSchema
+        
+            @staticmethod
+            def settings() -> typing.Type['Settings']:
+                return Settings
             __annotations__ = {
                 "code": code,
                 "required": required,
                 "multiValue": multiValue,
+                "type": type,
+                "settings": settings,
             }
     
     code: MetaOapg.properties.code
     multiValue: MetaOapg.properties.multiValue
+    type: MetaOapg.properties.type
     required: MetaOapg.properties.required
     
     @typing.overload
@@ -69,9 +78,15 @@ class PipelineConfigurationParameter(
     def __getitem__(self, name: typing_extensions.Literal["multiValue"]) -> MetaOapg.properties.multiValue: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["type"]) -> MetaOapg.properties.type: ...
+    
+    @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["settings"]) -> 'Settings': ...
+    
+    @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["code", "required", "multiValue", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["code", "required", "multiValue", "type", "settings", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -86,9 +101,15 @@ class PipelineConfigurationParameter(
     def get_item_oapg(self, name: typing_extensions.Literal["multiValue"]) -> MetaOapg.properties.multiValue: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["type"]) -> MetaOapg.properties.type: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["settings"]) -> typing.Union['Settings', schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["code", "required", "multiValue", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["code", "required", "multiValue", "type", "settings", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -97,7 +118,9 @@ class PipelineConfigurationParameter(
         *args: typing.Union[dict, frozendict.frozendict, ],
         code: typing.Union[MetaOapg.properties.code, str, ],
         multiValue: typing.Union[MetaOapg.properties.multiValue, bool, ],
+        type: typing.Union[MetaOapg.properties.type, str, ],
         required: typing.Union[MetaOapg.properties.required, bool, ],
+        settings: typing.Union['Settings', schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'PipelineConfigurationParameter':
@@ -106,7 +129,11 @@ class PipelineConfigurationParameter(
             *args,
             code=code,
             multiValue=multiValue,
+            type=type,
             required=required,
+            settings=settings,
             _configuration=_configuration,
             **kwargs,
         )
+
+from icasdk.model.settings import Settings

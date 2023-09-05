@@ -16,6 +16,7 @@ from icasdk.paths.api_projects_project_id_samples_sample_iddelete_deep.post impo
 from icasdk.paths.api_projects_project_id_samples_sample_iddelete_unlink.post import DeleteAndUnlinkSample
 from icasdk.paths.api_projects_project_id_samples_sample_iddelete_with_input.post import DeleteSampleWithInput
 from icasdk.paths.api_projects_project_id_samples_sample_id.get import GetProjectSample
+from icasdk.paths.api_projects_project_id_samples_sample_id_analyses.get import GetProjectSampleAnalyses
 from icasdk.paths.api_projects_project_id_samplessearch.post import GetProjectSamples
 from icasdk.paths.api_projects_project_id_samples_sample_id_projects.get import GetProjectsForSample
 from icasdk.paths.api_projects_project_id_samples_sample_id_data.get import GetSampleDataList
@@ -39,6 +40,7 @@ class ProjectSampleApi(
     DeleteAndUnlinkSample,
     DeleteSampleWithInput,
     GetProjectSample,
+    GetProjectSampleAnalyses,
     GetProjectSamples,
     GetProjectsForSample,
     GetSampleDataList,

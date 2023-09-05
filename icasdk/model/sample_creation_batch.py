@@ -44,9 +44,35 @@ class SampleCreationBatch(
             @staticmethod
             def job() -> typing.Type['Job']:
                 return Job
+            
+            
+            class sequencingRunId(
+                schemas.UUIDBase,
+                schemas.StrBase,
+                schemas.NoneBase,
+                schemas.Schema,
+                schemas.NoneStrMixin
+            ):
+            
+            
+                class MetaOapg:
+                    format = 'uuid'
+            
+            
+                def __new__(
+                    cls,
+                    *args: typing.Union[None, str, uuid.UUID, ],
+                    _configuration: typing.Optional[schemas.Configuration] = None,
+                ) -> 'sequencingRunId':
+                    return super().__new__(
+                        cls,
+                        *args,
+                        _configuration=_configuration,
+                    )
             __annotations__ = {
                 "id": id,
                 "job": job,
+                "sequencingRunId": sequencingRunId,
             }
     
     id: MetaOapg.properties.id
@@ -58,9 +84,12 @@ class SampleCreationBatch(
     def __getitem__(self, name: typing_extensions.Literal["job"]) -> 'Job': ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["sequencingRunId"]) -> MetaOapg.properties.sequencingRunId: ...
+    
+    @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["id", "job", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["id", "job", "sequencingRunId", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -72,9 +101,12 @@ class SampleCreationBatch(
     def get_item_oapg(self, name: typing_extensions.Literal["job"]) -> typing.Union['Job', schemas.Unset]: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["sequencingRunId"]) -> typing.Union[MetaOapg.properties.sequencingRunId, schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["id", "job", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["id", "job", "sequencingRunId", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -83,6 +115,7 @@ class SampleCreationBatch(
         *args: typing.Union[dict, frozendict.frozendict, ],
         id: typing.Union[MetaOapg.properties.id, str, uuid.UUID, ],
         job: typing.Union['Job', schemas.Unset] = schemas.unset,
+        sequencingRunId: typing.Union[MetaOapg.properties.sequencingRunId, None, str, uuid.UUID, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'SampleCreationBatch':
@@ -91,6 +124,7 @@ class SampleCreationBatch(
             *args,
             id=id,
             job=job,
+            sequencingRunId=sequencingRunId,
             _configuration=_configuration,
             **kwargs,
         )

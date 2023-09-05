@@ -182,11 +182,13 @@ All URIs are relative to */ica/rest*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AnalysisStorageApi* | [**get_analysis_storage_options**](docs/apis/tags/AnalysisStorageApi.md#get_analysis_storage_options) | **get** /api/analysisStorages | Retrieve the list of analysis storage options.
+*BundleApi* | [**accept_terms_of_use_bundle**](docs/apis/tags/BundleApi.md#accept_terms_of_use_bundle) | **post** /api/bundles/{bundleId}/termsOfUse:accept | accept terms of use for a bundle
 *BundleApi* | [**create_bundle**](docs/apis/tags/BundleApi.md#create_bundle) | **post** /api/bundles | Create a new bundle
 *BundleApi* | [**deprecate_bundle**](docs/apis/tags/BundleApi.md#deprecate_bundle) | **post** /api/bundles/{bundleId}:deprecate | deprecate a bundle
 *BundleApi* | [**get_bundle**](docs/apis/tags/BundleApi.md#get_bundle) | **get** /api/bundles/{bundleId} | Retrieve a bundle.
 *BundleApi* | [**get_bundle_terms_of_use**](docs/apis/tags/BundleApi.md#get_bundle_terms_of_use) | **get** /api/bundles/{bundleId}/termsOfUse | Retrieve the last version of terms of use for a bundle.
 *BundleApi* | [**get_bundles**](docs/apis/tags/BundleApi.md#get_bundles) | **get** /api/bundles | Retrieve a list of bundles.
+*BundleApi* | [**get_terms_of_use_acceptance**](docs/apis/tags/BundleApi.md#get_terms_of_use_acceptance) | **get** /api/bundles/{bundleId}/termsOfUse/userAcceptance/currentUser | Retrieve the acceptance record for a bundle for the current user.
 *BundleApi* | [**insert_bundle_terms_of_use**](docs/apis/tags/BundleApi.md#insert_bundle_terms_of_use) | **post** /api/bundles/{bundleId}/termsOfUse:new | Insert a new version of the terms of use for a bundle
 *BundleApi* | [**release_bundle**](docs/apis/tags/BundleApi.md#release_bundle) | **post** /api/bundles/{bundleId}:release | release a bundle
 *BundleDataApi* | [**get_bundle_data**](docs/apis/tags/BundleDataApi.md#get_bundle_data) | **get** /api/bundles/{bundleId}/data | Retrieve the list of bundle data.
@@ -241,8 +243,10 @@ Class | Method | HTTP request | Description
 *NotificationChannelApi* | [**get_notification_channel**](docs/apis/tags/NotificationChannelApi.md#get_notification_channel) | **get** /api/notificationChannels/{channelId} | Retrieve a notification channel
 *NotificationChannelApi* | [**get_notification_channels**](docs/apis/tags/NotificationChannelApi.md#get_notification_channels) | **get** /api/notificationChannels | Retrieve notification channels
 *NotificationChannelApi* | [**update_notification_channel**](docs/apis/tags/NotificationChannelApi.md#update_notification_channel) | **put** /api/notificationChannels/{channelId} | Update a notification channel
+*PipelineApi* | [**download_pipeline_file_content**](docs/apis/tags/PipelineApi.md#download_pipeline_file_content) | **get** /api/pipelines/{pipelineId}/files/{fileId}/content | Download the contents of a pipeline file.
 *PipelineApi* | [**get_pipeline**](docs/apis/tags/PipelineApi.md#get_pipeline) | **get** /api/pipelines/{pipelineId} | Retrieve a pipeline.
 *PipelineApi* | [**get_pipeline_configuration_parameters**](docs/apis/tags/PipelineApi.md#get_pipeline_configuration_parameters) | **get** /api/pipelines/{pipelineId}/configurationParameters | Retrieve configuration parameters for a pipeline.
+*PipelineApi* | [**get_pipeline_files**](docs/apis/tags/PipelineApi.md#get_pipeline_files) | **get** /api/pipelines/{pipelineId}/files | Retrieve files for a pipeline.
 *PipelineApi* | [**get_pipeline_html_documentation**](docs/apis/tags/PipelineApi.md#get_pipeline_html_documentation) | **get** /api/pipelines/{pipelineId}/documentation/HTML | Retrieve HTML documentation for a project pipeline.
 *PipelineApi* | [**get_pipeline_input_parameters**](docs/apis/tags/PipelineApi.md#get_pipeline_input_parameters) | **get** /api/pipelines/{pipelineId}/inputParameters | Retrieve input parameters for a pipeline.
 *PipelineApi* | [**get_pipeline_reference_sets**](docs/apis/tags/PipelineApi.md#get_pipeline_reference_sets) | **get** /api/pipelines/{pipelineId}/referenceSets | Retrieve the reference sets of a pipeline.
@@ -317,6 +321,10 @@ Class | Method | HTTP request | Description
 *ProjectDataTransferApi* | [**abort_data_transfer**](docs/apis/tags/ProjectDataTransferApi.md#abort_data_transfer) | **post** /api/projects/{projectId}/dataTransfers/{dataTransferId}:abort | Abort a data transfer.
 *ProjectDataTransferApi* | [**get_data_transfer**](docs/apis/tags/ProjectDataTransferApi.md#get_data_transfer) | **get** /api/projects/{projectId}/dataTransfers/{dataTransferId} | Retrieve a data transfer.
 *ProjectDataTransferApi* | [**get_data_transfers**](docs/apis/tags/ProjectDataTransferApi.md#get_data_transfers) | **get** /api/projects/{projectId}/dataTransfers | Retrieve a list of data transfers.
+*ProjectDataUpdateBatchApi* | [**create_project_data_update_batch**](docs/apis/tags/ProjectDataUpdateBatchApi.md#create_project_data_update_batch) | **post** /api/projects/{projectId}/dataUpdateBatch | Create a project data update batch.
+*ProjectDataUpdateBatchApi* | [**get_project_data_update_batch**](docs/apis/tags/ProjectDataUpdateBatchApi.md#get_project_data_update_batch) | **get** /api/projects/{projectId}/dataUpdateBatch/{batchId} | Retrieve a project data update batch.
+*ProjectDataUpdateBatchApi* | [**get_project_data_update_batch_item**](docs/apis/tags/ProjectDataUpdateBatchApi.md#get_project_data_update_batch_item) | **get** /api/projects/{projectId}/dataUpdateBatch/{batchId}/items/{itemId} | Retrieve a project data update batch item.
+*ProjectDataUpdateBatchApi* | [**get_project_data_update_batch_items**](docs/apis/tags/ProjectDataUpdateBatchApi.md#get_project_data_update_batch_items) | **get** /api/projects/{projectId}/dataUpdateBatch/{batchId}/items | Retrieve a list of project data update batch items.
 *ProjectNotificationSubscriptionsApi* | [**create_notification_subscription1**](docs/apis/tags/ProjectNotificationSubscriptionsApi.md#create_notification_subscription1) | **post** /api/projects/{projectId}/notificationSubscriptions | Create a notification subscription
 *ProjectNotificationSubscriptionsApi* | [**delete_notification_subscription1**](docs/apis/tags/ProjectNotificationSubscriptionsApi.md#delete_notification_subscription1) | **delete** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Delete a notification subscription
 *ProjectNotificationSubscriptionsApi* | [**get_notification_subscription1**](docs/apis/tags/ProjectNotificationSubscriptionsApi.md#get_notification_subscription1) | **get** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Retrieve a notification subscription
@@ -328,6 +336,10 @@ Class | Method | HTTP request | Description
 *ProjectPermissionApi* | [**update_project_permission**](docs/apis/tags/ProjectPermissionApi.md#update_project_permission) | **put** /api/projects/{projectId}/permissions/{permissionId} | Update a project permission.
 *ProjectPipelineApi* | [**create_cwl_pipeline**](docs/apis/tags/ProjectPipelineApi.md#create_cwl_pipeline) | **post** /api/projects/{projectId}/pipelines:createCwlPipeline | Create a CWL pipeline within a project.
 *ProjectPipelineApi* | [**create_nextflow_pipeline**](docs/apis/tags/ProjectPipelineApi.md#create_nextflow_pipeline) | **post** /api/projects/{projectId}/pipelines:createNextflowPipeline | Create a Nextflow pipeline within a project.
+*ProjectPipelineApi* | [**create_pipeline_file**](docs/apis/tags/ProjectPipelineApi.md#create_pipeline_file) | **post** /api/projects/{projectId}/pipelines/{pipelineId}/files | Create a file for a pipeline.
+*ProjectPipelineApi* | [**delete_pipeline_file**](docs/apis/tags/ProjectPipelineApi.md#delete_pipeline_file) | **delete** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId} | Delete a file for a pipeline.
+*ProjectPipelineApi* | [**download_pipeline_file_content1**](docs/apis/tags/ProjectPipelineApi.md#download_pipeline_file_content1) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Download the contents of a pipeline file.
+*ProjectPipelineApi* | [**get_pipeline_files1**](docs/apis/tags/ProjectPipelineApi.md#get_pipeline_files1) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/files | Retrieve files for a project pipeline.
 *ProjectPipelineApi* | [**get_project_pipeline**](docs/apis/tags/ProjectPipelineApi.md#get_project_pipeline) | **get** /api/projects/{projectId}/pipelines/{pipelineId} | Retrieve a project pipeline.
 *ProjectPipelineApi* | [**get_project_pipeline_configuration_parameters**](docs/apis/tags/ProjectPipelineApi.md#get_project_pipeline_configuration_parameters) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/configurationParameters | Retrieve configuration parameters for a project pipeline.
 *ProjectPipelineApi* | [**get_project_pipeline_html_documentation**](docs/apis/tags/ProjectPipelineApi.md#get_project_pipeline_html_documentation) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML | Retrieve HTML documentation for a project pipeline.
@@ -337,6 +349,7 @@ Class | Method | HTTP request | Description
 *ProjectPipelineApi* | [**link_pipeline_to_project**](docs/apis/tags/ProjectPipelineApi.md#link_pipeline_to_project) | **post** /api/projects/{projectId}/pipelines/{pipelineId} | Link a pipeline to a project.
 *ProjectPipelineApi* | [**release_pipeline**](docs/apis/tags/ProjectPipelineApi.md#release_pipeline) | **post** /api/projects/{projectId}/pipelines/{pipelineId}:release | Release a pipeline.
 *ProjectPipelineApi* | [**unlink_pipeline_from_project**](docs/apis/tags/ProjectPipelineApi.md#unlink_pipeline_from_project) | **delete** /api/projects/{projectId}/pipelines/{pipelineId} | Unlink a pipeline from a project.
+*ProjectPipelineApi* | [**update_pipeline_file**](docs/apis/tags/ProjectPipelineApi.md#update_pipeline_file) | **put** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Update the contents of a file for a pipeline.
 *ProjectSampleApi* | [**add_metadata_model_to_sample**](docs/apis/tags/ProjectSampleApi.md#add_metadata_model_to_sample) | **post** /api/projects/{projectId}/samples/{sampleId}/metadata/{metadataModelId} | Add a metadata model to a sample.
 *ProjectSampleApi* | [**complete_project_sample**](docs/apis/tags/ProjectSampleApi.md#complete_project_sample) | **post** /api/projects/{projectId}/samples/{sampleId}:complete | Completes the sample after data has been linked to it.
 *ProjectSampleApi* | [**create_sample_in_project**](docs/apis/tags/ProjectSampleApi.md#create_sample_in_project) | **post** /api/projects/{projectId}/samples | Create a new sample in this project
@@ -344,6 +357,7 @@ Class | Method | HTTP request | Description
 *ProjectSampleApi* | [**delete_and_unlink_sample**](docs/apis/tags/ProjectSampleApi.md#delete_and_unlink_sample) | **post** /api/projects/{projectId}/samples/{sampleId}:deleteUnlink | Delete a sample and unlink its data.
 *ProjectSampleApi* | [**delete_sample_with_input**](docs/apis/tags/ProjectSampleApi.md#delete_sample_with_input) | **post** /api/projects/{projectId}/samples/{sampleId}:deleteWithInput | Delete a sample as well as its input data.
 *ProjectSampleApi* | [**get_project_sample**](docs/apis/tags/ProjectSampleApi.md#get_project_sample) | **get** /api/projects/{projectId}/samples/{sampleId} | Retrieve a project sample.
+*ProjectSampleApi* | [**get_project_sample_analyses**](docs/apis/tags/ProjectSampleApi.md#get_project_sample_analyses) | **get** /api/projects/{projectId}/samples/{sampleId}/analyses | Retrieve the list of analyses.
 *ProjectSampleApi* | [**get_project_samples**](docs/apis/tags/ProjectSampleApi.md#get_project_samples) | **post** /api/projects/{projectId}/samples:search | Retrieve project samples.
 *ProjectSampleApi* | [**get_projects_for_sample**](docs/apis/tags/ProjectSampleApi.md#get_projects_for_sample) | **get** /api/projects/{projectId}/samples/{sampleId}/projects | Retrieve a list of projects for this sample.
 *ProjectSampleApi* | [**get_sample_data_list**](docs/apis/tags/ProjectSampleApi.md#get_sample_data_list) | **get** /api/projects/{projectId}/samples/{sampleId}/data | Retrieve the list of sample data.
@@ -366,6 +380,7 @@ Class | Method | HTTP request | Description
 *RegionApi* | [**get_region**](docs/apis/tags/RegionApi.md#get_region) | **get** /api/regions/{regionId} | Retrieve a region. Only the regions the user has access to through his/her entitlements can be retrieved.
 *RegionApi* | [**get_regions**](docs/apis/tags/RegionApi.md#get_regions) | **get** /api/regions | Retrieve a list of regions. Only the regions the user has access to through his/her entitlements are returned.
 *SampleApi* | [**get_samples**](docs/apis/tags/SampleApi.md#get_samples) | **get** /api/samples | Retrieve a list of samples.
+*SequencingRunApi* | [**get_sequencing_run**](docs/apis/tags/SequencingRunApi.md#get_sequencing_run) | **get** /api/sequencingRuns/{sequencingRunId} | Retrieve a sequencing run.
 *StorageBundleApi* | [**get_storage_bundles**](docs/apis/tags/StorageBundleApi.md#get_storage_bundles) | **get** /api/storageBundles | Retrieve a list of storage bundles.
 *StorageConfigurationApi* | [**create_storage_configuration**](docs/apis/tags/StorageConfigurationApi.md#create_storage_configuration) | **post** /api/storageConfigurations | Create a new storage configuration
 *StorageConfigurationApi* | [**get_storage_configuration**](docs/apis/tags/StorageConfigurationApi.md#get_storage_configuration) | **get** /api/storageConfigurations/{storageConfigurationId} | Retrieve a storage configuration.
@@ -377,6 +392,7 @@ Class | Method | HTTP request | Description
 *StorageCredentialsApi* | [**get_storage_credentials**](docs/apis/tags/StorageCredentialsApi.md#get_storage_credentials) | **get** /api/storageCredentials | Retrieve a list of storage credentials.
 *StorageCredentialsApi* | [**share_storage_credential**](docs/apis/tags/StorageCredentialsApi.md#share_storage_credential) | **post** /api/storageCredentials/{storageCredentialId}:share | Share your own storage credentials with tenant.
 *StorageCredentialsApi* | [**update_storage_credential_secrets**](docs/apis/tags/StorageCredentialsApi.md#update_storage_credential_secrets) | **post** /api/storageCredentials/{storageCredentialId}:updateSecrets | Update a storage credential&#x27;s secrets.
+*SystemApi* | [**get_system_info**](docs/apis/tags/SystemApi.md#get_system_info) | **get** /api/system/info | Retrieve system information.
 *TokenApi* | [**create_jwt_token**](docs/apis/tags/TokenApi.md#create_jwt_token) | **post** /api/tokens | Generate a JWT using an API-key, Basic Authentication or a psToken.
 *TokenApi* | [**refresh_jwt_token**](docs/apis/tags/TokenApi.md#refresh_jwt_token) | **post** /api/tokens:refresh | Refresh a JWT using a not yet expired, still valid JWT.
 *UserApi* | [**approve_user**](docs/apis/tags/UserApi.md#approve_user) | **post** /api/users/{userId}:approve | Approve a user.
@@ -459,7 +475,9 @@ Class | Method | HTTP request | Description
  - [CreateProject](docs/models/CreateProject.md)
  - [CreateProjectDataLinkingBatch](docs/models/CreateProjectDataLinkingBatch.md)
  - [CreateProjectDataLinkingBatchItem](docs/models/CreateProjectDataLinkingBatchItem.md)
+ - [CreateProjectDataUpdateBatch](docs/models/CreateProjectDataUpdateBatch.md)
  - [CreateProjectPermission](docs/models/CreateProjectPermission.md)
+ - [CreateProjectPermissionV4](docs/models/CreateProjectPermissionV4.md)
  - [CreateSample](docs/models/CreateSample.md)
  - [CreateSampleCreationBatch](docs/models/CreateSampleCreationBatch.md)
  - [CreateSampleCreationBatchDataItem](docs/models/CreateSampleCreationBatchDataItem.md)
@@ -487,6 +505,7 @@ Class | Method | HTTP request | Description
  - [DataTag](docs/models/DataTag.md)
  - [DataTransfer](docs/models/DataTransfer.md)
  - [DataTransferPagedList](docs/models/DataTransferPagedList.md)
+ - [DataUpdateGroup](docs/models/DataUpdateGroup.md)
  - [DataUrlWithPath](docs/models/DataUrlWithPath.md)
  - [DataUrlWithPathList](docs/models/DataUrlWithPathList.md)
  - [Download](docs/models/Download.md)
@@ -511,6 +530,7 @@ Class | Method | HTTP request | Description
  - [InputParameter](docs/models/InputParameter.md)
  - [InputParameterList](docs/models/InputParameterList.md)
  - [InputPart](docs/models/InputPart.md)
+ - [IntegerSettings](docs/models/IntegerSettings.md)
  - [Job](docs/models/Job.md)
  - [JobPagedList](docs/models/JobPagedList.md)
  - [Link](docs/models/Link.md)
@@ -526,11 +546,15 @@ Class | Method | HTTP request | Description
  - [NotificationChannelList](docs/models/NotificationChannelList.md)
  - [NotificationSubscription](docs/models/NotificationSubscription.md)
  - [NotificationSubscriptionList](docs/models/NotificationSubscriptionList.md)
+ - [OptionSettings](docs/models/OptionSettings.md)
  - [OptionalSampleTags](docs/models/OptionalSampleTags.md)
  - [Pipeline](docs/models/Pipeline.md)
  - [PipelineBundle](docs/models/PipelineBundle.md)
  - [PipelineConfigurationParameter](docs/models/PipelineConfigurationParameter.md)
  - [PipelineConfigurationParameterList](docs/models/PipelineConfigurationParameterList.md)
+ - [PipelineFile](docs/models/PipelineFile.md)
+ - [PipelineFileContentSpec](docs/models/PipelineFileContentSpec.md)
+ - [PipelineFileList](docs/models/PipelineFileList.md)
  - [PipelineHtmlDocumentation](docs/models/PipelineHtmlDocumentation.md)
  - [PipelineLanguageVersion](docs/models/PipelineLanguageVersion.md)
  - [PipelineLanguageVersionList](docs/models/PipelineLanguageVersionList.md)
@@ -549,10 +573,17 @@ Class | Method | HTTP request | Description
  - [ProjectDataLinkingBatchItemProcessing](docs/models/ProjectDataLinkingBatchItemProcessing.md)
  - [ProjectDataLinkingBatchItemRequest](docs/models/ProjectDataLinkingBatchItemRequest.md)
  - [ProjectDataPagedList](docs/models/ProjectDataPagedList.md)
+ - [ProjectDataUpdateBatch](docs/models/ProjectDataUpdateBatch.md)
+ - [ProjectDataUpdateBatchItem](docs/models/ProjectDataUpdateBatchItem.md)
+ - [ProjectDataUpdateBatchItemPagedList](docs/models/ProjectDataUpdateBatchItemPagedList.md)
+ - [ProjectDataUpdateBatchItemProcessing](docs/models/ProjectDataUpdateBatchItemProcessing.md)
+ - [ProjectDataUpdateBatchItemRequest](docs/models/ProjectDataUpdateBatchItemRequest.md)
  - [ProjectList](docs/models/ProjectList.md)
  - [ProjectPagedList](docs/models/ProjectPagedList.md)
  - [ProjectPermission](docs/models/ProjectPermission.md)
  - [ProjectPermissionList](docs/models/ProjectPermissionList.md)
+ - [ProjectPermissionListV4](docs/models/ProjectPermissionListV4.md)
+ - [ProjectPermissionV4](docs/models/ProjectPermissionV4.md)
  - [ProjectPipeline](docs/models/ProjectPipeline.md)
  - [ProjectPipelineList](docs/models/ProjectPipelineList.md)
  - [ProjectSample](docs/models/ProjectSample.md)
@@ -579,6 +610,7 @@ Class | Method | HTTP request | Description
  - [SearchMatchingActivationCodesForCwlAnalysis](docs/models/SearchMatchingActivationCodesForCwlAnalysis.md)
  - [SearchMatchingActivationCodesForNextflowAnalysis](docs/models/SearchMatchingActivationCodesForNextflowAnalysis.md)
  - [SequencingRun](docs/models/SequencingRun.md)
+ - [Settings](docs/models/Settings.md)
  - [Species](docs/models/Species.md)
  - [SpeciesList](docs/models/SpeciesList.md)
  - [StorageBundle](docs/models/StorageBundle.md)
@@ -589,8 +621,12 @@ Class | Method | HTTP request | Description
  - [StorageConfigurationWithDetailsList](docs/models/StorageConfigurationWithDetailsList.md)
  - [StorageCredential](docs/models/StorageCredential.md)
  - [StorageCredentialList](docs/models/StorageCredentialList.md)
+ - [StringSettings](docs/models/StringSettings.md)
+ - [SystemInfo](docs/models/SystemInfo.md)
+ - [TagUpdate](docs/models/TagUpdate.md)
  - [TempCredentials](docs/models/TempCredentials.md)
  - [TermsOfUse](docs/models/TermsOfUse.md)
+ - [TermsOfUseAcceptance](docs/models/TermsOfUseAcceptance.md)
  - [Token](docs/models/Token.md)
  - [Type](docs/models/Type.md)
  - [TypeList](docs/models/TypeList.md)
@@ -635,6 +671,9 @@ Class | Method | HTTP request | Description
 
 
 ## Author
+
+
+
 
 
 

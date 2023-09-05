@@ -38,57 +38,6 @@ class InputPart(
         class properties:
             
             
-            class headers(
-                schemas.DictSchema
-            ):
-            
-            
-                class MetaOapg:
-                    
-                    
-                    class additional_properties(
-                        schemas.ListSchema
-                    ):
-                    
-                    
-                        class MetaOapg:
-                            items = schemas.StrSchema
-                    
-                        def __new__(
-                            cls,
-                            arg: typing.Union[typing.Tuple[typing.Union[MetaOapg.items, str, ]], typing.List[typing.Union[MetaOapg.items, str, ]]],
-                            _configuration: typing.Optional[schemas.Configuration] = None,
-                        ) -> 'additional_properties':
-                            return super().__new__(
-                                cls,
-                                arg,
-                                _configuration=_configuration,
-                            )
-                    
-                        def __getitem__(self, i: int) -> MetaOapg.items:
-                            return super().__getitem__(i)
-                
-                def __getitem__(self, name: typing.Union[str, ]) -> MetaOapg.additional_properties:
-                    # dict_instance[name] accessor
-                    return super().__getitem__(name)
-                
-                def get_item_oapg(self, name: typing.Union[str, ]) -> MetaOapg.additional_properties:
-                    return super().get_item_oapg(name)
-            
-                def __new__(
-                    cls,
-                    *args: typing.Union[dict, frozendict.frozendict, ],
-                    _configuration: typing.Optional[schemas.Configuration] = None,
-                    **kwargs: typing.Union[MetaOapg.additional_properties, list, tuple, ],
-                ) -> 'headers':
-                    return super().__new__(
-                        cls,
-                        *args,
-                        _configuration=_configuration,
-                        **kwargs,
-                    )
-            
-            
             class mediaType(
                 schemas.DictSchema
             ):
@@ -205,71 +154,122 @@ class InputPart(
                         _configuration=_configuration,
                         **kwargs,
                     )
-            bodyAsString = schemas.StrSchema
             contentTypeFromMessage = schemas.BoolSchema
+            bodyAsString = schemas.StrSchema
+            
+            
+            class headers(
+                schemas.DictSchema
+            ):
+            
+            
+                class MetaOapg:
+                    
+                    
+                    class additional_properties(
+                        schemas.ListSchema
+                    ):
+                    
+                    
+                        class MetaOapg:
+                            items = schemas.StrSchema
+                    
+                        def __new__(
+                            cls,
+                            arg: typing.Union[typing.Tuple[typing.Union[MetaOapg.items, str, ]], typing.List[typing.Union[MetaOapg.items, str, ]]],
+                            _configuration: typing.Optional[schemas.Configuration] = None,
+                        ) -> 'additional_properties':
+                            return super().__new__(
+                                cls,
+                                arg,
+                                _configuration=_configuration,
+                            )
+                    
+                        def __getitem__(self, i: int) -> MetaOapg.items:
+                            return super().__getitem__(i)
+                
+                def __getitem__(self, name: typing.Union[str, ]) -> MetaOapg.additional_properties:
+                    # dict_instance[name] accessor
+                    return super().__getitem__(name)
+                
+                def get_item_oapg(self, name: typing.Union[str, ]) -> MetaOapg.additional_properties:
+                    return super().get_item_oapg(name)
+            
+                def __new__(
+                    cls,
+                    *args: typing.Union[dict, frozendict.frozendict, ],
+                    _configuration: typing.Optional[schemas.Configuration] = None,
+                    **kwargs: typing.Union[MetaOapg.additional_properties, list, tuple, ],
+                ) -> 'headers':
+                    return super().__new__(
+                        cls,
+                        *args,
+                        _configuration=_configuration,
+                        **kwargs,
+                    )
             __annotations__ = {
-                "headers": headers,
                 "mediaType": mediaType,
-                "bodyAsString": bodyAsString,
                 "contentTypeFromMessage": contentTypeFromMessage,
+                "bodyAsString": bodyAsString,
+                "headers": headers,
             }
-    
-    @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["headers"]) -> MetaOapg.properties.headers: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["mediaType"]) -> MetaOapg.properties.mediaType: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["contentTypeFromMessage"]) -> MetaOapg.properties.contentTypeFromMessage: ...
+    
+    @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["bodyAsString"]) -> MetaOapg.properties.bodyAsString: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["contentTypeFromMessage"]) -> MetaOapg.properties.contentTypeFromMessage: ...
+    def __getitem__(self, name: typing_extensions.Literal["headers"]) -> MetaOapg.properties.headers: ...
     
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["headers", "mediaType", "bodyAsString", "contentTypeFromMessage", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["mediaType", "contentTypeFromMessage", "bodyAsString", "headers", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["headers"]) -> typing.Union[MetaOapg.properties.headers, schemas.Unset]: ...
-    
-    @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["mediaType"]) -> typing.Union[MetaOapg.properties.mediaType, schemas.Unset]: ...
-    
-    @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["bodyAsString"]) -> typing.Union[MetaOapg.properties.bodyAsString, schemas.Unset]: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["contentTypeFromMessage"]) -> typing.Union[MetaOapg.properties.contentTypeFromMessage, schemas.Unset]: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["bodyAsString"]) -> typing.Union[MetaOapg.properties.bodyAsString, schemas.Unset]: ...
+    
+    @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["headers"]) -> typing.Union[MetaOapg.properties.headers, schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["headers", "mediaType", "bodyAsString", "contentTypeFromMessage", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["mediaType", "contentTypeFromMessage", "bodyAsString", "headers", ], str]):
         return super().get_item_oapg(name)
     
 
     def __new__(
         cls,
         *args: typing.Union[dict, frozendict.frozendict, ],
-        headers: typing.Union[MetaOapg.properties.headers, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
         mediaType: typing.Union[MetaOapg.properties.mediaType, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
-        bodyAsString: typing.Union[MetaOapg.properties.bodyAsString, str, schemas.Unset] = schemas.unset,
         contentTypeFromMessage: typing.Union[MetaOapg.properties.contentTypeFromMessage, bool, schemas.Unset] = schemas.unset,
+        bodyAsString: typing.Union[MetaOapg.properties.bodyAsString, str, schemas.Unset] = schemas.unset,
+        headers: typing.Union[MetaOapg.properties.headers, dict, frozendict.frozendict, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'InputPart':
         return super().__new__(
             cls,
             *args,
-            headers=headers,
             mediaType=mediaType,
-            bodyAsString=bodyAsString,
             contentTypeFromMessage=contentTypeFromMessage,
+            bodyAsString=bodyAsString,
+            headers=headers,
             _configuration=_configuration,
             **kwargs,
         )

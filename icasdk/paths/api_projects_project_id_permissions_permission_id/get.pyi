@@ -25,6 +25,7 @@ import frozendict  # noqa: F401
 
 from icasdk import schemas  # noqa: F401
 
+from icasdk.model.project_permission_v4 import ProjectPermissionV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission import ProjectPermission
 
@@ -63,6 +64,7 @@ request_path_permission_id = api_client.PathParameter(
     required=True,
 )
 ETagSchema = schemas.StrSchema
+SchemaFor200ResponseBodyApplicationVndIlluminaV4json = ProjectPermissionV4
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = ProjectPermission
 ResponseHeadersFor200 = typing_extensions.TypedDict(
     'ResponseHeadersFor200',
@@ -76,6 +78,7 @@ ResponseHeadersFor200 = typing_extensions.TypedDict(
 class ApiResponseFor200(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
+        SchemaFor200ResponseBodyApplicationVndIlluminaV4json,
         SchemaFor200ResponseBodyApplicationVndIlluminaV3json,
     ]
     headers: ResponseHeadersFor200
@@ -84,6 +87,8 @@ class ApiResponseFor200(api_client.ApiResponse):
 _response_for_200 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor200,
     content={
+        'application/vnd.illumina.v4+json': api_client.MediaType(
+            schema=SchemaFor200ResponseBodyApplicationVndIlluminaV4json),
         'application/vnd.illumina.v3+json': api_client.MediaType(
             schema=SchemaFor200ResponseBodyApplicationVndIlluminaV3json),
     },
@@ -112,6 +117,7 @@ _response_for_default = api_client.OpenApiResponse(
 )
 _all_accept_content_types = (
     'application/problem+json',
+    'application/vnd.illumina.v4+json',
     'application/vnd.illumina.v3+json',
 )
 

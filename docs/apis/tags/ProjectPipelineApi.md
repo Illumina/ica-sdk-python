@@ -7,6 +7,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_cwl_pipeline**](#create_cwl_pipeline) | **post** /api/projects/{projectId}/pipelines:createCwlPipeline | Create a CWL pipeline within a project.
 [**create_nextflow_pipeline**](#create_nextflow_pipeline) | **post** /api/projects/{projectId}/pipelines:createNextflowPipeline | Create a Nextflow pipeline within a project.
+[**create_pipeline_file**](#create_pipeline_file) | **post** /api/projects/{projectId}/pipelines/{pipelineId}/files | Create a file for a pipeline.
+[**delete_pipeline_file**](#delete_pipeline_file) | **delete** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId} | Delete a file for a pipeline.
+[**download_pipeline_file_content1**](#download_pipeline_file_content1) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Download the contents of a pipeline file.
+[**get_pipeline_files1**](#get_pipeline_files1) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/files | Retrieve files for a project pipeline.
 [**get_project_pipeline**](#get_project_pipeline) | **get** /api/projects/{projectId}/pipelines/{pipelineId} | Retrieve a project pipeline.
 [**get_project_pipeline_configuration_parameters**](#get_project_pipeline_configuration_parameters) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/configurationParameters | Retrieve configuration parameters for a project pipeline.
 [**get_project_pipeline_html_documentation**](#get_project_pipeline_html_documentation) | **get** /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML | Retrieve HTML documentation for a project pipeline.
@@ -16,6 +20,7 @@ Method | HTTP request | Description
 [**link_pipeline_to_project**](#link_pipeline_to_project) | **post** /api/projects/{projectId}/pipelines/{pipelineId} | Link a pipeline to a project.
 [**release_pipeline**](#release_pipeline) | **post** /api/projects/{projectId}/pipelines/{pipelineId}:release | Release a pipeline.
 [**unlink_pipeline_from_project**](#unlink_pipeline_from_project) | **delete** /api/projects/{projectId}/pipelines/{pipelineId} | Unlink a pipeline from a project.
+[**update_pipeline_file**](#update_pipeline_file) | **put** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Update the contents of a file for a pipeline.
 
 # **create_cwl_pipeline**
 <a name="create_cwl_pipeline"></a>
@@ -343,6 +348,572 @@ Type | Description  | Notes
 
 
 #### create_nextflow_pipeline.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationProblemjson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationProblemjson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Problem**](../../models/Problem.md) |  | 
+
+
+### Authorization
+
+[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **create_pipeline_file**
+<a name="create_pipeline_file"></a>
+> PipelineFile create_pipeline_file(project_idpipeline_id)
+
+Create a file for a pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+```python
+import icasdk
+from icasdk.apis.tags import project_pipeline_api
+from icasdk.model.pipeline_file import PipelineFile
+from icasdk.model.problem import Problem
+from icasdk.model.pipeline_file_content_spec import PipelineFileContentSpec
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = icasdk.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+# Enter a context with an instance of the API client
+with icasdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+    }
+    try:
+        # Create a file for a pipeline.
+        api_response = api_instance.create_pipeline_file(
+            path_params=path_params,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->create_pipeline_file: %s\n" % e)
+
+    # example passing only optional values
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+    }
+    body = dict(
+        content=open('/path/to/file', 'rb'),
+    )
+    try:
+        # Create a file for a pipeline.
+        api_response = api_instance.create_pipeline_file(
+            path_params=path_params,
+            body=body,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->create_pipeline_file: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+body | typing.Union[SchemaForRequestBodyMultipartFormData, Unset] | optional, default is unset |
+path_params | RequestPathParams | |
+content_type | str | optional, default is 'multipart/form-data' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### body
+
+# SchemaForRequestBodyMultipartFormData
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**PipelineFileContentSpec**](../../models/PipelineFileContentSpec.md) |  | 
+
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+projectId | ProjectIdSchema | | 
+pipelineId | PipelineIdSchema | | 
+
+# ProjectIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# PipelineIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+201 | [ApiResponseFor201](#create_pipeline_file.ApiResponseFor201) | The pipeline file is successfully created.
+default | [ApiResponseForDefault](#create_pipeline_file.ApiResponseForDefault) | A problem occurred.
+
+#### create_pipeline_file.ApiResponseFor201
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor201ResponseBodyApplicationVndIlluminaV3json, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor201ResponseBodyApplicationVndIlluminaV3json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**PipelineFile**](../../models/PipelineFile.md) |  | 
+
+
+#### create_pipeline_file.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationProblemjson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationProblemjson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Problem**](../../models/Problem.md) |  | 
+
+
+### Authorization
+
+[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **delete_pipeline_file**
+<a name="delete_pipeline_file"></a>
+> delete_pipeline_file(project_idpipeline_idfile_id)
+
+Delete a file for a pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+```python
+import icasdk
+from icasdk.apis.tags import project_pipeline_api
+from icasdk.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = icasdk.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+# Enter a context with an instance of the API client
+with icasdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+        'fileId': "fileId_example",
+    }
+    try:
+        # Delete a file for a pipeline.
+        api_response = api_instance.delete_pipeline_file(
+            path_params=path_params,
+        )
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->delete_pipeline_file: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+projectId | ProjectIdSchema | | 
+pipelineId | PipelineIdSchema | | 
+fileId | FileIdSchema | | 
+
+# ProjectIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# PipelineIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# FileIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, uuid.UUID,  | str,  |  | value must be a uuid
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+204 | [ApiResponseFor204](#delete_pipeline_file.ApiResponseFor204) | The pipeline file is successfully deleted.
+default | [ApiResponseForDefault](#delete_pipeline_file.ApiResponseForDefault) | A problem occurred.
+
+#### delete_pipeline_file.ApiResponseFor204
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[Unset, ] |  |
+headers | Unset | headers were not defined |
+
+#### delete_pipeline_file.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationProblemjson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationProblemjson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Problem**](../../models/Problem.md) |  | 
+
+
+### Authorization
+
+[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **download_pipeline_file_content1**
+<a name="download_pipeline_file_content1"></a>
+> file_type download_pipeline_file_content1(project_idpipeline_idfile_id)
+
+Download the contents of a pipeline file.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+```python
+import icasdk
+from icasdk.apis.tags import project_pipeline_api
+from icasdk.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = icasdk.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+# Enter a context with an instance of the API client
+with icasdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+        'fileId': "fileId_example",
+    }
+    try:
+        # Download the contents of a pipeline file.
+        api_response = api_instance.download_pipeline_file_content1(
+            path_params=path_params,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->download_pipeline_file_content1: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/octet-stream', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+projectId | ProjectIdSchema | | 
+pipelineId | PipelineIdSchema | | 
+fileId | FileIdSchema | | 
+
+# ProjectIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# PipelineIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# FileIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, uuid.UUID,  | str,  |  | value must be a uuid
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#download_pipeline_file_content1.ApiResponseFor200) | The pipeline file is successfully downloaded.
+default | [ApiResponseForDefault](#download_pipeline_file_content1.ApiResponseForDefault) | A problem occurred.
+
+#### download_pipeline_file_content1.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationOctetStream, ] |  |
+headers | ResponseHeadersFor200 |  |
+
+# SchemaFor200ResponseBodyApplicationOctetStream
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+bytes, io.FileIO, io.BufferedReader,  | bytes, FileIO,  |  | 
+#### ResponseHeadersFor200
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+Content-Disposition | ContentDispositionSchema | | optional
+
+# ContentDispositionSchema
+
+Contains name of the file to be downloaded.
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  | Contains name of the file to be downloaded. | 
+
+
+#### download_pipeline_file_content1.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationProblemjson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationProblemjson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Problem**](../../models/Problem.md) |  | 
+
+
+### Authorization
+
+[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **get_pipeline_files1**
+<a name="get_pipeline_files1"></a>
+> PipelineFileList get_pipeline_files1(project_idpipeline_id)
+
+Retrieve files for a project pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+```python
+import icasdk
+from icasdk.apis.tags import project_pipeline_api
+from icasdk.model.problem import Problem
+from icasdk.model.pipeline_file_list import PipelineFileList
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = icasdk.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+# Enter a context with an instance of the API client
+with icasdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+    }
+    try:
+        # Retrieve files for a project pipeline.
+        api_response = api_instance.get_pipeline_files1(
+            path_params=path_params,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->get_pipeline_files1: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+projectId | ProjectIdSchema | | 
+pipelineId | PipelineIdSchema | | 
+
+# ProjectIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# PipelineIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#get_pipeline_files1.ApiResponseFor200) | The files are successfully retrieved.
+default | [ApiResponseForDefault](#get_pipeline_files1.ApiResponseForDefault) | A problem occurred.
+
+#### get_pipeline_files1.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor200ResponseBodyApplicationVndIlluminaV3json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**PipelineFileList**](../../models/PipelineFileList.md) |  | 
+
+
+#### get_pipeline_files1.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
@@ -1489,6 +2060,164 @@ body | typing.Union[Unset, ] |  |
 headers | Unset | headers were not defined |
 
 #### unlink_pipeline_from_project.ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationProblemjson, ] |  |
+headers | Unset | headers were not defined |
+
+# SchemaFor0ResponseBodyApplicationProblemjson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**Problem**](../../models/Problem.md) |  | 
+
+
+### Authorization
+
+[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+
+[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+
+# **update_pipeline_file**
+<a name="update_pipeline_file"></a>
+> update_pipeline_file(project_idpipeline_idfile_id)
+
+Update the contents of a file for a pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+```python
+import icasdk
+from icasdk.apis.tags import project_pipeline_api
+from icasdk.model.problem import Problem
+from icasdk.model.pipeline_file_content_spec import PipelineFileContentSpec
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = icasdk.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+# Enter a context with an instance of the API client
+with icasdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+        'fileId': "fileId_example",
+    }
+    try:
+        # Update the contents of a file for a pipeline.
+        api_response = api_instance.update_pipeline_file(
+            path_params=path_params,
+        )
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->update_pipeline_file: %s\n" % e)
+
+    # example passing only optional values
+    path_params = {
+        'projectId': "projectId_example",
+        'pipelineId': "pipelineId_example",
+        'fileId': "fileId_example",
+    }
+    body = dict(
+        content=open('/path/to/file', 'rb'),
+    )
+    try:
+        # Update the contents of a file for a pipeline.
+        api_response = api_instance.update_pipeline_file(
+            path_params=path_params,
+            body=body,
+        )
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->update_pipeline_file: %s\n" % e)
+```
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+body | typing.Union[SchemaForRequestBodyMultipartFormData, Unset] | optional, default is unset |
+path_params | RequestPathParams | |
+content_type | str | optional, default is 'multipart/form-data' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+
+### body
+
+# SchemaForRequestBodyMultipartFormData
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**PipelineFileContentSpec**](../../models/PipelineFileContentSpec.md) |  | 
+
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+projectId | ProjectIdSchema | | 
+pipelineId | PipelineIdSchema | | 
+fileId | FileIdSchema | | 
+
+# ProjectIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# PipelineIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
+
+# FileIdSchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str, uuid.UUID,  | str,  |  | value must be a uuid
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | [ApiResponseFor200](#update_pipeline_file.ApiResponseFor200) | The pipeline file is successfully updated.
+default | [ApiResponseForDefault](#update_pipeline_file.ApiResponseForDefault) | A problem occurred.
+
+#### update_pipeline_file.ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[Unset, ] |  |
+headers | Unset | headers were not defined |
+
+#### update_pipeline_file.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |

@@ -8,23 +8,11 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**[formData](#formData)** | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | [optional] 
 **[formDataMap](#formDataMap)** | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | [optional] 
+**[formData](#formData)** | dict, frozendict.frozendict,  | frozendict.frozendict,  |  | [optional] 
 **[parts](#parts)** | list, tuple,  | tuple,  |  | [optional] 
 **preamble** | str,  | str,  |  | [optional] 
 **any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
-
-# formData
-
-## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
-
-### Dictionary Keys
-Key | Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | ------------- | -------------
-**any_string_name** | [**InputPart**](InputPart.md) | [**InputPart**](InputPart.md) | any string name can be used but the value must be the correct type | [optional] 
 
 # formDataMap
 
@@ -49,6 +37,18 @@ list, tuple,  | tuple,  |  |
 Class Name | Input Type | Accessed Type | Description | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 [**InputPart**](InputPart.md) | [**InputPart**](InputPart.md) | [**InputPart**](InputPart.md) |  | 
+
+# formData
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
+
+### Dictionary Keys
+Key | Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | ------------- | -------------
+**any_string_name** | [**InputPart**](InputPart.md) | [**InputPart**](InputPart.md) | any string name can be used but the value must be the correct type | [optional] 
 
 # parts
 

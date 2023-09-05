@@ -12,9 +12,11 @@ Method | HTTP request | Description
 
 # **create_project_permission**
 <a name="create_project_permission"></a>
-> ProjectPermission create_project_permission(project_idcreate_project_permission)
+> ProjectPermissionV4 create_project_permission(project_idcreate_project_permission_v4)
 
 Create a project permission.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. 
 
 ### Example
 
@@ -23,7 +25,9 @@ Create a project permission.
 ```python
 import icasdk
 from icasdk.apis.tags import project_permission_api
+from icasdk.model.project_permission_v4 import ProjectPermissionV4
 from icasdk.model.create_project_permission import CreateProjectPermission
+from icasdk.model.create_project_permission_v4 import CreateProjectPermissionV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission import ProjectPermission
 from pprint import pprint
@@ -57,11 +61,11 @@ with icasdk.ApiClient(configuration) as api_client:
     path_params = {
         'projectId': "projectId_example",
     }
-    body = CreateProjectPermission(
+    body = CreateProjectPermissionV4(
         role_project="NONE",
-        role_flow="NONE",
-        role_base="NONE",
-        role_bench="NONE",
+        role_flow="CONTRIBUTOR",
+        role_base="CONTRIBUTOR",
+        role_bench="ADMINISTRATOR",
         membership_type="USER",
         user_id="user_id_example",
         email_address="email_address_example",
@@ -83,15 +87,21 @@ with icasdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
+body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json, SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
 path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/vnd.illumina.v3+json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+content_type | str | optional, default is 'application/vnd.illumina.v4+json' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v4+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
 ### body
+
+# SchemaForRequestBodyApplicationVndIlluminaV4json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**CreateProjectPermissionV4**](../../models/CreateProjectPermissionV4.md) |  | 
+
 
 # SchemaForRequestBodyApplicationVndIlluminaV3json
 Type | Description  | Notes
@@ -131,8 +141,14 @@ default | [ApiResponseForDefault](#create_project_permission.ApiResponseForDefau
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor201ResponseBodyApplicationVndIlluminaV3json, ] |  |
+body | typing.Union[SchemaFor201ResponseBodyApplicationVndIlluminaV4json, SchemaFor201ResponseBodyApplicationVndIlluminaV3json, ] |  |
 headers | ResponseHeadersFor201 |  |
+
+# SchemaFor201ResponseBodyApplicationVndIlluminaV4json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ProjectPermissionV4**](../../models/ProjectPermissionV4.md) |  | 
+
 
 # SchemaFor201ResponseBodyApplicationVndIlluminaV3json
 Type | Description  | Notes
@@ -176,9 +192,11 @@ Type | Description  | Notes
 
 # **get_project_permission**
 <a name="get_project_permission"></a>
-> ProjectPermission get_project_permission(project_idpermission_id)
+> ProjectPermissionV4 get_project_permission(project_idpermission_id)
 
 Retrieve a project permission.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. 
 
 ### Example
 
@@ -187,6 +205,7 @@ Retrieve a project permission.
 ```python
 import icasdk
 from icasdk.apis.tags import project_permission_api
+from icasdk.model.project_permission_v4 import ProjectPermissionV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission import ProjectPermission
 from pprint import pprint
@@ -235,7 +254,7 @@ with icasdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v4+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -274,8 +293,14 @@ default | [ApiResponseForDefault](#get_project_permission.ApiResponseForDefault)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
+body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV4json, SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
 headers | ResponseHeadersFor200 |  |
+
+# SchemaFor200ResponseBodyApplicationVndIlluminaV4json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ProjectPermissionV4**](../../models/ProjectPermissionV4.md) |  | 
+
 
 # SchemaFor200ResponseBodyApplicationVndIlluminaV3json
 Type | Description  | Notes
@@ -319,9 +344,11 @@ Type | Description  | Notes
 
 # **get_project_permissions**
 <a name="get_project_permissions"></a>
-> ProjectPermissionList get_project_permissions(project_id)
+> ProjectPermissionListV4 get_project_permissions(project_id)
 
 Retrieve a list of project permissions.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. 
 
 ### Example
 
@@ -330,6 +357,7 @@ Retrieve a list of project permissions.
 ```python
 import icasdk
 from icasdk.apis.tags import project_permission_api
+from icasdk.model.project_permission_list_v4 import ProjectPermissionListV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission_list import ProjectPermissionList
 from pprint import pprint
@@ -377,7 +405,7 @@ with icasdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v4+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
@@ -408,8 +436,14 @@ default | [ApiResponseForDefault](#get_project_permissions.ApiResponseForDefault
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
+body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV4json, SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
 headers | Unset | headers were not defined |
+
+# SchemaFor200ResponseBodyApplicationVndIlluminaV4json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ProjectPermissionListV4**](../../models/ProjectPermissionListV4.md) |  | 
+
 
 # SchemaFor200ResponseBodyApplicationVndIlluminaV3json
 Type | Description  | Notes
@@ -438,11 +472,11 @@ Type | Description  | Notes
 
 # **update_project_permission**
 <a name="update_project_permission"></a>
-> ProjectPermission update_project_permission(project_idpermission_idproject_permission)
+> ProjectPermissionV4 update_project_permission(project_idpermission_idproject_permission_v4)
 
 Update a project permission.
 
-Fields which can be updated: - uploadAllowed - downloadAllowed - roleProject - roleFlow - roleBase - roleBench
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. Fields which can be updated: - uploadAllowed - downloadAllowed - roleProject - roleFlow - roleBase - roleBench
 
 ### Example
 
@@ -451,6 +485,7 @@ Fields which can be updated: - uploadAllowed - downloadAllowed - roleProject - r
 ```python
 import icasdk
 from icasdk.apis.tags import project_permission_api
+from icasdk.model.project_permission_v4 import ProjectPermissionV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission import ProjectPermission
 from pprint import pprint
@@ -487,17 +522,17 @@ with icasdk.ApiClient(configuration) as api_client:
     }
     header_params = {
     }
-    body = ProjectPermission(
+    body = ProjectPermissionV4(
         id="id_example",
         time_created="1970-01-01T00:00:00.00Z",
         time_modified="1970-01-01T00:00:00.00Z",
         owner_id="owner_id_example",
         tenant_id="tenant_id_example",
         tenant_name="tenant_name_example",
-        role_project="NONE",
-        role_flow="NONE",
-        role_base="NONE",
-        role_bench="NONE",
+        role_project="role_project_example",
+        role_flow="role_flow_example",
+        role_base="role_base_example",
+        role_bench="role_bench_example",
         membership_type="USER",
         user=User(
             id="id_example",
@@ -567,17 +602,17 @@ with icasdk.ApiClient(configuration) as api_client:
     header_params = {
         'If-Match': "If-Match_example",
     }
-    body = ProjectPermission(
+    body = ProjectPermissionV4(
         id="id_example",
         time_created="1970-01-01T00:00:00.00Z",
         time_modified="1970-01-01T00:00:00.00Z",
         owner_id="owner_id_example",
         tenant_id="tenant_id_example",
         tenant_name="tenant_name_example",
-        role_project="NONE",
-        role_flow="NONE",
-        role_base="NONE",
-        role_bench="NONE",
+        role_project="role_project_example",
+        role_flow="role_flow_example",
+        role_base="role_base_example",
+        role_bench="role_bench_example",
         membership_type="USER",
         user=User(
             id="id_example",
@@ -643,16 +678,22 @@ with icasdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
+body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json, SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
 header_params | RequestHeaderParams | |
 path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/vnd.illumina.v3+json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
+content_type | str | optional, default is 'application/vnd.illumina.v4+json' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v4+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
 stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
 timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
 skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
 ### body
+
+# SchemaForRequestBodyApplicationVndIlluminaV4json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ProjectPermissionV4**](../../models/ProjectPermissionV4.md) |  | 
+
 
 # SchemaForRequestBodyApplicationVndIlluminaV3json
 Type | Description  | Notes
@@ -714,8 +755,14 @@ default | [ApiResponseForDefault](#update_project_permission.ApiResponseForDefau
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
+body | typing.Union[SchemaFor200ResponseBodyApplicationVndIlluminaV4json, SchemaFor200ResponseBodyApplicationVndIlluminaV3json, ] |  |
 headers | ResponseHeadersFor200 |  |
+
+# SchemaFor200ResponseBodyApplicationVndIlluminaV4json
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**ProjectPermissionV4**](../../models/ProjectPermissionV4.md) |  | 
+
 
 # SchemaFor200ResponseBodyApplicationVndIlluminaV3json
 Type | Description  | Notes

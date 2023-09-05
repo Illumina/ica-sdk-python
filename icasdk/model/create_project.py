@@ -237,22 +237,22 @@ class CreateProject(
             
                 class MetaOapg:
                     enum_value_to_name = {
-                        "Low": "LOW",
-                        "Medium": "MEDIUM",
-                        "High": "HIGH",
+                        "LOW": "LOW",
+                        "MEDIUM": "MEDIUM",
+                        "HIGH": "HIGH",
                     }
                 
                 @schemas.classproperty
                 def LOW(cls):
-                    return cls("Low")
+                    return cls("LOW")
                 
                 @schemas.classproperty
                 def MEDIUM(cls):
-                    return cls("Medium")
+                    return cls("MEDIUM")
                 
                 @schemas.classproperty
                 def HIGH(cls):
-                    return cls("High")
+                    return cls("HIGH")
             
             
                 def __new__(

@@ -2112,7 +2112,7 @@ with icasdk.ApiClient(configuration) as api_client:
         end_date="1970-01-01T00:00:00.00Z",
         summary="summary_example",
         analysis_storage=AnalysisStorage(),
-        analysis_priority="Low",
+        analysis_priority="LOW",
         tags=AnalysisTag(
 ,
             user_tags=[
@@ -2217,7 +2217,7 @@ with icasdk.ApiClient(configuration) as api_client:
         end_date="1970-01-01T00:00:00.00Z",
         summary="summary_example",
         analysis_storage=AnalysisStorage(),
-        analysis_priority="Low",
+        analysis_priority="LOW",
         tags=AnalysisTag(
 ,
             user_tags=[

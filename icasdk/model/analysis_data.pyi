@@ -93,12 +93,14 @@ class AnalysisData(
             
                 def __getitem__(self, i: int) -> 'AnalysisData':
                     return super().__getitem__(i)
+            mountPath = schemas.StrSchema
             __annotations__ = {
                 "dataId": dataId,
                 "format": format,
                 "name": name,
                 "dataType": dataType,
                 "children": children,
+                "mountPath": mountPath,
             }
     
     dataId: MetaOapg.properties.dataId
@@ -122,9 +124,12 @@ class AnalysisData(
     def __getitem__(self, name: typing_extensions.Literal["children"]) -> MetaOapg.properties.children: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["mountPath"]) -> MetaOapg.properties.mountPath: ...
+    
+    @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["dataId", "format", "name", "dataType", "children", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["dataId", "format", "name", "dataType", "children", "mountPath", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -145,9 +150,12 @@ class AnalysisData(
     def get_item_oapg(self, name: typing_extensions.Literal["children"]) -> typing.Union[MetaOapg.properties.children, schemas.Unset]: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["mountPath"]) -> typing.Union[MetaOapg.properties.mountPath, schemas.Unset]: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["dataId", "format", "name", "dataType", "children", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["dataId", "format", "name", "dataType", "children", "mountPath", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -159,6 +167,7 @@ class AnalysisData(
         format: 'DataFormat',
         name: typing.Union[MetaOapg.properties.name, str, ],
         children: typing.Union[MetaOapg.properties.children, list, tuple, schemas.Unset] = schemas.unset,
+        mountPath: typing.Union[MetaOapg.properties.mountPath, str, schemas.Unset] = schemas.unset,
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'AnalysisData':
@@ -170,6 +179,7 @@ class AnalysisData(
             format=format,
             name=name,
             children=children,
+            mountPath=mountPath,
             _configuration=_configuration,
             **kwargs,
         )

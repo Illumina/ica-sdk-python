@@ -25,7 +25,9 @@ import frozendict  # noqa: F401
 
 from icasdk import schemas  # noqa: F401
 
+from icasdk.model.project_permission_v4 import ProjectPermissionV4
 from icasdk.model.create_project_permission import CreateProjectPermission
+from icasdk.model.create_project_permission_v4 import CreateProjectPermissionV4
 from icasdk.model.problem import Problem
 from icasdk.model.project_permission import ProjectPermission
 
@@ -56,12 +58,15 @@ request_path_project_id = api_client.PathParameter(
     required=True,
 )
 # body param
+SchemaForRequestBodyApplicationVndIlluminaV4json = CreateProjectPermissionV4
 SchemaForRequestBodyApplicationVndIlluminaV3json = CreateProjectPermission
 SchemaForRequestBodyApplicationJson = CreateProjectPermission
 
 
-request_body_create_project_permission = api_client.RequestBody(
+request_body_create_project_permission_v4 = api_client.RequestBody(
     content={
+        'application/vnd.illumina.v4+json': api_client.MediaType(
+            schema=SchemaForRequestBodyApplicationVndIlluminaV4json),
         'application/vnd.illumina.v3+json': api_client.MediaType(
             schema=SchemaForRequestBodyApplicationVndIlluminaV3json),
         'application/json': api_client.MediaType(
@@ -70,6 +75,7 @@ request_body_create_project_permission = api_client.RequestBody(
     required=True,
 )
 ETagSchema = schemas.StrSchema
+SchemaFor201ResponseBodyApplicationVndIlluminaV4json = ProjectPermissionV4
 SchemaFor201ResponseBodyApplicationVndIlluminaV3json = ProjectPermission
 ResponseHeadersFor201 = typing_extensions.TypedDict(
     'ResponseHeadersFor201',
@@ -83,6 +89,7 @@ ResponseHeadersFor201 = typing_extensions.TypedDict(
 class ApiResponseFor201(api_client.ApiResponse):
     response: urllib3.HTTPResponse
     body: typing.Union[
+        SchemaFor201ResponseBodyApplicationVndIlluminaV4json,
         SchemaFor201ResponseBodyApplicationVndIlluminaV3json,
     ]
     headers: ResponseHeadersFor201
@@ -91,6 +98,8 @@ class ApiResponseFor201(api_client.ApiResponse):
 _response_for_201 = api_client.OpenApiResponse(
     response_cls=ApiResponseFor201,
     content={
+        'application/vnd.illumina.v4+json': api_client.MediaType(
+            schema=SchemaFor201ResponseBodyApplicationVndIlluminaV4json),
         'application/vnd.illumina.v3+json': api_client.MediaType(
             schema=SchemaFor201ResponseBodyApplicationVndIlluminaV3json),
     },
@@ -119,6 +128,7 @@ _response_for_default = api_client.OpenApiResponse(
 )
 _all_accept_content_types = (
     'application/problem+json',
+    'application/vnd.illumina.v4+json',
     'application/vnd.illumina.v3+json',
 )
 
@@ -127,7 +137,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _create_project_permission_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -143,7 +153,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _create_project_permission_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -155,7 +165,7 @@ class BaseApi(api_client.Api):
     @typing.overload
     def _create_project_permission_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -170,8 +180,8 @@ class BaseApi(api_client.Api):
 
     def _create_project_permission_oapg(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/vnd.illumina.v3+json',
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/vnd.illumina.v4+json',
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -211,7 +221,7 @@ class BaseApi(api_client.Api):
                 'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
-        serialized_data = request_body_create_project_permission.serialize(body, content_type)
+        serialized_data = request_body_create_project_permission_v4.serialize(body, content_type)
         _headers.add('Content-Type', content_type)
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']
@@ -253,7 +263,7 @@ class CreateProjectPermission(BaseApi):
     @typing.overload
     def create_project_permission(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -269,7 +279,7 @@ class CreateProjectPermission(BaseApi):
     @typing.overload
     def create_project_permission(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -281,7 +291,7 @@ class CreateProjectPermission(BaseApi):
     @typing.overload
     def create_project_permission(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -296,8 +306,8 @@ class CreateProjectPermission(BaseApi):
 
     def create_project_permission(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/vnd.illumina.v3+json',
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/vnd.illumina.v4+json',
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -321,7 +331,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -337,7 +347,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
@@ -349,7 +359,7 @@ class ApiForpost(BaseApi):
     @typing.overload
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
@@ -364,8 +374,8 @@ class ApiForpost(BaseApi):
 
     def post(
         self,
-        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
-        content_type: str = 'application/vnd.illumina.v3+json',
+        body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV4json,SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
+        content_type: str = 'application/vnd.illumina.v4+json',
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,

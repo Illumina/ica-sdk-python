@@ -8,11 +8,11 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**activationCodeDetailId** | str, uuid.UUID,  | str,  | Indicates under which activation code the pipeline is executed. | value must be a uuid
 **userReference** | str,  | str,  | The user-reference of the analysis. This should be something meaningful for the user. | 
 **analysisInput** | [**CwlAnalysisInput**](CwlAnalysisInput.md) | [**CwlAnalysisInput**](CwlAnalysisInput.md) |  | 
 **pipelineId** | str,  | str,  | The pipeline for which an analysis will be created. | 
 **tags** | [**AnalysisTag**](AnalysisTag.md) | [**AnalysisTag**](AnalysisTag.md) |  | 
+**activationCodeDetailId** | str, uuid.UUID,  | str,  | Indicates under which activation code the pipeline is executed. | [optional] value must be a uuid
 **analysisStorageId** | None, str, uuid.UUID,  | NoneClass, str,  | The id of the storage to use for the analysis. | [optional] value must be a uuid
 **outputParentFolderId** | None, str,  | NoneClass, str,  | The id or the urn of the folder in which the output folder should be created. | [optional] 
 **[analysisOutput](#analysisOutput)** | list, tuple, None,  | tuple, NoneClass,  |  | [optional] 
