@@ -187,6 +187,30 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/Bundle'
+  /api/bundles/{bundleId}/termsOfUse:accept:
+    post:
+      tags:
+      - Bundle
+      summary: accept terms of use for a bundle
+      operationId: acceptTermsOfUseBundle
+      parameters:
+      - name: bundleId
+        in: path
+        description: The ID of the bundle where the terms of use are accepted of.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The terms of use of the bundle is accepted
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}:release:
     post:
       tags:
@@ -238,6 +262,32 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/TermsOfUse'
+  /api/bundles/{bundleId}/termsOfUse/userAcceptance/currentUser:
+    get:
+      tags:
+      - Bundle
+      summary: Retrieve the acceptance record for a bundle for the current user.
+      operationId: getTermsOfUseAcceptance
+      parameters:
+      - name: bundleId
+        in: path
+        description: The ID of the bundle of the terms of use acceptance records.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: Terms of use acceptance is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/TermsOfUseAcceptance'
   /api/bundles/{bundleId}/termsOfUse:new:
     post:
       tags:
@@ -2432,6 +2482,72 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/PipelineHtmlDocumentation'
+  /api/pipelines/{pipelineId}/files:
+    get:
+      tags:
+      - Pipeline
+      summary: Retrieve files for a pipeline.
+      operationId: getPipelineFiles
+      parameters:
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve files for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The files are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineFileList'
+  /api/pipelines/{pipelineId}/files/{fileId}/content:
+    get:
+      tags:
+      - Pipeline
+      summary: Download the contents of a pipeline file.
+      operationId: downloadPipelineFileContent
+      parameters:
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve files for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the pipeline file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The pipeline file is successfully downloaded.
+          headers:
+            Content-Disposition:
+              description: Contains name of the file to be downloaded.
+              style: simple
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
   /api/pipelineLanguages/nextflow/versions:
     get:
       tags:
@@ -2831,9 +2947,8 @@ paths:
       - name: Idempotency-Key
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
-          \ requests and support retries. It is implemented according to <a href=\"\
-          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
-          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
           \ the response of the request will be saved for 7 days for the specific\
           \ API endpoint, header value and user reference. When the same user makes\
           \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
@@ -3026,9 +3141,8 @@ paths:
       - name: Idempotency-Key
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
-          \ requests and support retries. It is implemented according to <a href=\"\
-          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
-          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
           \ the response of the request will be saved for 7 days for the specific\
           \ API endpoint, header value and user reference. When the same user makes\
           \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
@@ -3083,9 +3197,8 @@ paths:
       - name: Idempotency-Key
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
-          \ requests and support retries. It is implemented according to <a href=\"\
-          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
-          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
           \ the response of the request will be saved for 7 days for the specific\
           \ API endpoint, header value and user reference. When the same user makes\
           \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
@@ -5049,7 +5162,8 @@ paths:
       - Project Data
       summary: Retrieve temporary credentials for this data.
       description: "Can be used to upload or download a file directly from the region\
-        \ where it is located, no connector is needed."
+        \ where it is located, no connector is needed. The returned credentials expire\
+        \ after 36 hours."
       operationId: createTemporaryCredentialsForData
       parameters:
       - name: projectId
@@ -5071,7 +5185,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTemporaryCredentials'
-        required: true
       responses:
         default:
           description: A problem occurred.
@@ -5693,6 +5806,182 @@ paths:
           description: The data transfer is successfully aborted.
           content:
             application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}/dataUpdateBatch:
+    post:
+      tags:
+      - Project Data Update Batch
+      summary: Create a project data update batch.
+      operationId: createProjectDataUpdateBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataUpdateBatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataUpdateBatch'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The project data update batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUpdateBatch'
+  /api/projects/{projectId}/dataUpdateBatch/{batchId}:
+    get:
+      tags:
+      - Project Data Update Batch
+      summary: Retrieve a project data update batch.
+      operationId: getProjectDataUpdateBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data update batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUpdateBatch'
+  /api/projects/{projectId}/dataUpdateBatch/{batchId}/items:
+    get:
+      tags:
+      - Project Data Update Batch
+      summary: Retrieve a list of project data update batch items.
+      operationId: getProjectDataUpdateBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALISED
+            - WAITING_RESOURCES
+            - UPDATING
+            - UPDATED
+            - PARTIALLY_UPDATED
+            - FAILED
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\""
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project data update batch items is successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUpdateBatchItemPagedList'
+  /api/projects/{projectId}/dataUpdateBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Data Update Batch
+      summary: Retrieve a project data update batch item.
+      operationId: getProjectDataUpdateBatchItem
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data update batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUpdateBatchItem'
   /api/projects/{projectId}/notificationSubscriptions:
     get:
       tags:
@@ -5899,6 +6188,11 @@ paths:
       tags:
       - Project Permission
       summary: Retrieve a list of project permissions.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nAdded 'Administrator'\
+        \ role for Bench.\nThe role attributes are strings instead of enums to support\
+        \ future additions in a backward compatible manner.\n"
       operationId: getProjectPermissions
       parameters:
       - name: projectId
@@ -5916,6 +6210,9 @@ paths:
         "200":
           description: The list of project permissions is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPermissionListV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPermissionList'
@@ -5923,6 +6220,11 @@ paths:
       tags:
       - Project Permission
       summary: Create a project permission.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nAdded 'Administrator'\
+        \ role for Bench.\nThe role attributes are strings instead of enums to support\
+        \ future additions in a backward compatible manner.\n"
       operationId: createProjectPermission
       parameters:
       - name: projectId
@@ -5932,6 +6234,9 @@ paths:
           type: string
       requestBody:
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectPermissionV4'
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateProjectPermission'
@@ -5956,6 +6261,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPermissionV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPermission'
@@ -5964,6 +6272,11 @@ paths:
       tags:
       - Project Permission
       summary: Retrieve a project permission.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nAdded 'Administrator'\
+        \ role for Bench.\nThe role attributes are strings instead of enums to support\
+        \ future additions in a backward compatible manner.\n"
       operationId: getProjectPermission
       parameters:
       - name: projectId
@@ -5993,6 +6306,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPermissionV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPermission'
@@ -6000,14 +6316,13 @@ paths:
       tags:
       - Project Permission
       summary: Update a project permission.
-      description: |-
-        Fields which can be updated:
-        - uploadAllowed
-        - downloadAllowed
-        - roleProject
-        - roleFlow
-        - roleBase
-        - roleBench
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nAdded 'Administrator'\
+        \ role for Bench.\nThe role attributes are strings instead of enums to support\
+        \ future additions in a backward compatible manner.\nFields which can be updated:\n\
+        - uploadAllowed\n- downloadAllowed\n- roleProject\n- roleFlow\n- roleBase\n\
+        - roleBench"
       operationId: updateProjectPermission
       parameters:
       - name: projectId
@@ -6033,6 +6348,9 @@ paths:
           type: string
       requestBody:
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/ProjectPermissionV4'
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/ProjectPermission'
@@ -6057,6 +6375,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPermissionV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPermission'
@@ -6343,6 +6664,195 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/PipelineHtmlDocumentation'
+  /api/projects/{projectId}/pipelines/{pipelineId}/files:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve files for a project pipeline.
+      operationId: getPipelineFiles_1
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve files for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The files are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineFileList'
+    post:
+      tags:
+      - Project Pipeline
+      summary: Create a file for a pipeline.
+      operationId: createPipelineFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to create a file for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The pipeline file is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineFile'
+  /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Download the contents of a pipeline file.
+      operationId: downloadPipelineFileContent_1
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve files for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the pipeline file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The pipeline file is successfully downloaded.
+          headers:
+            Content-Disposition:
+              description: Contains name of the file to be downloaded.
+              style: simple
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    put:
+      tags:
+      - Project Pipeline
+      summary: Update the contents of a file for a pipeline.
+      operationId: updatePipelineFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to update a file for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the pipeline file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The pipeline file is successfully updated.
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}:
+    delete:
+      tags:
+      - Project Pipeline
+      summary: Delete a file for a pipeline.
+      operationId: deletePipelineFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to delete a file for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the pipeline file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The pipeline file is successfully deleted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/pipelines:createNextflowPipeline:
     post:
       tags:
@@ -6703,6 +7213,96 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectList'
+  /api/projects/{projectId}/samples/{sampleId}/analyses:
+    get:
+      tags:
+      - Project Sample
+      summary: Retrieve the list of analyses.
+      operationId: getProjectSampleAnalyses
+      parameters:
+      - name: reference
+        in: query
+        description: The reference to filter on.
+        schema:
+          type: string
+      - name: userreference
+        in: query
+        description: The user-reference to filter on.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: The status to filter on.
+        schema:
+          type: string
+      - name: usertag
+        in: query
+        description: The user-tags to filter on.
+        schema:
+          type: string
+      - name: technicaltag
+        in: query
+        description: The technical-tags to filter on.
+        schema:
+          type: string
+      - name: referencetag
+        in: query
+        description: The reference-data-tags to filter on.
+        schema:
+          type: string
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+          - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: sampleId
+        in: path
+        description: The ID of the sample
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project analyses is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisPagedList'
   /api/projects/{projectId}/samples/{sampleId}/data:
     get:
       tags:
@@ -7364,9 +7964,8 @@ paths:
       - name: Idempotency-Key
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
-          \ requests and support retries. It is implemented according to <a href=\"\
-          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
-          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
           \ the response of the request will be saved for 7 days for the specific\
           \ API endpoint, header value and user reference. When the same user makes\
           \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
@@ -7719,6 +8318,39 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/SamplePagedList'
+  /api/sequencingRuns/{sequencingRunId}:
+    get:
+      tags:
+      - Sequencing Run
+      summary: Retrieve a sequencing run.
+      operationId: getSequencingRun
+      parameters:
+      - name: sequencingRunId
+        in: path
+        description: The ID of the sequencing run to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The sequencing run is successfully retrieved.
+          headers:
+            ETag:
+              description: The current version of the resource. Can be passed to the
+                corresponding PUT endpoint to enable conflict exposure (409 response).
+              style: simple
+              schema:
+                type: string
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SequencingRun'
   /api/storageBundles:
     get:
       tags:
@@ -8022,6 +8654,25 @@ paths:
           description: The storage credential secrets are successfully updated.
           content:
             application/vnd.illumina.v3+json: {}
+  /api/system/info:
+    get:
+      tags:
+      - System
+      summary: Retrieve system information.
+      operationId: getSystemInfo
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The system information is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SystemInfo'
   /api/tokens:
     post:
       tags:
@@ -8515,6 +9166,7 @@ components:
           type: string
           description: The description about the storage option
           nullable: true
+      nullable: true
     AnalysisStorageList:
       required:
       - items
@@ -8845,6 +9497,30 @@ components:
         releaseVersion:
           type: string
           description: Version number of the Terms of Use.
+    TermsOfUseAcceptance:
+      required:
+      - accepted
+      - firstAcceptanceDate
+      - versionTermsOfUseFirstAccept
+      type: object
+      properties:
+        accepted:
+          type: boolean
+          description: Are the terms of use accepted
+        firstAcceptanceDate:
+          type: string
+          description: Date of the first time the terms of use were accepted.
+          format: date-time
+        versionTermsOfUseFirstAccept:
+          type: string
+          description: Version of the first accepted Terms of Use.
+        lastAcceptanceDate:
+          type: string
+          description: Date of the last time the terms of use were accepted.
+          format: date-time
+        versionTermsOfUseLastAccept:
+          type: string
+          description: Version of the last accepted Terms of Use.
     CreateTermsOfUse:
       required:
       - releaseVersion
@@ -9757,9 +10433,9 @@ components:
             \ value will not change."
           nullable: true
           enum:
-          - Low
-          - Medium
-          - High
+          - LOW
+          - MEDIUM
+          - HIGH
         metadataModel:
           $ref: '#/components/schemas/MetadataModel'
         application:
@@ -10966,11 +11642,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InputParameter'
+    IntegerSettings:
+      type: object
+      properties:
+        defaultValues:
+          type: array
+          items:
+            type: integer
+            format: int32
+    OptionSettings:
+      type: object
+      properties:
+        options:
+          type: array
+          items:
+            type: string
+        defaultValues:
+          type: array
+          items:
+            type: string
     PipelineConfigurationParameter:
       required:
       - code
       - multiValue
       - required
+      - type
       type: object
       properties:
         code:
@@ -10984,6 +11680,11 @@ components:
         multiValue:
           type: boolean
           description: Indicates whether multiple values are allowed for this parameter
+        type:
+          type: string
+          description: The type for each parameter
+        settings:
+          $ref: '#/components/schemas/Settings'
     PipelineConfigurationParameterList:
       required:
       - items
@@ -10993,6 +11694,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineConfigurationParameter'
+    Settings:
+      type: object
+      description: "This object contains a \"oneOf\" construct. Depending on which\
+        \ type, you will receive a StringSettings-, IntegerSettings or OptionsSettings\
+        \ object."
+      oneOf:
+      - $ref: '#/components/schemas/StringSettings'
+      - $ref: '#/components/schemas/IntegerSettings'
+      - $ref: '#/components/schemas/OptionSettings'
+    StringSettings:
+      type: object
+      properties:
+        defaultValues:
+          type: array
+          items:
+            type: string
     ReferenceData:
       required:
       - id
@@ -11176,6 +11893,26 @@ components:
         content:
           type: string
           description: The content of the HTML documentation
+    PipelineFile:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    PipelineFileList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineFile'
     PipelineLanguageVersionList:
       required:
       - items
@@ -11263,9 +12000,9 @@ components:
           description: The priority of the analysis
           nullable: true
           enum:
-          - Low
-          - Medium
-          - High
+          - LOW
+          - MEDIUM
+          - HIGH
         tags:
           $ref: '#/components/schemas/AnalysisTag'
     AnalysisPagedList:
@@ -11547,6 +12284,10 @@ components:
           enum:
           - FILE
           - FOLDER
+        mountPath:
+          type: string
+          description: The requested location where the input file was located on
+            the machine that was running the pipeline.
     AnalysisExternalData:
       required:
       - mountPath
@@ -11699,7 +12440,6 @@ components:
             $ref: '#/components/schemas/CreateNextflowAnalysis'
     CreateCwlAnalysis:
       required:
-      - activationCodeDetailId
       - analysisInput
       - pipelineId
       - tags
@@ -11741,7 +12481,6 @@ components:
           $ref: '#/components/schemas/CwlAnalysisInput'
     CreateNextflowAnalysis:
       required:
-      - activationCodeDetailId
       - analysisInput
       - pipelineId
       - tags
@@ -11953,13 +12692,13 @@ components:
         analysisPriority:
           type: string
           description: "Indicates the priority given to a project and its analyses\
-            \ within a single tenant, where Medium is the default value."
+            \ within a single tenant, where MEDIUM is the default value."
           nullable: true
-          default: Medium
+          default: MEDIUM
           enum:
-          - Low
-          - Medium
-          - High
+          - LOW
+          - MEDIUM
+          - HIGH
     ProjectBundle:
       required:
       - bundle
@@ -12198,7 +12937,7 @@ components:
         allowQuotedNewlines:
           type: boolean
           description: "Enable to include newlines contained in quoted data sections\
-            \ in the cell’s value. When disabled, newlines will signal a new row"
+            \ in the cellâ€™s value. When disabled, newlines will signal a new row"
           nullable: true
           default: false
         dataId:
@@ -12898,6 +13637,125 @@ components:
             in offset based pagination)
           format: int64
           nullable: true
+    ProjectDataUpdateBatch:
+      required:
+      - id
+      - job
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    CreateProjectDataUpdateBatch:
+      required:
+      - dataUpdateGroups
+      type: object
+      properties:
+        dataUpdateGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataUpdateGroup'
+    DataUpdateGroup:
+      required:
+      - dataIds
+      type: object
+      properties:
+        dataIds:
+          type: array
+          items:
+            type: string
+        userTags:
+          $ref: '#/components/schemas/TagUpdate'
+        technicalTags:
+          $ref: '#/components/schemas/TagUpdate'
+      description: Updates to apply.
+    TagUpdate:
+      type: object
+      properties:
+        addTags:
+          type: array
+          items:
+            type: string
+        removeTags:
+          type: array
+          items:
+            type: string
+      nullable: true
+    ProjectDataUpdateBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/ProjectDataUpdateBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/ProjectDataUpdateBatchItemProcessing'
+    ProjectDataUpdateBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDataUpdateBatchItem'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    ProjectDataUpdateBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - INITIALISED
+          - WAITING_RESOURCES
+          - UPDATING
+          - UPDATED
+          - PARTIALLY_UPDATED
+          - FAILED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    ProjectDataUpdateBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+          description: "Data to apply the update to (recursively, if it's a folder)."
+        userTags:
+          $ref: '#/components/schemas/TagUpdate'
+        technicalTags:
+          $ref: '#/components/schemas/TagUpdate'
     NotificationSubscription:
       required:
       - enabled
@@ -12978,6 +13836,109 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NotificationSubscription'
+    ProjectPermissionListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectPermissionV4'
+    ProjectPermissionV4:
+      required:
+      - downloadAllowed
+      - id
+      - membershipType
+      - ownerId
+      - roleBase
+      - roleBench
+      - roleFlow
+      - roleProject
+      - tenantId
+      - timeCreated
+      - timeModified
+      - uploadAllowed
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        roleProject:
+          type: string
+          description: "Possible values are: NONE, VIEWER, CONTRIBUTOR, ADMINISTRATOR,\
+            \ DATA_PROVIDER. More types could be added in a future release."
+        roleFlow:
+          type: string
+          description: "Possible values are: NONE, VIEWER, CONTRIBUTOR. More types\
+            \ could be added in a future release."
+        roleBase:
+          type: string
+          description: "Possible values are: NONE, VIEWER, CONTRIBUTOR. More types\
+            \ could be added in a future release."
+        roleBench:
+          type: string
+          description: "Possible values are: NONE, CONTRIBUTOR, ADMINISTRATOR. More\
+            \ types could be added in a future release."
+        membershipType:
+          type: string
+          enum:
+          - USER
+          - EMAIL
+          - WORKGROUP
+        user:
+          $ref: '#/components/schemas/User'
+        emailAddress:
+          type: string
+          description: Only present when membershipType is EMAIL
+          nullable: true
+        workgroup:
+          $ref: '#/components/schemas/Workgroup'
+        invitationAccepted:
+          type: boolean
+          description: Only present when membershipType is EMAIL
+          nullable: true
+        invitationRejected:
+          type: boolean
+          description: Only present when user is invited by EMAIL
+          nullable: true
+        uploadAllowed:
+          type: boolean
+        downloadAllowed:
+          type: boolean
+    Workgroup:
+      required:
+      - description
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 1
+          type: string
     ProjectPermission:
       required:
       - downloadAllowed
@@ -13072,24 +14033,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectPermission'
-    Workgroup:
+    CreateProjectPermissionV4:
       required:
-      - description
-      - id
-      - name
+      - downloadAllowed
+      - membershipType
+      - roleBase
+      - roleBench
+      - roleFlow
+      - roleProject
+      - uploadAllowed
       type: object
       properties:
-        id:
+        roleProject:
+          pattern: NONE|VIEWER|CONTRIBUTOR|ADMINISTRATOR|DATA_PROVIDER
           type: string
+        roleFlow:
+          pattern: NONE|VIEWER|CONTRIBUTOR
+          type: string
+        roleBase:
+          pattern: NONE|VIEWER|CONTRIBUTOR
+          type: string
+        roleBench:
+          pattern: NONE|CONTRIBUTOR|ADMINISTRATOR
+          type: string
+        membershipType:
+          type: string
+          description: How users are invited to the project
+          enum:
+          - USER
+          - EMAIL
+          - WORKGROUP
+        userId:
+          type: string
+          description: "the id of the user that should be given access, required when\
+            \ membershipType is USER"
           format: uuid
-        name:
-          maxLength: 100
-          minLength: 1
+          nullable: true
+        emailAddress:
           type: string
-        description:
-          maxLength: 1000
-          minLength: 1
+          description: "The email to invite a user on, required when membershipType\
+            \ is EMAIL"
+          nullable: true
+        workgroupId:
           type: string
+          description: "the id of the workgroup to give access, required when membershipType\
+            \ is WORKGROUP"
+          format: uuid
+          nullable: true
+        uploadAllowed:
+          type: boolean
+          description: Indicates if uploading data is allowed or not.
+        downloadAllowed:
+          type: boolean
+          description: Indicates if downloading data is allowed or not.
     CreateProjectPermission:
       required:
       - downloadAllowed
@@ -13188,6 +14184,61 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectPipeline'
+    PipelineFileContentSpec:
+      required:
+      - content
+      type: object
+      properties:
+        content:
+          type: string
+          format: binary
+    InputPart:
+      type: object
+      properties:
+        mediaType:
+          type: object
+          properties:
+            type:
+              type: string
+            subtype:
+              type: string
+            parameters:
+              type: object
+              additionalProperties:
+                type: string
+            wildcardType:
+              type: boolean
+            wildcardSubtype:
+              type: boolean
+        contentTypeFromMessage:
+          type: boolean
+        bodyAsString:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    MultipartFormDataInput:
+      type: object
+      properties:
+        formDataMap:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/InputPart'
+        formData:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InputPart'
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputPart'
+        preamble:
+          type: string
     CreateNextflowPipeline:
       required:
       - analysisStorageId
@@ -13256,53 +14307,6 @@ components:
           type: string
           description: The id of the storage to use for the pipeline.
           format: uuid
-    InputPart:
-      type: object
-      properties:
-        headers:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        mediaType:
-          type: object
-          properties:
-            type:
-              type: string
-            subtype:
-              type: string
-            parameters:
-              type: object
-              additionalProperties:
-                type: string
-            wildcardType:
-              type: boolean
-            wildcardSubtype:
-              type: boolean
-        bodyAsString:
-          type: string
-        contentTypeFromMessage:
-          type: boolean
-    MultipartFormDataInput:
-      type: object
-      properties:
-        formData:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/InputPart'
-        formDataMap:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/InputPart'
-        parts:
-          type: array
-          items:
-            $ref: '#/components/schemas/InputPart'
-        preamble:
-          type: string
     CreateCwlPipeline:
       required:
       - analysisStorageId
@@ -13539,6 +14543,12 @@ components:
           format: uuid
         job:
           $ref: '#/components/schemas/Job'
+        sequencingRunId:
+          type: string
+          description: The sequencingRunId to link to all created samples and linked
+            data
+          format: uuid
+          nullable: true
     CreateSampleCreationBatchDataItem:
       required:
       - dataId
@@ -13944,6 +14954,16 @@ components:
       properties:
         awsCredentials:
           $ref: '#/components/schemas/AwsCredentials'
+    SystemInfo:
+      required:
+      - name
+      - version
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
     Token:
       type: object
       properties:

@@ -37,5 +37,5 @@ def test_get_projects():
             projectList.append(i.get_item_oapg("id"))
             pprint(i.get_item_oapg("id"))
 
-        assert "test" in projectList
+        assert "2fab46b1-5930-476b-94c7-010f8d1fb3f3" in projectList
         assert api_response.response.status == 200
