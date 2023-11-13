@@ -69,8 +69,8 @@ request_body_data_id_or_path_list = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = DataUrlWithPathList
 

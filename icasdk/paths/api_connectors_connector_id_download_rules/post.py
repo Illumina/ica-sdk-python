@@ -72,8 +72,8 @@ request_body_create_download_rule = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor201ResponseBodyApplicationVndIlluminaV3json = DownloadRule
 

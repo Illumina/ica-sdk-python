@@ -72,8 +72,8 @@ request_body_create_project_data_update_batch = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor201ResponseBodyApplicationVndIlluminaV3json = ProjectDataUpdateBatch
 

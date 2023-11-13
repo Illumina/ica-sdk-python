@@ -46,8 +46,8 @@ request_body_create_connector = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor201ResponseBodyApplicationVndIlluminaV3json = Connector
 

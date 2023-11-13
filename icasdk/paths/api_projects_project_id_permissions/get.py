@@ -58,8 +58,8 @@ request_path_project_id = api_client.PathParameter(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV4json = ProjectPermissionListV4
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = ProjectPermissionList

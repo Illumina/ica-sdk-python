@@ -79,8 +79,8 @@ request_body_schedule_download = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 ETagSchema = schemas.StrSchema
 e_tag_parameter = api_client.HeaderParameter(

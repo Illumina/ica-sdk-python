@@ -79,8 +79,8 @@ request_body_create_temporary_credentials = api_client.RequestBody(
     },
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = TempCredentials
 

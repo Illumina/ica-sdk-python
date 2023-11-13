@@ -80,8 +80,8 @@ request_body_update_metadata = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor204ResponseBodyApplicationVndIlluminaV3json = Sample
 

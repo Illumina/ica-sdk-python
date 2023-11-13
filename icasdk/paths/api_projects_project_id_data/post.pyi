@@ -29,6 +29,36 @@ from icasdk.model.project_data import ProjectData
 from icasdk.model.create_data import CreateData
 from icasdk.model.problem import Problem
 
+# Header params
+
+
+class IdempotencyKeySchema(
+    schemas.StrSchema
+):
+    pass
+RequestRequiredHeaderParams = typing_extensions.TypedDict(
+    'RequestRequiredHeaderParams',
+    {
+    }
+)
+RequestOptionalHeaderParams = typing_extensions.TypedDict(
+    'RequestOptionalHeaderParams',
+    {
+        'Idempotency-Key': typing.Union[IdempotencyKeySchema, str, ],
+    },
+    total=False
+)
+
+
+class RequestHeaderParams(RequestRequiredHeaderParams, RequestOptionalHeaderParams):
+    pass
+
+
+request_header_idempotency_key = api_client.HeaderParameter(
+    name="Idempotency-Key",
+    style=api_client.ParameterStyle.SIMPLE,
+    schema=IdempotencyKeySchema,
+)
 # Path params
 ProjectIdSchema = schemas.StrSchema
 RequestRequiredPathParams = typing_extensions.TypedDict(
@@ -129,6 +159,7 @@ class BaseApi(api_client.Api):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -146,6 +177,7 @@ class BaseApi(api_client.Api):
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -157,6 +189,7 @@ class BaseApi(api_client.Api):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -172,6 +205,7 @@ class BaseApi(api_client.Api):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/vnd.illumina.v3+json',
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -184,6 +218,7 @@ class BaseApi(api_client.Api):
             api_response.body and api_response.headers will not be deserialized into schema
             class instances
         """
+        self._verify_typed_dict_inputs_oapg(RequestHeaderParams, header_params)
         self._verify_typed_dict_inputs_oapg(RequestPathParams, path_params)
         used_path = path.value
 
@@ -201,6 +236,14 @@ class BaseApi(api_client.Api):
             used_path = used_path.replace('{%s}' % k, v)
 
         _headers = HTTPHeaderDict()
+        for parameter in (
+            request_header_idempotency_key,
+        ):
+            parameter_data = header_params.get(parameter.name, schemas.unset)
+            if parameter_data is schemas.unset:
+                continue
+            serialized_data = parameter.serialize(parameter_data)
+            _headers.extend(serialized_data)
         # TODO add cookie handling
         if accept_content_types:
             for accept_content_type in accept_content_types:
@@ -255,6 +298,7 @@ class CreateDataInProject(BaseApi):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -272,6 +316,7 @@ class CreateDataInProject(BaseApi):
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -283,6 +328,7 @@ class CreateDataInProject(BaseApi):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -298,6 +344,7 @@ class CreateDataInProject(BaseApi):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/vnd.illumina.v3+json',
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -306,6 +353,7 @@ class CreateDataInProject(BaseApi):
     ):
         return self._create_data_in_project_oapg(
             body=body,
+            header_params=header_params,
             path_params=path_params,
             content_type=content_type,
             accept_content_types=accept_content_types,
@@ -323,6 +371,7 @@ class ApiForpost(BaseApi):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -340,6 +389,7 @@ class ApiForpost(BaseApi):
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         skip_deserialization: typing_extensions.Literal[True],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -351,6 +401,7 @@ class ApiForpost(BaseApi):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = ...,
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -366,6 +417,7 @@ class ApiForpost(BaseApi):
         self,
         body: typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json,SchemaForRequestBodyApplicationJson,],
         content_type: str = 'application/vnd.illumina.v3+json',
+        header_params: RequestHeaderParams = frozendict.frozendict(),
         path_params: RequestPathParams = frozendict.frozendict(),
         accept_content_types: typing.Tuple[str] = _all_accept_content_types,
         stream: bool = False,
@@ -374,6 +426,7 @@ class ApiForpost(BaseApi):
     ):
         return self._create_data_in_project_oapg(
             body=body,
+            header_params=header_params,
             path_params=path_params,
             content_type=content_type,
             accept_content_types=accept_content_types,

@@ -102,8 +102,8 @@ request_body_create_nextflow_analysis = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor201ResponseBodyApplicationVndIlluminaV3json = Analysis
 

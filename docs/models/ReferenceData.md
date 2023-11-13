@@ -8,7 +8,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 ### Dictionary Keys
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
-**typeList** | [**TypeList**](TypeList.md) | [**TypeList**](TypeList.md) |  | 
+**typeList** | [**ReferenceDataTypeList**](ReferenceDataTypeList.md) | [**ReferenceDataTypeList**](ReferenceDataTypeList.md) |  | 
 **name** | str,  | str,  | The name of the reference data | 
 **tenantId** | str, uuid.UUID,  | str,  |  | value must be a uuid
 **timeCreated** | str, datetime,  | str,  |  | value must conform to RFC-3339 date-time

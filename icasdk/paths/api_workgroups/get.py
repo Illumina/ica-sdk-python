@@ -31,8 +31,8 @@ from icasdk.model.workgroup_list import WorkgroupList
 from . import path
 
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = WorkgroupList
 

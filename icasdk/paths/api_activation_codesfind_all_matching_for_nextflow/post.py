@@ -46,8 +46,8 @@ request_body_search_matching_activation_codes_for_nextflow_analysis = api_client
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = ActivationCodeDetailList
 

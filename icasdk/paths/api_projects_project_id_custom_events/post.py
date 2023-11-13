@@ -68,8 +68,8 @@ request_body_create_custom_event = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 
 

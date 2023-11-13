@@ -76,9 +76,9 @@ request_query_tenant = api_client.QueryParameter(
     explode=True,
 )
 _auth = [
-    'PsTokenAuth',
-    'BasicAuth',
     'ApiKeyAuth',
+    'BasicAuth',
+    'PsTokenAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = Token
 

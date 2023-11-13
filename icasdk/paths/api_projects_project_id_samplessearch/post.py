@@ -122,8 +122,8 @@ request_body_find_project_samples = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = ProjectSamplePagedList
 

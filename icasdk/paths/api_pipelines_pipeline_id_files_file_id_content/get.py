@@ -64,8 +64,8 @@ request_path_file_id = api_client.PathParameter(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 ContentDispositionSchema = schemas.StrSchema
 content_disposition_parameter = api_client.HeaderParameter(
