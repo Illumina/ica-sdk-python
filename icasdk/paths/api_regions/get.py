@@ -31,8 +31,8 @@ from icasdk.model.region_list import RegionList
 from . import path
 
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = RegionList
 

@@ -73,8 +73,8 @@ class ReferenceData(
                     min_length = 1
         
             @staticmethod
-            def typeList() -> typing.Type['TypeList']:
-                return TypeList
+            def typeList() -> typing.Type['ReferenceDataTypeList']:
+                return ReferenceDataTypeList
             
             
             class tenantName(
@@ -117,7 +117,7 @@ class ReferenceData(
                 "dataFormat": dataFormat,
             }
     
-    typeList: 'TypeList'
+    typeList: 'ReferenceDataTypeList'
     name: MetaOapg.properties.name
     tenantId: MetaOapg.properties.tenantId
     timeCreated: MetaOapg.properties.timeCreated
@@ -148,7 +148,7 @@ class ReferenceData(
     def __getitem__(self, name: typing_extensions.Literal["version"]) -> MetaOapg.properties.version: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["typeList"]) -> 'TypeList': ...
+    def __getitem__(self, name: typing_extensions.Literal["typeList"]) -> 'ReferenceDataTypeList': ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["tenantName"]) -> MetaOapg.properties.tenantName: ...
@@ -189,7 +189,7 @@ class ReferenceData(
     def get_item_oapg(self, name: typing_extensions.Literal["version"]) -> MetaOapg.properties.version: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["typeList"]) -> 'TypeList': ...
+    def get_item_oapg(self, name: typing_extensions.Literal["typeList"]) -> 'ReferenceDataTypeList': ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["tenantName"]) -> typing.Union[MetaOapg.properties.tenantName, schemas.Unset]: ...
@@ -210,7 +210,7 @@ class ReferenceData(
     def __new__(
         cls,
         *args: typing.Union[dict, frozendict.frozendict, ],
-        typeList: 'TypeList',
+        typeList: 'ReferenceDataTypeList',
         name: typing.Union[MetaOapg.properties.name, str, ],
         tenantId: typing.Union[MetaOapg.properties.tenantId, str, uuid.UUID, ],
         timeCreated: typing.Union[MetaOapg.properties.timeCreated, str, datetime, ],
@@ -243,5 +243,5 @@ class ReferenceData(
         )
 
 from icasdk.model.data_format import DataFormat
+from icasdk.model.reference_data_type_list import ReferenceDataTypeList
 from icasdk.model.species import Species
-from icasdk.model.type_list import TypeList

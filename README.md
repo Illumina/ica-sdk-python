@@ -23,8 +23,6 @@ Basic authentication is only supported by the POST /tokens endpoint for generati
 If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required.
 </p>
 
-## Testing
-Tests created by Illumina are in the tests/test_integration/ folder, they are run using pytest, but modification will be required to update domain specific parameters. This is an active area of change in the repository and will be updated over time. 
 
 ## Code Generation
 
@@ -254,6 +252,7 @@ Class | Method | HTTP request | Description
 *PipelineApi* | [**get_pipeline_reference_sets**](docs/apis/tags/PipelineApi.md#get_pipeline_reference_sets) | **get** /api/pipelines/{pipelineId}/referenceSets | Retrieve the reference sets of a pipeline.
 *PipelineApi* | [**get_pipelines**](docs/apis/tags/PipelineApi.md#get_pipelines) | **get** /api/pipelines | Retrieve a list of pipelines.
 *PipelineLanguageApi* | [**get_nextflow_versions**](docs/apis/tags/PipelineLanguageApi.md#get_nextflow_versions) | **get** /api/pipelineLanguages/nextflow/versions | Retrieve a list of nextflow versions.
+*ProjectApi* | [**change_project_owner**](docs/apis/tags/ProjectApi.md#change_project_owner) | **post** /api/projects/{projectId}:changeOwner | Change the project owner.
 *ProjectApi* | [**create_project**](docs/apis/tags/ProjectApi.md#create_project) | **post** /api/projects | Create a new project.
 *ProjectApi* | [**get_project**](docs/apis/tags/ProjectApi.md#get_project) | **get** /api/projects/{projectId} | Retrieve a project.
 *ProjectApi* | [**get_project_bundle**](docs/apis/tags/ProjectApi.md#get_project_bundle) | **get** /api/projects/{projectId}/bundles/{bundleId} | Retrieve a project bundle.
@@ -316,6 +315,10 @@ Class | Method | HTTP request | Description
 *ProjectDataApi* | [**unarchive_data**](docs/apis/tags/ProjectDataApi.md#unarchive_data) | **post** /api/projects/{projectId}/data/{dataId}:unarchive | Schedule this data for unarchival.
 *ProjectDataApi* | [**unlink_data_from_project**](docs/apis/tags/ProjectDataApi.md#unlink_data_from_project) | **post** /api/projects/{projectId}/data/{dataId}:unlink | Unlink data from this project.
 *ProjectDataApi* | [**update_project_data**](docs/apis/tags/ProjectDataApi.md#update_project_data) | **put** /api/projects/{projectId}/data/{dataId} | Update this project data.
+*ProjectDataCopyBatchApi* | [**create_project_data_copy_batch**](docs/apis/tags/ProjectDataCopyBatchApi.md#create_project_data_copy_batch) | **post** /api/projects/{projectId}/dataCopyBatch | Create a project data copy batch.
+*ProjectDataCopyBatchApi* | [**get_project_data_copy_batch**](docs/apis/tags/ProjectDataCopyBatchApi.md#get_project_data_copy_batch) | **get** /api/projects/{projectId}/dataCopyBatch/{batchId} | Retrieve a project data copy batch.
+*ProjectDataCopyBatchApi* | [**get_project_data_copy_batch_item**](docs/apis/tags/ProjectDataCopyBatchApi.md#get_project_data_copy_batch_item) | **get** /api/projects/{projectId}/dataCopyBatch/{batchId}/items/{itemId} | Retrieve a project data copy batch item.
+*ProjectDataCopyBatchApi* | [**get_project_data_copy_batch_items**](docs/apis/tags/ProjectDataCopyBatchApi.md#get_project_data_copy_batch_items) | **get** /api/projects/{projectId}/dataCopyBatch/{batchId}/items | Retrieve a list of project data copy batch items.
 *ProjectDataLinkingBatchApi* | [**create_project_data_linking_batch**](docs/apis/tags/ProjectDataLinkingBatchApi.md#create_project_data_linking_batch) | **post** /api/projects/{projectId}/dataLinkingBatch | Create a project data linking batch.
 *ProjectDataLinkingBatchApi* | [**get_project_data_linking_batch**](docs/apis/tags/ProjectDataLinkingBatchApi.md#get_project_data_linking_batch) | **get** /api/projects/{projectId}/dataLinkingBatch/{batchId} | Retrieve a project data linking batch.
 *ProjectDataLinkingBatchApi* | [**get_project_data_linking_batch_item**](docs/apis/tags/ProjectDataLinkingBatchApi.md#get_project_data_linking_batch_item) | **get** /api/projects/{projectId}/dataLinkingBatch/{batchId}/items/{itemId} | Retrieve a project data linking batch item.
@@ -377,6 +380,9 @@ Class | Method | HTTP request | Description
 *ProjectSampleBatchApi* | [**get_sample_creation_batch**](docs/apis/tags/ProjectSampleBatchApi.md#get_sample_creation_batch) | **get** /api/projects/{projectId}/sampleCreationBatch/{batchId} | Retrieve a sample creation batch.
 *ProjectSampleBatchApi* | [**get_sample_creation_batch_item**](docs/apis/tags/ProjectSampleBatchApi.md#get_sample_creation_batch_item) | **get** /api/projects/{projectId}/sampleCreationBatch/{batchId}/items/{itemId} | Retrieve a sample creation batch item.
 *ProjectSampleBatchApi* | [**get_sample_creation_batch_items**](docs/apis/tags/ProjectSampleBatchApi.md#get_sample_creation_batch_items) | **get** /api/projects/{projectId}/sampleCreationBatch/{batchId}/items | Retrieve a list of sample creation batch items.
+*ProjectWorkflowSessionApi* | [**get_workflow_session_configurations**](docs/apis/tags/ProjectWorkflowSessionApi.md#get_workflow_session_configurations) | **get** /api/projects/{projectId}/workflowSessions/{workflowSessionId}/configurations | Retrieve the configurations of a workflow session.
+*ProjectWorkflowSessionApi* | [**get_workflow_session_inputs**](docs/apis/tags/ProjectWorkflowSessionApi.md#get_workflow_session_inputs) | **get** /api/projects/{projectId}/workflowSessions/{workflowSessionId}/inputs | Retrieve the inputs of a workflow session.
+*ProjectWorkflowSessionApi* | [**get_workflow_sessions**](docs/apis/tags/ProjectWorkflowSessionApi.md#get_workflow_sessions) | **get** /api/projects/{projectId}/workflowSessions | Retrieve the list of workflow sessions.
 *ReferenceSetApi* | [**get_reference_sets**](docs/apis/tags/ReferenceSetApi.md#get_reference_sets) | **get** /api/referenceSets | Retrieve a list of of reference sets.
 *ReferenceSetApi* | [**get_species**](docs/apis/tags/ReferenceSetApi.md#get_species) | **get** /api/referenceSets/{referenceSetId}/species | Retrieve a list of species linked to the reference set.
 *RegionApi* | [**get_region**](docs/apis/tags/RegionApi.md#get_region) | **get** /api/regions/{regionId} | Retrieve a region. Only the regions the user has access to through his/her entitlements can be retrieved.
@@ -457,6 +463,7 @@ Class | Method | HTTP request | Description
  - [BundleTool](docs/models/BundleTool.md)
  - [BundleToolsList](docs/models/BundleToolsList.md)
  - [CWLToolDefinition](docs/models/CWLToolDefinition.md)
+ - [ChangeProjectOwner](docs/models/ChangeProjectOwner.md)
  - [CompleteFolderUploadSession](docs/models/CompleteFolderUploadSession.md)
  - [Connector](docs/models/Connector.md)
  - [ConnectorList](docs/models/ConnectorList.md)
@@ -475,6 +482,8 @@ Class | Method | HTTP request | Description
  - [CreateNotificationChannel](docs/models/CreateNotificationChannel.md)
  - [CreateNotificationSubscription](docs/models/CreateNotificationSubscription.md)
  - [CreateProject](docs/models/CreateProject.md)
+ - [CreateProjectDataCopyBatch](docs/models/CreateProjectDataCopyBatch.md)
+ - [CreateProjectDataCopyBatchItem](docs/models/CreateProjectDataCopyBatchItem.md)
  - [CreateProjectDataLinkingBatch](docs/models/CreateProjectDataLinkingBatch.md)
  - [CreateProjectDataLinkingBatchItem](docs/models/CreateProjectDataLinkingBatchItem.md)
  - [CreateProjectDataUpdateBatch](docs/models/CreateProjectDataUpdateBatch.md)
@@ -569,6 +578,11 @@ Class | Method | HTTP request | Description
  - [ProjectBundle](docs/models/ProjectBundle.md)
  - [ProjectBundleList](docs/models/ProjectBundleList.md)
  - [ProjectData](docs/models/ProjectData.md)
+ - [ProjectDataCopyBatch](docs/models/ProjectDataCopyBatch.md)
+ - [ProjectDataCopyBatchItem](docs/models/ProjectDataCopyBatchItem.md)
+ - [ProjectDataCopyBatchItemPagedList](docs/models/ProjectDataCopyBatchItemPagedList.md)
+ - [ProjectDataCopyBatchItemProcessing](docs/models/ProjectDataCopyBatchItemProcessing.md)
+ - [ProjectDataCopyBatchItemRequest](docs/models/ProjectDataCopyBatchItemRequest.md)
  - [ProjectDataLinkingBatch](docs/models/ProjectDataLinkingBatch.md)
  - [ProjectDataLinkingBatchItem](docs/models/ProjectDataLinkingBatchItem.md)
  - [ProjectDataLinkingBatchItemPagedList](docs/models/ProjectDataLinkingBatchItemPagedList.md)
@@ -594,6 +608,8 @@ Class | Method | HTTP request | Description
  - [RcloneTempCredentials](docs/models/RcloneTempCredentials.md)
  - [ReferenceData](docs/models/ReferenceData.md)
  - [ReferenceDataList](docs/models/ReferenceDataList.md)
+ - [ReferenceDataType](docs/models/ReferenceDataType.md)
+ - [ReferenceDataTypeList](docs/models/ReferenceDataTypeList.md)
  - [ReferenceSet](docs/models/ReferenceSet.md)
  - [ReferenceSetList](docs/models/ReferenceSetList.md)
  - [Region](docs/models/Region.md)
@@ -630,8 +646,6 @@ Class | Method | HTTP request | Description
  - [TermsOfUse](docs/models/TermsOfUse.md)
  - [TermsOfUseAcceptance](docs/models/TermsOfUseAcceptance.md)
  - [Token](docs/models/Token.md)
- - [Type](docs/models/Type.md)
- - [TypeList](docs/models/TypeList.md)
  - [UpdateMetadata](docs/models/UpdateMetadata.md)
  - [UpdateMetadataFieldGroup](docs/models/UpdateMetadataFieldGroup.md)
  - [UpdateSingleMetadataField](docs/models/UpdateSingleMetadataField.md)
@@ -643,21 +657,17 @@ Class | Method | HTTP request | Description
  - [UserList](docs/models/UserList.md)
  - [Workflow](docs/models/Workflow.md)
  - [WorkflowSession](docs/models/WorkflowSession.md)
+ - [WorkflowSessionConfiguration](docs/models/WorkflowSessionConfiguration.md)
+ - [WorkflowSessionConfigurationList](docs/models/WorkflowSessionConfigurationList.md)
+ - [WorkflowSessionData](docs/models/WorkflowSessionData.md)
+ - [WorkflowSessionInput](docs/models/WorkflowSessionInput.md)
+ - [WorkflowSessionInputList](docs/models/WorkflowSessionInputList.md)
+ - [WorkflowSessionPagedList](docs/models/WorkflowSessionPagedList.md)
  - [WorkflowSessionTag](docs/models/WorkflowSessionTag.md)
  - [Workgroup](docs/models/Workgroup.md)
  - [WorkgroupList](docs/models/WorkgroupList.md)
 
 ## Documentation For Authorization
-
-
-## JwtAuth
-
-- **Type**: Bearer authentication (JWT)
-
-
-## PsTokenAuth
-
-- **Type**: Bearer authentication (psToken)
 
 
 ## ApiKeyAuth
@@ -666,13 +676,25 @@ Class | Method | HTTP request | Description
 - **API key parameter name**: X-API-Key
 - **Location**: HTTP header
 
- Authentication schemes defined for the API:
+
 ## BasicAuth
 
 - **Type**: HTTP basic authentication
 
 
+## JwtAuth
+
+- **Type**: Bearer authentication (JWT)
+
+ Authentication schemes defined for the API:
+## PsTokenAuth
+
+- **Type**: Bearer authentication (psToken)
+
+
 ## Author
+
+
 
 
 

@@ -3594,6 +3594,35 @@ paths:
           description: The project is hidden.
           content:
             application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}:changeOwner:
+    post:
+      tags:
+      - Project
+      summary: Change the project owner.
+      operationId: changeProjectOwner
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/ChangeProjectOwner'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The project owner is changed.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/base:connectionDetails:
     post:
       tags:
@@ -4370,6 +4399,26 @@ paths:
       summary: Create data in this project.
       operationId: createDataInProject
       parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
+          \ the response of the request will be saved for 7 days for the specific\
+          \ API endpoint, header value and user reference. When the same user makes\
+          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
+          \ header value, following use cases can occur:<br /><ul><li>the request\
+          \ body is the same as the previous request and an answer is stored => the\
+          \ stored response is returned without executing the request again.</li><li>the\
+          \ request body is the same as the previous request and no answer is stored\
+          \ because the previous request has not finished => 409 error response.</li><li>the\
+          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
+          \ means that each time when executing an API request using the Idempotency-Key\
+          \ header, the request has to contain a new value that hasn't been used in\
+          \ the past 7 days for that specific API and by the specific user."
+        schema:
+          maxLength: 255
+          type: string
       - name: projectId
         in: path
         required: true
@@ -5392,7 +5441,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateTemporaryCredentials'
-        required: true
       responses:
         default:
           description: A problem occurred.
@@ -5491,6 +5539,180 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/FolderUploadSession'
+  /api/projects/{projectId}/dataCopyBatch:
+    post:
+      tags:
+      - Project Data Copy Batch
+      summary: Create a project data copy batch.
+      operationId: createProjectDataCopyBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataCopyBatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataCopyBatch'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The project data copy batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataCopyBatch'
+  /api/projects/{projectId}/dataCopyBatch/{batchId}:
+    get:
+      tags:
+      - Project Data Copy Batch
+      summary: Retrieve a project data copy batch.
+      operationId: getProjectDataCopyBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data copy batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataCopyBatch'
+  /api/projects/{projectId}/dataCopyBatch/{batchId}/items:
+    get:
+      tags:
+      - Project Data Copy Batch
+      summary: Retrieve a list of project data copy batch items.
+      operationId: getProjectDataCopyBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - QUEUED
+            - COPYING
+            - COPIED
+            - PARTIALLY_COPIED
+            - FAILED
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\""
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project data copy batch items is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataCopyBatchItemPagedList'
+  /api/projects/{projectId}/dataCopyBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Data Copy Batch
+      summary: Retrieve a project data copy batch item.
+      operationId: getProjectDataCopyBatchItem
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data copy batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataCopyBatchItem'
   /api/projects/{projectId}/dataLinkingBatch:
     post:
       tags:
@@ -8157,6 +8379,149 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/SampleCreationBatchSampleItem'
+  /api/projects/{projectId}/workflowSessions:
+    get:
+      tags:
+      - Project Workflow Session
+      summary: Retrieve the list of workflow sessions.
+      operationId: getWorkflowSessions
+      parameters:
+      - name: reference
+        in: query
+        description: The reference to filter on.
+        schema:
+          type: string
+      - name: userreference
+        in: query
+        description: The user-reference to filter on.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: The status to filter on.
+        schema:
+          type: string
+      - name: usertag
+        in: query
+        description: The user-tags to filter on.
+        schema:
+          type: string
+      - name: technicaltag
+        in: query
+        description: The technical-tags to filter on.
+        schema:
+          type: string
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+          - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- workflow\n"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project workflow sessions is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/WorkflowSessionPagedList'
+  /api/projects/{projectId}/workflowSessions/{workflowSessionId}/inputs:
+    get:
+      tags:
+      - Project Workflow Session
+      summary: Retrieve the inputs of a workflow session.
+      operationId: getWorkflowSessionInputs
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: workflowSessionId
+        in: path
+        description: The ID of the workflow session to retrieve the inputs for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The inputs of the workflow session are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/WorkflowSessionInputList'
+  /api/projects/{projectId}/workflowSessions/{workflowSessionId}/configurations:
+    get:
+      tags:
+      - Project Workflow Session
+      summary: Retrieve the configurations of a workflow session.
+      operationId: getWorkflowSessionConfigurations
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: workflowSessionId
+        in: path
+        description: The ID of the workflow session to retrieve the configuration
+          for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The configurations of the workflow session are successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/WorkflowSessionConfigurationList'
   /api/referenceSets:
     get:
       tags:
@@ -9166,7 +9531,6 @@ components:
           type: string
           description: The description about the storage option
           nullable: true
-      nullable: true
     AnalysisStorageList:
       required:
       - items
@@ -9745,28 +10109,40 @@ components:
       properties:
         technicalTags:
           type: array
+          nullable: true
           items:
             type: string
+            nullable: true
         userTags:
           type: array
+          nullable: true
           items:
             type: string
+            nullable: true
         connectorTags:
           type: array
+          nullable: true
           items:
             type: string
+            nullable: true
         runInTags:
           type: array
+          nullable: true
           items:
             type: string
+            nullable: true
         runOutTags:
           type: array
+          nullable: true
           items:
             type: string
+            nullable: true
         referenceTags:
           type: array
+          nullable: true
           items:
             type: string
+            nullable: true
     SequencingRun:
       required:
       - id
@@ -10989,7 +11365,7 @@ components:
         url:
           type: string
         type:
-          pattern: s3
+          pattern: s3|http
           type: string
         mountPath:
           type: string
@@ -11755,7 +12131,7 @@ components:
           type: string
           description: The version of the reference data
         typeList:
-          $ref: '#/components/schemas/TypeList'
+          $ref: '#/components/schemas/ReferenceDataTypeList'
     ReferenceDataList:
       required:
       - items
@@ -11765,6 +12141,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceData'
+    ReferenceDataType:
+      required:
+      - id
+      - name
+      - ownerId
+      - tenantId
+      - timeCreated
+      - timeModified
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the reference data type
+    ReferenceDataTypeList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceDataType'
     ReferenceSet:
       required:
       - id
@@ -11843,48 +12261,6 @@ components:
           minLength: 1
           type: string
           description: The name of the species
-    Type:
-      required:
-      - id
-      - name
-      - ownerId
-      - tenantId
-      - timeCreated
-      - timeModified
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The name of the reference data type
-    TypeList:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Type'
     PipelineHtmlDocumentation:
       required:
       - content
@@ -12156,7 +12532,6 @@ components:
           nullable: true
         tags:
           $ref: '#/components/schemas/WorkflowSessionTag'
-      nullable: true
     WorkflowSessionTag:
       type: object
       properties:
@@ -12299,8 +12674,8 @@ components:
           type: string
         type:
           type: string
-          description: "Possible values are: s3. More types could be added in a future\
-            \ release."
+          description: "Possible values are: s3 & http. More types could be added\
+            \ in a future release."
         mountPath:
           type: string
       description: The external data used as input by the analysis.
@@ -12719,6 +13094,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectBundle'
+    ChangeProjectOwner:
+      required:
+      - newOwnerId
+      type: object
+      properties:
+        newOwnerId:
+          type: string
+          description: The id of the new project owner.
     BaseConnection:
       required:
       - accessToken
@@ -12937,7 +13320,7 @@ components:
         allowQuotedNewlines:
           type: boolean
           description: "Enable to include newlines contained in quoted data sections\
-            \ in the cellâ€™s value. When disabled, newlines will signal a new row"
+            \ in the cell’s value. When disabled, newlines will signal a new row"
           nullable: true
           default: false
         dataId:
@@ -13511,6 +13894,132 @@ components:
           type: integer
           description: The number of expected uploaded files within this session.
           format: int32
+    ProjectDataCopyBatch:
+      required:
+      - actionOnExist
+      - copyInstrumentInfo
+      - copyTechnicalTags
+      - copyUserTags
+      - id
+      - job
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+        destinationFolderId:
+          type: string
+        copyUserTags:
+          type: boolean
+        copyTechnicalTags:
+          type: boolean
+        copyInstrumentInfo:
+          type: boolean
+        actionOnExist:
+          type: string
+    CreateProjectDataCopyBatch:
+      required:
+      - actionOnExist
+      - copyInstrumentInfo
+      - copyTechnicalTags
+      - copyUserTags
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateProjectDataCopyBatchItem'
+        destinationFolderId:
+          type: string
+        copyUserTags:
+          type: boolean
+        copyTechnicalTags:
+          type: boolean
+        copyInstrumentInfo:
+          type: boolean
+        actionOnExist:
+          pattern: OVERWRITE|SKIP|RENAME
+          type: string
+          description: "only applicable on files, not on folders"
+    CreateProjectDataCopyBatchItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    ProjectDataCopyBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/ProjectDataCopyBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/ProjectDataCopyBatchItemProcessing'
+        createdProjectData:
+          $ref: '#/components/schemas/ProjectData'
+    ProjectDataCopyBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDataCopyBatchItem'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    ProjectDataCopyBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - QUEUED
+          - COPYING
+          - COPIED
+          - PARTIALLY_COPIED
+          - FAILED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    ProjectDataCopyBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
     ProjectDataLinkingBatch:
       required:
       - id
@@ -14659,6 +15168,116 @@ components:
           $ref: '#/components/schemas/SampleCreationBatchItemProcessing'
         createdSample:
           $ref: '#/components/schemas/Sample'
+    WorkflowSessionPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowSession'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    WorkflowSessionData:
+      required:
+      - dataId
+      - dataType
+      - format
+      - name
+      type: object
+      properties:
+        dataId:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The id of the file/folder.
+        format:
+          $ref: '#/components/schemas/DataFormat'
+        name:
+          type: string
+          description: The name of the file/folder as it was processed by the workflow
+            session.
+        dataType:
+          type: string
+          enum:
+          - FILE
+          - FOLDER
+        mountPath:
+          type: string
+          description: The requested location where the input file was located on
+            the machine that was running the workflow.
+      description: The workflow-session-data used as input by the workflow session.
+      nullable: true
+    WorkflowSessionInput:
+      required:
+      - code
+      type: object
+      properties:
+        code:
+          type: string
+          description: The name of the input-parameter.
+        analysisData:
+          type: array
+          description: The workflow-session-data used as input by the workflow session.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/WorkflowSessionData'
+    WorkflowSessionInputList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowSessionInput'
+    WorkflowSessionConfiguration:
+      required:
+      - multiValue
+      - name
+      - values
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the configuration
+        multiValue:
+          type: boolean
+          description: Whether the configuration has multiple values
+        values:
+          type: array
+          description: The configuration values
+          items:
+            type: string
+            description: The configuration values
+    WorkflowSessionConfigurationList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowSessionConfiguration'
     SpeciesList:
       required:
       - items

@@ -73,8 +73,8 @@ request_path_field_id = api_client.PathParameter(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = Field
 

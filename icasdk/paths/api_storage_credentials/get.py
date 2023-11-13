@@ -31,8 +31,8 @@ from icasdk.model.storage_credential_list import StorageCredentialList
 from . import path
 
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = StorageCredentialList
 

@@ -64,8 +64,8 @@ request_path_data_transfer_id = api_client.PathParameter(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 
 

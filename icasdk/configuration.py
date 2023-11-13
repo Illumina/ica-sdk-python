@@ -403,22 +403,6 @@ conf = icasdk.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if self.access_token is not None:
-            auth['JwtAuth'] = {
-                'type': 'bearer',
-                'in': 'header',
-                'format': 'JWT',
-                'key': 'Authorization',
-                'value': 'Bearer ' + self.access_token
-            }
-        if self.access_token is not None:
-            auth['PsTokenAuth'] = {
-                'type': 'bearer',
-                'in': 'header',
-                'format': 'psToken',
-                'key': 'Authorization',
-                'value': 'Bearer ' + self.access_token
-            }
         if 'ApiKeyAuth' in self.api_key:
             auth['ApiKeyAuth'] = {
                 'type': 'api_key',
@@ -434,6 +418,22 @@ conf = icasdk.Configuration(
                 'in': 'header',
                 'key': 'Authorization',
                 'value': self.get_basic_auth_token()
+            }
+        if self.access_token is not None:
+            auth['JwtAuth'] = {
+                'type': 'bearer',
+                'in': 'header',
+                'format': 'JWT',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
+            }
+        if self.access_token is not None:
+            auth['PsTokenAuth'] = {
+                'type': 'bearer',
+                'in': 'header',
+                'format': 'psToken',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
             }
         return auth
 

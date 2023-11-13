@@ -31,8 +31,8 @@ from icasdk.model.pipeline_language_version_list import PipelineLanguageVersionL
 from . import path
 
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = PipelineLanguageVersionList
 

@@ -72,8 +72,8 @@ request_body_create_notification_subscription = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 ETagSchema = schemas.StrSchema
 e_tag_parameter = api_client.HeaderParameter(

@@ -105,8 +105,8 @@ request_query_sort = api_client.QueryParameter(
     explode=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = BundlePagedList
 

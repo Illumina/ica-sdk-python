@@ -147,8 +147,8 @@ request_query_rows = api_client.QueryParameter(
     explode=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = EventLogList
 

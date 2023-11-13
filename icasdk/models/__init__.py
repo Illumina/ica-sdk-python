@@ -60,6 +60,7 @@ from icasdk.model.bundle_sample_paged_list import BundleSamplePagedList
 from icasdk.model.bundle_tool import BundleTool
 from icasdk.model.bundle_tools_list import BundleToolsList
 from icasdk.model.cwl_tool_definition import CWLToolDefinition
+from icasdk.model.change_project_owner import ChangeProjectOwner
 from icasdk.model.complete_folder_upload_session import CompleteFolderUploadSession
 from icasdk.model.connector import Connector
 from icasdk.model.connector_list import ConnectorList
@@ -78,6 +79,8 @@ from icasdk.model.create_nextflow_pipeline import CreateNextflowPipeline
 from icasdk.model.create_notification_channel import CreateNotificationChannel
 from icasdk.model.create_notification_subscription import CreateNotificationSubscription
 from icasdk.model.create_project import CreateProject
+from icasdk.model.create_project_data_copy_batch import CreateProjectDataCopyBatch
+from icasdk.model.create_project_data_copy_batch_item import CreateProjectDataCopyBatchItem
 from icasdk.model.create_project_data_linking_batch import CreateProjectDataLinkingBatch
 from icasdk.model.create_project_data_linking_batch_item import CreateProjectDataLinkingBatchItem
 from icasdk.model.create_project_data_update_batch import CreateProjectDataUpdateBatch
@@ -172,6 +175,11 @@ from icasdk.model.project_base_table_list import ProjectBaseTableList
 from icasdk.model.project_bundle import ProjectBundle
 from icasdk.model.project_bundle_list import ProjectBundleList
 from icasdk.model.project_data import ProjectData
+from icasdk.model.project_data_copy_batch import ProjectDataCopyBatch
+from icasdk.model.project_data_copy_batch_item import ProjectDataCopyBatchItem
+from icasdk.model.project_data_copy_batch_item_paged_list import ProjectDataCopyBatchItemPagedList
+from icasdk.model.project_data_copy_batch_item_processing import ProjectDataCopyBatchItemProcessing
+from icasdk.model.project_data_copy_batch_item_request import ProjectDataCopyBatchItemRequest
 from icasdk.model.project_data_linking_batch import ProjectDataLinkingBatch
 from icasdk.model.project_data_linking_batch_item import ProjectDataLinkingBatchItem
 from icasdk.model.project_data_linking_batch_item_paged_list import ProjectDataLinkingBatchItemPagedList
@@ -197,6 +205,8 @@ from icasdk.model.project_tag import ProjectTag
 from icasdk.model.rclone_temp_credentials import RcloneTempCredentials
 from icasdk.model.reference_data import ReferenceData
 from icasdk.model.reference_data_list import ReferenceDataList
+from icasdk.model.reference_data_type import ReferenceDataType
+from icasdk.model.reference_data_type_list import ReferenceDataTypeList
 from icasdk.model.reference_set import ReferenceSet
 from icasdk.model.reference_set_list import ReferenceSetList
 from icasdk.model.region import Region
@@ -233,8 +243,6 @@ from icasdk.model.temp_credentials import TempCredentials
 from icasdk.model.terms_of_use import TermsOfUse
 from icasdk.model.terms_of_use_acceptance import TermsOfUseAcceptance
 from icasdk.model.token import Token
-from icasdk.model.type import Type
-from icasdk.model.type_list import TypeList
 from icasdk.model.update_metadata import UpdateMetadata
 from icasdk.model.update_metadata_field_group import UpdateMetadataFieldGroup
 from icasdk.model.update_single_metadata_field import UpdateSingleMetadataField
@@ -246,6 +254,12 @@ from icasdk.model.user import User
 from icasdk.model.user_list import UserList
 from icasdk.model.workflow import Workflow
 from icasdk.model.workflow_session import WorkflowSession
+from icasdk.model.workflow_session_configuration import WorkflowSessionConfiguration
+from icasdk.model.workflow_session_configuration_list import WorkflowSessionConfigurationList
+from icasdk.model.workflow_session_data import WorkflowSessionData
+from icasdk.model.workflow_session_input import WorkflowSessionInput
+from icasdk.model.workflow_session_input_list import WorkflowSessionInputList
+from icasdk.model.workflow_session_paged_list import WorkflowSessionPagedList
 from icasdk.model.workflow_session_tag import WorkflowSessionTag
 from icasdk.model.workgroup import Workgroup
 from icasdk.model.workgroup_list import WorkgroupList

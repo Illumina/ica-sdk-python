@@ -71,8 +71,8 @@ request_body_update_storage_credential_secrets = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 
 

@@ -54,7 +54,7 @@ class AnalysisInputExternalData(
             
                 class MetaOapg:
                     regex=[{
-                        'pattern': r's3',  # noqa: E501
+                        'pattern': r's3|http',  # noqa: E501
                     }]
             mountPath = schemas.StrSchema
         

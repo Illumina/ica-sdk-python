@@ -31,8 +31,8 @@ from icasdk.model.notification_channel_list import NotificationChannelList
 from . import path
 
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = NotificationChannelList
 

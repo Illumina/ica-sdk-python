@@ -9,7 +9,7 @@ dict, frozendict.frozendict,  | frozendict.frozendict,  |  |
 Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **dataId** | str,  | str,  | ID of the data to load into the table | 
-**allowQuotedNewlines** | None, bool,  | NoneClass, BoolClass,  | Enable to include newlines contained in quoted data sections in the cellâ€™s value. When disabled, newlines will signal a new row | [optional] if omitted the server will use the default value of False
+**allowQuotedNewlines** | None, bool,  | NoneClass, BoolClass,  | Enable to include newlines contained in quoted data sections in the cell’s value. When disabled, newlines will signal a new row | [optional] if omitted the server will use the default value of False
 **delimiter** | None, str,  | NoneClass, str,  | field delimiter | [optional] if omitted the server will use the default value of ","
 **encoding** | None, str,  | NoneClass, str,  | Encoding | [optional] must be one of ["UTF8", "ISO88591", ] if omitted the server will use the default value of "UTF8"
 **forceLoad** | None, bool,  | NoneClass, BoolClass,  | When false (default): the data will not be loaded if it was already previously loaded to table ; when true, the data will be loaded even if already loaded in the past | [optional] if omitted the server will use the default value of False

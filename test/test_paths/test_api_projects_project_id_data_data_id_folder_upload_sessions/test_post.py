@@ -37,9 +37,5 @@ class TestApiProjectsProjectIdDataDataIdFolderUploadSessions(ApiTestMixin, unitt
 
 
 
-
-
-
-
 if __name__ == '__main__':
     unittest.main()

@@ -39,8 +39,8 @@ Add secondary data to data.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -57,16 +57,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -156,7 +156,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -170,8 +170,8 @@ Endpoint for scheduling this data for archival. This will also archive all files
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -188,16 +188,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -278,7 +278,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -292,8 +292,8 @@ Complete a trackable folder upload session. By completing the folder upload sess
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -312,16 +312,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -438,7 +438,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -450,8 +450,8 @@ Create data in this project.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -470,16 +470,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -488,6 +488,8 @@ with icasdk.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     path_params = {
         'projectId': "projectId_example",
+    }
+    header_params = {
     }
     body = CreateData(
         name="name_example",
@@ -500,6 +502,32 @@ with icasdk.ApiClient(configuration) as api_client:
         # Create data in this project.
         api_response = api_instance.create_data_in_project(
             path_params=path_params,
+            header_params=header_params,
+            body=body,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_data_in_project: %s\n" % e)
+
+    # example passing only optional values
+    path_params = {
+        'projectId': "projectId_example",
+    }
+    header_params = {
+        'Idempotency-Key': "Idempotency-Key_example",
+    }
+    body = CreateData(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj/",
+        format_code="format_code_example",
+        data_type="FILE",
+    )
+    try:
+        # Create data in this project.
+        api_response = api_instance.create_data_in_project(
+            path_params=path_params,
+            header_params=header_params,
             body=body,
         )
         pprint(api_response)
@@ -511,6 +539,7 @@ with icasdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
+header_params | RequestHeaderParams | |
 path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/vnd.illumina.v3+json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
@@ -531,6 +560,20 @@ Type | Description  | Notes
 ------------- | ------------- | -------------
 [**CreateData**](../../models/CreateData.md) |  | 
 
+
+### header_params
+#### RequestHeaderParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+Idempotency-Key | IdempotencyKeySchema | | optional
+
+# IdempotencyKeySchema
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+str,  | str,  |  | 
 
 ### path_params
 #### RequestPathParams
@@ -597,7 +640,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -611,8 +654,8 @@ Can be used to download a file directly from the region where it is located, no 
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -630,16 +673,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -727,7 +770,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -741,8 +784,8 @@ Can be used to download files directly from the region where it is located, no c
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -761,16 +804,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -866,13 +909,13 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **create_folder_upload_session**
 <a name="create_folder_upload_session"></a>
-> FolderUploadSession create_folder_upload_session(project_iddata_idcreate_temporary_credentials)
+> FolderUploadSession create_folder_upload_session(project_iddata_id)
 
 Create a trackable folder upload session.
 
@@ -880,8 +923,8 @@ This endpoint can be used to ensure that all uploaded files within the requested
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -900,22 +943,36 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_data_api.ProjectDataApi(api_client)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'projectId': "projectId_example",
+        'dataId': "dataId_example",
+    }
+    try:
+        # Create a trackable folder upload session.
+        api_response = api_instance.create_folder_upload_session(
+            path_params=path_params,
+        )
+        pprint(api_response)
+    except icasdk.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder_upload_session: %s\n" % e)
+
+    # example passing only optional values
     path_params = {
         'projectId': "projectId_example",
         'dataId': "dataId_example",
@@ -937,7 +994,7 @@ with icasdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson] | required |
+body | typing.Union[SchemaForRequestBodyApplicationVndIlluminaV3json, SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
 path_params | RequestPathParams | |
 content_type | str | optional, default is 'application/vnd.illumina.v3+json' | Selects the schema and serialization of the request body
 accept_content_types | typing.Tuple[str] | default is ('application/problem+json', 'application/vnd.illumina.v3+json', ) | Tells the server the content type(s) that are accepted by the client
@@ -1017,7 +1074,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -1031,8 +1088,8 @@ Can be used to view a file directly from the region where it is located, no conn
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -1050,16 +1107,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1147,7 +1204,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -1161,8 +1218,8 @@ Can be used to upload or download a file directly from the region where it is lo
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -1181,16 +1238,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1312,7 +1369,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -1326,8 +1383,8 @@ Can be used to upload a file directly from the region where it is located, no co
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -1345,16 +1402,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1488,7 +1545,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -1502,8 +1559,8 @@ Endpoint for scheduling this data for deletion. This will also delete all files 
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -1520,16 +1577,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1610,7 +1667,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -1622,8 +1679,8 @@ Retrieve a list of data eligible for linking to the current project.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -1641,16 +1698,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -2144,7 +2201,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -2158,8 +2215,8 @@ Retrieve folder upload session details, including the current status of your upl
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -2177,16 +2234,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -2283,7 +2340,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -2295,8 +2352,8 @@ Retrieve a list of project data not linked to a sample.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -2314,16 +2371,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -2456,7 +2513,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -2468,8 +2525,8 @@ Retrieve a project data.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -2487,16 +2544,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -2599,7 +2656,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -2613,8 +2670,8 @@ Retrieve the children of this data.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -2633,16 +2690,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -2791,7 +2848,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -2803,8 +2860,8 @@ Retrieve the list of project data.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -2822,16 +2879,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -3325,7 +3382,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -3337,8 +3394,8 @@ Retrieve a list of projects to which this data is linked.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -3356,16 +3413,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -3453,7 +3510,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -3465,8 +3522,8 @@ Retrieve a list of secondary data for data.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -3484,16 +3541,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -3581,7 +3638,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -3593,8 +3650,8 @@ Link data to this project.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -3612,16 +3669,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -3724,7 +3781,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -3736,8 +3793,8 @@ Remove secondary data from data.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -3754,16 +3811,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -3853,7 +3910,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -3867,8 +3924,8 @@ Endpoint for scheduling a download for the data specified by the ID to a connect
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -3886,16 +3943,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -4007,7 +4064,7 @@ str,  | str,  | The current version of the resource. Can be passed to the corres
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -4021,8 +4078,8 @@ Endpoint for scheduling this data for unarchival. This will also unarchive all f
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -4039,16 +4096,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -4129,7 +4186,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -4141,8 +4198,8 @@ Unlink data from this project.
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -4159,16 +4216,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -4249,7 +4306,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
@@ -4263,8 +4320,8 @@ Fields which can be updated for files:  - data.willBeArchivedAt  - data.willBeDe
 
 ### Example
 
-* Bearer (JWT) Authentication (JwtAuth):
 * Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
 ```python
 import icasdk
 from icasdk.apis.tags import project_data_api
@@ -4282,16 +4339,16 @@ configuration = icasdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = icasdk.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
 # Configure API key authorization: ApiKeyAuth
 configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = icasdk.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
 # Enter a context with an instance of the API client
 with icasdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -4483,7 +4540,7 @@ Type | Description  | Notes
 
 ### Authorization
 
-[JwtAuth](../../../README.md#JwtAuth), [ApiKeyAuth](../../../README.md#ApiKeyAuth)
+[ApiKeyAuth](../../../README.md#ApiKeyAuth), [JwtAuth](../../../README.md#JwtAuth)
 
 [[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 

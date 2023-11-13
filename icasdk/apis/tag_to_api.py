@@ -26,6 +26,7 @@ from icasdk.apis.tags.project_base_api import ProjectBaseApi
 from icasdk.apis.tags.project_custom_events_api import ProjectCustomEventsApi
 from icasdk.apis.tags.project_custom_notification_subscriptions_api import ProjectCustomNotificationSubscriptionsApi
 from icasdk.apis.tags.project_data_api import ProjectDataApi
+from icasdk.apis.tags.project_data_copy_batch_api import ProjectDataCopyBatchApi
 from icasdk.apis.tags.project_data_linking_batch_api import ProjectDataLinkingBatchApi
 from icasdk.apis.tags.project_data_transfer_api import ProjectDataTransferApi
 from icasdk.apis.tags.project_data_update_batch_api import ProjectDataUpdateBatchApi
@@ -34,6 +35,7 @@ from icasdk.apis.tags.project_permission_api import ProjectPermissionApi
 from icasdk.apis.tags.project_pipeline_api import ProjectPipelineApi
 from icasdk.apis.tags.project_sample_api import ProjectSampleApi
 from icasdk.apis.tags.project_sample_batch_api import ProjectSampleBatchApi
+from icasdk.apis.tags.project_workflow_session_api import ProjectWorkflowSessionApi
 from icasdk.apis.tags.reference_set_api import ReferenceSetApi
 from icasdk.apis.tags.region_api import RegionApi
 from icasdk.apis.tags.sample_api import SampleApi
@@ -74,6 +76,7 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.PROJECT_CUSTOM_EVENTS: ProjectCustomEventsApi,
         TagValues.PROJECT_CUSTOM_NOTIFICATION_SUBSCRIPTIONS: ProjectCustomNotificationSubscriptionsApi,
         TagValues.PROJECT_DATA: ProjectDataApi,
+        TagValues.PROJECT_DATA_COPY_BATCH: ProjectDataCopyBatchApi,
         TagValues.PROJECT_DATA_LINKING_BATCH: ProjectDataLinkingBatchApi,
         TagValues.PROJECT_DATA_TRANSFER: ProjectDataTransferApi,
         TagValues.PROJECT_DATA_UPDATE_BATCH: ProjectDataUpdateBatchApi,
@@ -82,6 +85,7 @@ TagToApi = typing_extensions.TypedDict(
         TagValues.PROJECT_PIPELINE: ProjectPipelineApi,
         TagValues.PROJECT_SAMPLE: ProjectSampleApi,
         TagValues.PROJECT_SAMPLE_BATCH: ProjectSampleBatchApi,
+        TagValues.PROJECT_WORKFLOW_SESSION: ProjectWorkflowSessionApi,
         TagValues.REFERENCE_SET: ReferenceSetApi,
         TagValues.REGION: RegionApi,
         TagValues.SAMPLE: SampleApi,
@@ -123,6 +127,7 @@ tag_to_api = TagToApi(
         TagValues.PROJECT_CUSTOM_EVENTS: ProjectCustomEventsApi,
         TagValues.PROJECT_CUSTOM_NOTIFICATION_SUBSCRIPTIONS: ProjectCustomNotificationSubscriptionsApi,
         TagValues.PROJECT_DATA: ProjectDataApi,
+        TagValues.PROJECT_DATA_COPY_BATCH: ProjectDataCopyBatchApi,
         TagValues.PROJECT_DATA_LINKING_BATCH: ProjectDataLinkingBatchApi,
         TagValues.PROJECT_DATA_TRANSFER: ProjectDataTransferApi,
         TagValues.PROJECT_DATA_UPDATE_BATCH: ProjectDataUpdateBatchApi,
@@ -131,6 +136,7 @@ tag_to_api = TagToApi(
         TagValues.PROJECT_PIPELINE: ProjectPipelineApi,
         TagValues.PROJECT_SAMPLE: ProjectSampleApi,
         TagValues.PROJECT_SAMPLE_BATCH: ProjectSampleBatchApi,
+        TagValues.PROJECT_WORKFLOW_SESSION: ProjectWorkflowSessionApi,
         TagValues.REFERENCE_SET: ReferenceSetApi,
         TagValues.REGION: RegionApi,
         TagValues.SAMPLE: SampleApi,

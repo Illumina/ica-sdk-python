@@ -31,8 +31,8 @@ from icasdk.model.pipeline_list import PipelineList
 from . import path
 
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = PipelineList
 

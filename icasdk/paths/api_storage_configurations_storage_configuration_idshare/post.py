@@ -56,8 +56,8 @@ request_path_storage_configuration_id = api_client.PathParameter(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 
 

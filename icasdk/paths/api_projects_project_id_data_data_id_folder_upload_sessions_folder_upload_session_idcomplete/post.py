@@ -88,8 +88,8 @@ request_body_complete_folder_upload_session = api_client.RequestBody(
     required=True,
 )
 _auth = [
-    'JwtAuth',
     'ApiKeyAuth',
+    'JwtAuth',
 ]
 SchemaFor200ResponseBodyApplicationVndIlluminaV3json = FolderUploadSession
 

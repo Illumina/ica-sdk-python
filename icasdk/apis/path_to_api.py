@@ -76,6 +76,7 @@ from icasdk.apis.paths.api_projects_project_id import ApiProjectsProjectId
 from icasdk.apis.paths.api_projects_project_id_bundles import ApiProjectsProjectIdBundles
 from icasdk.apis.paths.api_projects_project_id_bundles_bundle_id import ApiProjectsProjectIdBundlesBundleId
 from icasdk.apis.paths.api_projects_project_idhide import ApiProjectsProjectIdhide
+from icasdk.apis.paths.api_projects_project_idchange_owner import ApiProjectsProjectIdchangeOwner
 from icasdk.apis.paths.api_projects_project_id_baseconnection_details import ApiProjectsProjectIdBaseconnectionDetails
 from icasdk.apis.paths.api_projects_project_id_base_jobs import ApiProjectsProjectIdBaseJobs
 from icasdk.apis.paths.api_projects_project_id_base_jobs_base_job_id import ApiProjectsProjectIdBaseJobsBaseJobId
@@ -106,6 +107,10 @@ from icasdk.apis.paths.api_projects_project_id_data_data_iddelete import ApiProj
 from icasdk.apis.paths.api_projects_project_id_data_data_id_folder_upload_sessions import ApiProjectsProjectIdDataDataIdFolderUploadSessions
 from icasdk.apis.paths.api_projects_project_id_data_data_id_folder_upload_sessions_folder_upload_session_id import ApiProjectsProjectIdDataDataIdFolderUploadSessionsFolderUploadSessionId
 from icasdk.apis.paths.api_projects_project_id_data_data_id_folder_upload_sessions_folder_upload_session_idcomplete import ApiProjectsProjectIdDataDataIdFolderUploadSessionsFolderUploadSessionIdcomplete
+from icasdk.apis.paths.api_projects_project_id_data_copy_batch import ApiProjectsProjectIdDataCopyBatch
+from icasdk.apis.paths.api_projects_project_id_data_copy_batch_batch_id import ApiProjectsProjectIdDataCopyBatchBatchId
+from icasdk.apis.paths.api_projects_project_id_data_copy_batch_batch_id_items import ApiProjectsProjectIdDataCopyBatchBatchIdItems
+from icasdk.apis.paths.api_projects_project_id_data_copy_batch_batch_id_items_item_id import ApiProjectsProjectIdDataCopyBatchBatchIdItemsItemId
 from icasdk.apis.paths.api_projects_project_id_data_linking_batch import ApiProjectsProjectIdDataLinkingBatch
 from icasdk.apis.paths.api_projects_project_id_data_linking_batch_batch_id import ApiProjectsProjectIdDataLinkingBatchBatchId
 from icasdk.apis.paths.api_projects_project_id_data_linking_batch_batch_id_items import ApiProjectsProjectIdDataLinkingBatchBatchIdItems
@@ -155,6 +160,9 @@ from icasdk.apis.paths.api_projects_project_id_sample_creation_batch import ApiP
 from icasdk.apis.paths.api_projects_project_id_sample_creation_batch_batch_id import ApiProjectsProjectIdSampleCreationBatchBatchId
 from icasdk.apis.paths.api_projects_project_id_sample_creation_batch_batch_id_items import ApiProjectsProjectIdSampleCreationBatchBatchIdItems
 from icasdk.apis.paths.api_projects_project_id_sample_creation_batch_batch_id_items_item_id import ApiProjectsProjectIdSampleCreationBatchBatchIdItemsItemId
+from icasdk.apis.paths.api_projects_project_id_workflow_sessions import ApiProjectsProjectIdWorkflowSessions
+from icasdk.apis.paths.api_projects_project_id_workflow_sessions_workflow_session_id_inputs import ApiProjectsProjectIdWorkflowSessionsWorkflowSessionIdInputs
+from icasdk.apis.paths.api_projects_project_id_workflow_sessions_workflow_session_id_configurations import ApiProjectsProjectIdWorkflowSessionsWorkflowSessionIdConfigurations
 from icasdk.apis.paths.api_reference_sets import ApiReferenceSets
 from icasdk.apis.paths.api_reference_sets_reference_set_id_species import ApiReferenceSetsReferenceSetIdSpecies
 from icasdk.apis.paths.api_regions import ApiRegions
@@ -261,6 +269,7 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PROJECTS_PROJECT_ID_BUNDLES: ApiProjectsProjectIdBundles,
         PathValues.API_PROJECTS_PROJECT_ID_BUNDLES_BUNDLE_ID: ApiProjectsProjectIdBundlesBundleId,
         PathValues.API_PROJECTS_PROJECT_IDHIDE: ApiProjectsProjectIdhide,
+        PathValues.API_PROJECTS_PROJECT_IDCHANGE_OWNER: ApiProjectsProjectIdchangeOwner,
         PathValues.API_PROJECTS_PROJECT_ID_BASECONNECTION_DETAILS: ApiProjectsProjectIdBaseconnectionDetails,
         PathValues.API_PROJECTS_PROJECT_ID_BASE_JOBS: ApiProjectsProjectIdBaseJobs,
         PathValues.API_PROJECTS_PROJECT_ID_BASE_JOBS_BASE_JOB_ID: ApiProjectsProjectIdBaseJobsBaseJobId,
@@ -291,6 +300,10 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PROJECTS_PROJECT_ID_DATA_DATA_ID_FOLDER_UPLOAD_SESSIONS: ApiProjectsProjectIdDataDataIdFolderUploadSessions,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_DATA_ID_FOLDER_UPLOAD_SESSIONS_FOLDER_UPLOAD_SESSION_ID: ApiProjectsProjectIdDataDataIdFolderUploadSessionsFolderUploadSessionId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_DATA_ID_FOLDER_UPLOAD_SESSIONS_FOLDER_UPLOAD_SESSION_IDCOMPLETE: ApiProjectsProjectIdDataDataIdFolderUploadSessionsFolderUploadSessionIdcomplete,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH: ApiProjectsProjectIdDataCopyBatch,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH_BATCH_ID: ApiProjectsProjectIdDataCopyBatchBatchId,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdDataCopyBatchBatchIdItems,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH_BATCH_ID_ITEMS_ITEM_ID: ApiProjectsProjectIdDataCopyBatchBatchIdItemsItemId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_LINKING_BATCH: ApiProjectsProjectIdDataLinkingBatch,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_LINKING_BATCH_BATCH_ID: ApiProjectsProjectIdDataLinkingBatchBatchId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_LINKING_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdDataLinkingBatchBatchIdItems,
@@ -340,6 +353,9 @@ PathToApi = typing_extensions.TypedDict(
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLE_CREATION_BATCH_BATCH_ID: ApiProjectsProjectIdSampleCreationBatchBatchId,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLE_CREATION_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdSampleCreationBatchBatchIdItems,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLE_CREATION_BATCH_BATCH_ID_ITEMS_ITEM_ID: ApiProjectsProjectIdSampleCreationBatchBatchIdItemsItemId,
+        PathValues.API_PROJECTS_PROJECT_ID_WORKFLOW_SESSIONS: ApiProjectsProjectIdWorkflowSessions,
+        PathValues.API_PROJECTS_PROJECT_ID_WORKFLOW_SESSIONS_WORKFLOW_SESSION_ID_INPUTS: ApiProjectsProjectIdWorkflowSessionsWorkflowSessionIdInputs,
+        PathValues.API_PROJECTS_PROJECT_ID_WORKFLOW_SESSIONS_WORKFLOW_SESSION_ID_CONFIGURATIONS: ApiProjectsProjectIdWorkflowSessionsWorkflowSessionIdConfigurations,
         PathValues.API_REFERENCE_SETS: ApiReferenceSets,
         PathValues.API_REFERENCE_SETS_REFERENCE_SET_ID_SPECIES: ApiReferenceSetsReferenceSetIdSpecies,
         PathValues.API_REGIONS: ApiRegions,
@@ -447,6 +463,7 @@ path_to_api = PathToApi(
         PathValues.API_PROJECTS_PROJECT_ID_BUNDLES: ApiProjectsProjectIdBundles,
         PathValues.API_PROJECTS_PROJECT_ID_BUNDLES_BUNDLE_ID: ApiProjectsProjectIdBundlesBundleId,
         PathValues.API_PROJECTS_PROJECT_IDHIDE: ApiProjectsProjectIdhide,
+        PathValues.API_PROJECTS_PROJECT_IDCHANGE_OWNER: ApiProjectsProjectIdchangeOwner,
         PathValues.API_PROJECTS_PROJECT_ID_BASECONNECTION_DETAILS: ApiProjectsProjectIdBaseconnectionDetails,
         PathValues.API_PROJECTS_PROJECT_ID_BASE_JOBS: ApiProjectsProjectIdBaseJobs,
         PathValues.API_PROJECTS_PROJECT_ID_BASE_JOBS_BASE_JOB_ID: ApiProjectsProjectIdBaseJobsBaseJobId,
@@ -477,6 +494,10 @@ path_to_api = PathToApi(
         PathValues.API_PROJECTS_PROJECT_ID_DATA_DATA_ID_FOLDER_UPLOAD_SESSIONS: ApiProjectsProjectIdDataDataIdFolderUploadSessions,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_DATA_ID_FOLDER_UPLOAD_SESSIONS_FOLDER_UPLOAD_SESSION_ID: ApiProjectsProjectIdDataDataIdFolderUploadSessionsFolderUploadSessionId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_DATA_ID_FOLDER_UPLOAD_SESSIONS_FOLDER_UPLOAD_SESSION_IDCOMPLETE: ApiProjectsProjectIdDataDataIdFolderUploadSessionsFolderUploadSessionIdcomplete,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH: ApiProjectsProjectIdDataCopyBatch,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH_BATCH_ID: ApiProjectsProjectIdDataCopyBatchBatchId,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdDataCopyBatchBatchIdItems,
+        PathValues.API_PROJECTS_PROJECT_ID_DATA_COPY_BATCH_BATCH_ID_ITEMS_ITEM_ID: ApiProjectsProjectIdDataCopyBatchBatchIdItemsItemId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_LINKING_BATCH: ApiProjectsProjectIdDataLinkingBatch,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_LINKING_BATCH_BATCH_ID: ApiProjectsProjectIdDataLinkingBatchBatchId,
         PathValues.API_PROJECTS_PROJECT_ID_DATA_LINKING_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdDataLinkingBatchBatchIdItems,
@@ -526,6 +547,9 @@ path_to_api = PathToApi(
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLE_CREATION_BATCH_BATCH_ID: ApiProjectsProjectIdSampleCreationBatchBatchId,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLE_CREATION_BATCH_BATCH_ID_ITEMS: ApiProjectsProjectIdSampleCreationBatchBatchIdItems,
         PathValues.API_PROJECTS_PROJECT_ID_SAMPLE_CREATION_BATCH_BATCH_ID_ITEMS_ITEM_ID: ApiProjectsProjectIdSampleCreationBatchBatchIdItemsItemId,
+        PathValues.API_PROJECTS_PROJECT_ID_WORKFLOW_SESSIONS: ApiProjectsProjectIdWorkflowSessions,
+        PathValues.API_PROJECTS_PROJECT_ID_WORKFLOW_SESSIONS_WORKFLOW_SESSION_ID_INPUTS: ApiProjectsProjectIdWorkflowSessionsWorkflowSessionIdInputs,
+        PathValues.API_PROJECTS_PROJECT_ID_WORKFLOW_SESSIONS_WORKFLOW_SESSION_ID_CONFIGURATIONS: ApiProjectsProjectIdWorkflowSessionsWorkflowSessionIdConfigurations,
         PathValues.API_REFERENCE_SETS: ApiReferenceSets,
         PathValues.API_REFERENCE_SETS_REFERENCE_SET_ID_SPECIES: ApiReferenceSetsReferenceSetIdSpecies,
         PathValues.API_REGIONS: ApiRegions,
