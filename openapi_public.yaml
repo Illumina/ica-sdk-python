@@ -80,31 +80,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
-          - shortDescription"
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription"
         schema:
           type: string
       responses:
@@ -569,30 +573,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -779,30 +788,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
           type: string
@@ -1630,30 +1644,35 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       responses:
@@ -1693,31 +1712,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
-          - shortDescription"
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription"
         schema:
           type: string
       responses:
@@ -1989,30 +2012,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       responses:
@@ -2606,30 +2634,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
           type: string
@@ -3041,30 +3074,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -3290,31 +3328,36 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
-          - shortDescription\n- information"
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription\n\
+          - information"
         schema:
           type: string
       responses:
@@ -3657,30 +3700,35 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- description\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- description\n\
           - type"
         schema:
           type: string
@@ -4347,30 +4395,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -4700,30 +4753,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -4755,22 +4813,26 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: projectId
@@ -4932,22 +4994,26 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: projectId
@@ -5626,30 +5692,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -5801,30 +5872,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -5915,30 +5991,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - direction\n- connector\n- protocol\n- dataTransferred\n- status\n- statusMessage\n\
           - duration\n"
         schema:
@@ -6116,30 +6197,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -7474,30 +7560,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
           type: string
@@ -7765,30 +7856,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -8289,30 +8385,35 @@ paths:
             - STOPPED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -8413,30 +8514,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- workflow\n"
         schema:
           type: string
@@ -8643,30 +8749,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
           type: string
@@ -9388,30 +9499,35 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
           type: string
@@ -11357,7 +11473,6 @@ components:
       nullable: true
     AnalysisInputExternalData:
       required:
-      - mountPath
       - type
       - url
       type: object
@@ -11373,6 +11488,7 @@ components:
             \ located on the machine that is running the pipeline. The use of a relative\
             \ path is encouraged, but an absolute path is also allowed. The path should\
             \ end with the file name, which may differ from the original input data."
+          nullable: true
         s3Details:
           $ref: '#/components/schemas/AnalysisS3DataDetails'
       nullable: true
@@ -12674,8 +12790,8 @@ components:
           type: string
         type:
           type: string
-          description: "Possible values are: s3 & http. More types could be added\
-            \ in a future release."
+          description: "Possible values are: s3, http. More types could be added in\
+            \ a future release."
         mountPath:
           type: string
       description: The external data used as input by the analysis.
@@ -14704,6 +14820,8 @@ components:
     InputPart:
       type: object
       properties:
+        contentTypeFromMessage:
+          type: boolean
         mediaType:
           type: object
           properties:
@@ -14719,8 +14837,6 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
-        contentTypeFromMessage:
-          type: boolean
         bodyAsString:
           type: string
         headers:
